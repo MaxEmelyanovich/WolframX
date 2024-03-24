@@ -1,0 +1,72 @@
+/* SignUpPage.css */
+
+.registration-page {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-image: url('assets/back3.png');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    z-index: 9999;
+  }
+
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  form {
+    background-color: transparent;
+    margin-top: 150px;
+    width: 500px;
+    height: 380px;
+    border: 1px solid #c0c0c0;
+    border-radius: 20px;
+    
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  input {
+    margin-left: 75px;
+    margin-top: 15px;
+    height: 35px;
+    width: 350px;
+    border: 1px solid #c0c0c0;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color:#c0c0c0;
+    background-color: rgba(0,0,0,0);
+  }
+  ::placeholder {
+    color:#c0c0c0;
+    opacity: 0.6;
+    padding: 5px;
+  }
+  
+  button {
+    margin-left: 165px; 
+    margin-top: 20px;
+    width: 100%;
+    height: 35px;
+    width: 170px;
+    background-color: #EF7135;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+  }
+  
+  button:hover {
+    background-color: #ec530c;
+    cursor: pointer;
+  }
