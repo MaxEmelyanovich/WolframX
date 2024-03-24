@@ -1,4 +1,4 @@
-package framexteam.wolframx.service;
+package framexteam.wolframx.authentication.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import framexteam.wolframx.entity.User;
-import framexteam.wolframx.repository.UserRepository;
+import framexteam.wolframx.database.entity.User;
+import framexteam.wolframx.database.repository.UserRepository;
 
 
 @Service

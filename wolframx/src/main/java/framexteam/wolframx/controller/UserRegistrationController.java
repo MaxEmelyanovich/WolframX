@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import framexteam.wolframx.service.UserService;
+import framexteam.wolframx.authentication.service.UserService;
 import jakarta.validation.Valid;
-import framexteam.wolframx.dto.UserDTO;
-import framexteam.wolframx.exception.UserAlreadyExistsException;
+import framexteam.wolframx.authentication.dto.UserDTO;
+import framexteam.wolframx.authentication.exception.UserAlreadyExistsException;
 
 @Controller
 @RequestMapping("/registration")

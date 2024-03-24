@@ -1,14 +1,14 @@
-package framexteam.wolframx.service;
+package framexteam.wolframx.authentication.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import framexteam.wolframx.dto.UserDTO;
-import framexteam.wolframx.entity.User;
-import framexteam.wolframx.exception.UserAlreadyExistsException;
-import framexteam.wolframx.repository.UserRepository;
+import framexteam.wolframx.authentication.dto.UserDTO;
+import framexteam.wolframx.database.entity.User;
+import framexteam.wolframx.authentication.exception.UserAlreadyExistsException;
+import framexteam.wolframx.database.repository.UserRepository;
 
 @Service
 @Transactional

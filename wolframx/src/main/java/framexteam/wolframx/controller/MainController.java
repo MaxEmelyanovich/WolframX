@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import framexteam.wolframx.entity.User;
-import framexteam.wolframx.repository.UserRepository;
+import framexteam.wolframx.database.entity.User;
+import framexteam.wolframx.database.repository.UserRepository;
 
 @Controller
 public class MainController {

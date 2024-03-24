@@ -1,4 +1,4 @@
-package framexteam.wolframx.config;
+package framexteam.wolframx.authentication.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -7,7 +7,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import framexteam.wolframx.service.MyUserDetailsService;
+import framexteam.wolframx.authentication.service.MyUserDetailsService;
  
 @Configuration
 public class SecurityConfiguration   {

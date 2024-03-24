@@ -1,4 +1,4 @@
-package framexteam.wolframx.entity;
+package framexteam.wolframx.database.entity;
 
 import jakarta.persistence.*;
 
