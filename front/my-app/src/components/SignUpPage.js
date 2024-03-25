@@ -26,10 +26,10 @@ class SignUpPage extends React.Component {
       render() {
         return (
           <div className='registration-page'>
-            <form onSubmit={this.handleSubmit}>
+            <form type="formReg" onSubmit={this.handleSubmit}>
               <label>
                 <input
-                  type="text"
+                  type="signUpPageInput"
                   name="firstname"
                   value={this.state.firstname}
                   onChange={this.handleInputChange}
@@ -38,7 +38,7 @@ class SignUpPage extends React.Component {
               </label>
               <label>
                 <input
-                  type="text"
+                  type="signUpPageInput"
                   name="lastname"
                   value={this.state.lastname}
                   onChange={this.handleInputChange}
@@ -47,7 +47,7 @@ class SignUpPage extends React.Component {
               </label>
               <label>
                 <input
-                  type="text"
+                  type="signUpPageInput"
                   name="email"
                   value={this.state.email}
                   onChange={this.handleInputChange}
@@ -56,14 +56,14 @@ class SignUpPage extends React.Component {
               </label>
               <label>
                 <input
-                  type="text"
+                  type="signUpPageInput"
                   name="password"
                   value={this.state.password}
                   onChange={this.handleInputChange}
                   placeholder="Password"
                 />
               </label>
-              <button type="submit">Sign Up</button>
+              <button className="signUpPageSubmit">Sign Up</button>
             </form>
           </div>
         );

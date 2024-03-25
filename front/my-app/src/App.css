@@ -13,17 +13,6 @@
   }
 }
 
-/*.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}*/
-
 .App-link {
   color: #61dafb;
 }
@@ -44,15 +33,16 @@
 }
 
 .signup-button {
+  font-family: "Mulish", sans-serif;
   color: #fff;
   text-decoration: none;
-  padding: 14px 30px;
+  padding: 1% 2%;
   background-color: rgba(0,0,0,0);
   border: 1px solid #fff;
   border-radius: 10px;
   cursor: pointer;
-  margin-right: 284px;
-  margin-top:58px;
+  margin-right: 23%;
+  margin-top:5%;
 }
 
 .signup-button:hover {
@@ -61,17 +51,18 @@
 
 .secondary-buttons {
   text-align: right;
-  margin-top: 375px;
+  margin-top: 29%;
 }
 
 .signin-button {
+  font-family: "Mulish", sans-serif;
   color: #fff;
   text-decoration: none;
-  padding: 14px 30px;
+  padding: 1% 2%;
   background-color: #EF7135;
   border-radius: 10px;
   cursor: pointer;
-  margin-right: 1005px;
+  margin-right: 80%;
 }
 
 .signin-button:hover {

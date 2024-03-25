@@ -47,7 +47,7 @@ import React from 'react';
 import { BrowserRouter as Router, Link, Routes, Route, useLocation } from 'react-router-dom';
 import SignInPage from './components/SignInPage';
 import SignUpPage from './components/SignUpPage';
-import './App.css';
+import './App.css'; 
 
 function App() {
   return (

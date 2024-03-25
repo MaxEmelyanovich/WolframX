@@ -24,10 +24,10 @@ class SignInPage extends React.Component {
       render() {
         return (
           <div className='authpage'>
-            <form onSubmit={this.handleSubmit}>
+            <form type="formAuth" onSubmit={this.handleSubmit}>
               <label>
                 <input
-                  type="email"
+                  type="signInPageInput"
                   name="email"
                   value={this.state.email}
                   onChange={this.handleInputChange}
@@ -37,7 +37,7 @@ class SignInPage extends React.Component {
               <br />
               <label>
                 <input
-                  type="password"
+                  type="signInPageInput"
                   name="password"
                   value={this.state.password}
                   onChange={this.handleInputChange}
@@ -45,7 +45,7 @@ class SignInPage extends React.Component {
                 />
               </label>
               <br />
-              <button type="submit">Sign In</button>
+              <button className="signInPageSubmit">Sign In</button>
             </form>
           </div>
         );
