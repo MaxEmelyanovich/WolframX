@@ -20,6 +20,6 @@
 
 ![photo_2024-03-24_22-03-56](https://github.com/MaxEmelyanovich/WolframX/assets/99658243/df91998d-5af9-4102-8c46-fcba68076ae1)
 
-![photo_2024-03-24_22-04-32](https://github.com/MaxEmelyanovich/WolframX/assets/99658243/c09834ee-2e39-4901-a609-f7c860233c62)
+<img width="960" alt="image" src="https://github.com/MaxEmelyanovich/WolframX/assets/95571818/ace6e59d-d2a6-4e49-8d02-568bcc733aef">
 
 ![photo_2024-03-24_22-29-42](https://github.com/MaxEmelyanovich/WolframX/assets/99658243/b76cfad0-70fa-49d3-ba7c-844ca4e9eba0)
