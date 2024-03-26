@@ -19,9 +19,43 @@ class SignUpPage extends React.Component {
     
       handleSubmit = (event) => {
         event.preventDefault();
-        // Ваша логика обработки формы регистрации
-        console.log('Регистрация:', this.state.firstname, this.state.lastname, this.state.email, this.state.password);
-        this.setState({ firstname: '', lastname: '', email: '', password: '' });
+
+        // валидация полей
+  
+        // Создаем объект с данными для отправки на сервер
+        const data = {
+          firstname: this.state.firstname,
+          lastname: this.state.lastname,
+          email: this.state.email,
+          password: this.state.password
+        };
+
+        // Отправляем данные на моковый сервер в виде JSON файла
+        fetch('http://localhost:3000/users', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+          .then(response => response.json())
+          .then(responseData => {
+            // Обработка ответа от мокового сервера
+            console.log('Ответ сервера:', responseData);
+            // Дополнительные действия после успешной отправки данных
+          })
+          .catch(error => {
+            // Обработка ошибок
+            console.error('Ошибка при отправке данных:', error);
+          });
+
+        // Очищаем значения полей формы
+        this.setState({
+          firstname: '',
+          lastname: '',
+          email: '',
+          password: ''
+        });
       };
     
       render() {
@@ -70,7 +104,6 @@ class SignUpPage extends React.Component {
                 <a type="signUpPageRef" href='/signin'>Sign In</a>
               </p>
             </form>
-            
           </div>
         );
       }
