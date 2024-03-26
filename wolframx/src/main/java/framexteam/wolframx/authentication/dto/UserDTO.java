@@ -1,4 +1,4 @@
-package framexteam.wolframx.dto;
+package framexteam.wolframx.authentication.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -22,14 +22,6 @@ public class UserDTO {
     public UserDTO() {
 
     }
-
-    // public UserRegistrationDto(String firstName, String lastName, String email, String password) {
-    //     super();
-    //     this.firstName = firstName;
-    //     this.lastName = lastName;
-    //     this.email = email;
-    //     this.password = password;
-    // }
 
     public String getFirstName() {
         return firstName;
