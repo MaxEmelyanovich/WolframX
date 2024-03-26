@@ -1,5 +1,6 @@
 import React from 'react';
 import './SignUpPage.css';
+import { Link } from 'react-router-dom';
 
 class SignUpPage extends React.Component {
     constructor(props) {
@@ -64,7 +65,12 @@ class SignUpPage extends React.Component {
                 />
               </label>
               <button className="signUpPageSubmit">Sign Up</button>
+              <p type="signUpPageP">
+                Already have an account?{' '}
+                <a type="signUpPageRef" href='/signin'>Sign In</a>
+              </p>
             </form>
+            
           </div>
         );
       }

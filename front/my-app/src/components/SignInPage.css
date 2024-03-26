@@ -20,7 +20,7 @@ form[type="formAuth"] {
   width: 30%;
   height: 45%;
   border: 1px solid #c0c0c0;
-  border-radius: 20px;
+  border-radius: 10px;
   text-align: center;
   align-items: center;
 }
@@ -37,14 +37,44 @@ form[type="formAuth"] {
   }
   
   .signInPageSubmit {
-    margin-top: 20%;
+    margin-top: 7%;
     font-family: "Mulish", sans-serif;
-    height: 12%;
+    height: 14%;
     width: 25%;
     background-color: #EF7135;
     color: #fff;
     border: none;
     border-radius: 10px;
   }
+
+  p[type="signInPageP"] {
+    font-family: "Mulish", sans-serif;
+    font-size:85%;
+    text-align: left;
+    margin-left: 14%;
+    margin-top: 5%;
+  }
+
+  a[type="signInPageRef1"] {
+    color:#fff;
+  }
+
+  a:hover[type="signInPageRef1"] {
+    color:#c0c0c0;
+  }
   
-  
+  p[type="signInPageP2"] {
+    margin-top: 12%;
+    color:#fff;
+    font-family: "Mulish", sans-serif;
+    font-size: 85%;
+  }
+
+  a[type="signInPageRef2"] {
+    color:#EF7135;
+  }
+
+  a:hover[type="signInPageRef2"] {
+    color: #ec530c;
+    cursor: pointer;
+  }

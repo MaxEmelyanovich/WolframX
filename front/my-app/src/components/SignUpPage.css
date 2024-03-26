@@ -20,7 +20,7 @@
     width: 30%;
     height: 55%;
     border: 1px solid #c0c0c0;
-    border-radius: 20px;
+    border-radius: 10px;
     text-align: center;
     align-items: center;
   }
@@ -35,7 +35,7 @@
   .signUpPageSubmit {
     margin-top: 6%;
     font-family: "Mulish", sans-serif;
-    height: 10%;
+    height: 11%;
     width: 25%;
     background-color: #EF7135;
     color: #fff;
@@ -58,4 +58,19 @@
     color:#c0c0c0;
     background-color: rgba(0,0,0,0);
   }
-  
+
+  p[type="signUpPageP"] {
+    margin-top: 10%;
+    color:#fff;
+    font-family: "Mulish", sans-serif;
+    font-size: 85%;
+  }
+
+  a[type="signUpPageRef"] {
+    color:#EF7135;
+  }
+
+  a:hover[type="signUpPageRef"] {
+    color: #ec530c;
+    cursor: pointer;
+  }

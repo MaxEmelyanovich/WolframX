@@ -45,11 +45,20 @@ class SignInPage extends React.Component {
                 />
               </label>
               <br />
+              <p type="signInPageP">
+                <a type="signInPageRef1" href='/'>Forgot password</a> 
+              </p>
               <button className="signInPageSubmit">Sign In</button>
+              <p type="signInPageP2">
+                Don't have an account?{' '}
+                <a type="signInPageRef2" href='/signup'>Sign Up</a> 
+              </p>
             </form>
           </div>
         );
       }
 }
+
+// в signInPageRef1 поставить нужную ссылку на страницу для сброса пароля
 
 export default SignInPage;
