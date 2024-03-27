@@ -3,8 +3,9 @@
 body {
   background-image: url('assets/back1.1.png');
   background-size: cover;
-  background-position: center top;
+  /* background-position: center top; */
   background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 code {

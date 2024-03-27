@@ -6,8 +6,8 @@ class SignUpPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstname: '',
-            lastname : '',
+            firstName: '',
+            lastName : '',
             email: '',
             password: ''
         };
@@ -18,23 +18,26 @@ class SignUpPage extends React.Component {
       };
     
       handleSubmit = (event) => {
+
         event.preventDefault();
 
         // валидация полей
   
         // Создаем объект с данными для отправки на сервер
         const data = {
-          firstname: this.state.firstname,
-          lastname: this.state.lastname,
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
           email: this.state.email,
           password: this.state.password
         };
 
-        // Отправляем данные на моковый сервер в виде JSON файла
-        fetch('http://localhost:3000/users', {
+        // http://25.23.19.72:8080/signup
+        fetch('http://25.23.19.72:8080/signup', {
           method: 'POST',
+          // mode: 'no-cors',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
           },
           body: JSON.stringify(data)
         })
@@ -42,6 +45,7 @@ class SignUpPage extends React.Component {
           .then(responseData => {
             // Обработка ответа от мокового сервера
             console.log('Ответ сервера:', responseData);
+            alert('ПОЛЬЗОВАТЕЛЬ ЗАРЕГИСТРИРОВАН');
             // Дополнительные действия после успешной отправки данных
           })
           .catch(error => {
@@ -51,8 +55,8 @@ class SignUpPage extends React.Component {
 
         // Очищаем значения полей формы
         this.setState({
-          firstname: '',
-          lastname: '',
+          firstName: '',
+          lastName: '',
           email: '',
           password: ''
         });
@@ -65,8 +69,8 @@ class SignUpPage extends React.Component {
               <label>
                 <input
                   type="signUpPageInput"
-                  name="firstname"
-                  value={this.state.firstname}
+                  name="firstName"
+                  value={this.state.firstName}
                   onChange={this.handleInputChange}
                   placeholder="First Name"
                 />
@@ -74,8 +78,8 @@ class SignUpPage extends React.Component {
               <label>
                 <input
                   type="signUpPageInput"
-                  name="lastname"
-                  value={this.state.lastname}
+                  name="lastName"
+                  value={this.state.lastName}
                   onChange={this.handleInputChange}
                   placeholder="Last Name"
                 />
