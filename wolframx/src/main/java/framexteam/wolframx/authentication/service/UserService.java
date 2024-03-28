@@ -35,6 +35,14 @@ public class UserService implements IUserService {
         return repository.save(user);
     }
 
+    public UserDTO getUserByEmail(String email) {
+        User user = repository.findByEmail(email);
+        UserDTO userDto = new UserDTO();
+        userDto.setFirstName(user.getFirstName());
+        userDto.setLastName(user.getLastName());
+        return userDto;
+    }
+
     private boolean emailExists(String email) {
         return repository.findByEmail(email) != null;
     }
