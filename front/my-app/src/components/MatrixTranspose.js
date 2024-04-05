@@ -64,7 +64,7 @@
 
 //   const sendDataToServer = async () => {
 //     try {
-//       const response = await fetch('URL_СЕРВЕРА', {
+//       const response = await fetch('http://25.23.19.72:8080/calculations/matrices/transpose', {
 //         method: 'POST',
 //         headers: {
 //           'Content-Type': 'application/json',
@@ -75,7 +75,6 @@
 //       const data = await response.json(); // Преобразование ответа в JSON формат
 
 //       setResponseData(data.result); // Установка полученного ответа в состояние responseData
-//       setInputData('');
 //     } catch (error) {
 //       console.error('Ошибка:', error);
 //     } finally {
@@ -139,7 +138,7 @@ function MatrixTranspose() {
 
   const sendDataToServer = async () => {
     try {
-      const response = await fetch('URL_СЕРВЕРА', {
+      const response = await fetch('http://25.23.19.72:8080/calculations/matrices/transpose', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
