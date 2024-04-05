@@ -2,13 +2,15 @@
 
 .registration-page {
     display: flex;
-    position:fixed;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    position:fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('assets/back3.png');
+    background-image: url('assets/background2.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -16,7 +18,7 @@
   
   form[type="formReg"] {
     align-items: center;
-    margin-top: 12%;
+    margin-top: 2%;
     width: 30%;
     height: 55%;
     border: 1px solid #c0c0c0;
@@ -45,6 +47,7 @@
   
   button:hover {
     background-color: #ec530c;
+    color: #c0c0c0;
     cursor: pointer;
   }
 
@@ -73,4 +76,26 @@
   a:hover[type="signUpPageRef"] {
     color: #ec530c;
     cursor: pointer;
+  }
+
+  input[type="signUpPagePassword"] {
+    margin-top: 6%;
+    height: 10%;
+    width: 75%;
+    border: 1px solid #c0c0c0;
+    border-radius: 10px;
+    font-size: 80%;
+    color:#c0c0c0;
+    background-color: rgba(0,0,0,0);
+    -webkit-text-security: disc;
+  }
+
+  .wolframX {
+    width: 45%;
+    height: auto;
+  }
+
+  .wolframXdiv {
+    display: flex;
+    justify-content: center;
   }

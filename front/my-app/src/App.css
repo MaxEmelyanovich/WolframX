@@ -29,7 +29,7 @@
 /* App.css */
 .main-nav {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
 }
 
 .signup-button {
@@ -41,17 +41,19 @@
   border: 1px solid #fff;
   border-radius: 10px;
   cursor: pointer;
-  margin-right: 23%;
-  margin-top:5%;
+  margin-left: 10%;
+  margin-top: 3%;
 }
 
 .signup-button:hover {
   text-decoration: underline;
+  color: #c0c0c0;
+  border-color: #c0c0c0;;
 }
 
 .secondary-buttons {
-  text-align: right;
-  margin-top: 29%;
+  display: flex;
+  /* justify-content: flex-end; */
 }
 
 .signin-button {
@@ -62,10 +64,45 @@
   background-color: #EF7135;
   border-radius: 10px;
   cursor: pointer;
-  margin-right: 80%;
+  margin-top: 25%;
+  margin-left: 12%;
 }
 
 .signin-button:hover {
   background-color: #ec530c;
   cursor: pointer;
+  color: #c0c0c0;
+}
+
+.calculations-button {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 10%;
+  margin-top: 3%;
+  font-family: "Mulish", sans-serif;
+}
+
+.calculations-button:hover {
+  text-decoration: underline;
+  color: #c0c0c0;
+}
+
+.about-button {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 30%;
+  margin-top: 3%;
+  font-family: "Mulish", sans-serif;
+}
+
+.about-button:hover {
+  text-decoration: underline;
+  color: #c0c0c0;
+}
+
+.logoSVG {
+  margin-left: 12%;
+  margin-top: 2%;
+  width: 8%;
+  height: 8%;
 }

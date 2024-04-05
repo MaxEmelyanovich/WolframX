@@ -1,6 +1,6 @@
 import React from 'react';
 import './SignUpPage.css';
-import { Link } from 'react-router-dom';
+import wolframX from './assets/wolframx.svg';
 
 class SignUpPage extends React.Component {
     constructor(props) {
@@ -21,9 +21,8 @@ class SignUpPage extends React.Component {
 
         event.preventDefault();
 
-        // валидация полей
+        // Валидация полей
   
-        // Создаем объект с данными для отправки на сервер
         const data = {
           firstName: this.state.firstName,
           lastName: this.state.lastName,
@@ -34,7 +33,6 @@ class SignUpPage extends React.Component {
         // http://25.23.19.72:8080/signup
         fetch('http://25.23.19.72:8080/signup', {
           method: 'POST',
-          // mode: 'no-cors',
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
@@ -43,17 +41,14 @@ class SignUpPage extends React.Component {
         })
           .then(response => response.json())
           .then(responseData => {
-            // Обработка ответа от мокового сервера
             console.log('Ответ сервера:', responseData);
             alert('ПОЛЬЗОВАТЕЛЬ ЗАРЕГИСТРИРОВАН');
             // Дополнительные действия после успешной отправки данных
           })
           .catch(error => {
-            // Обработка ошибок
             console.error('Ошибка при отправке данных:', error);
           });
 
-        // Очищаем значения полей формы
         this.setState({
           firstName: '',
           lastName: '',
@@ -65,6 +60,9 @@ class SignUpPage extends React.Component {
       render() {
         return (
           <div className='registration-page'>
+            <div className="wolframXdiv">
+              <img className="wolframX" src={wolframX} alt="WolframX" />
+            </div>
             <form type="formReg" onSubmit={this.handleSubmit}>
               <label>
                 <input
@@ -95,7 +93,7 @@ class SignUpPage extends React.Component {
               </label>
               <label>
                 <input
-                  type="signUpPageInput"
+                  type="signUpPagePassword"
                   name="password"
                   value={this.state.password}
                   onChange={this.handleInputChange}
