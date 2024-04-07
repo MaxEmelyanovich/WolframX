@@ -14,10 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import framexteam.wolframx.authentication.dto.UserDTO;
 import framexteam.wolframx.authentication.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/signin")
+@Tag(name = "Авторизация", description = "API для авторизации пользователей")
 public class AuthorizationController {
 
     @Autowired
@@ -31,6 +38,13 @@ public class AuthorizationController {
     }
 
     @PostMapping
+    @Operation(summary = "Авторизация пользователя",
+               description = "Аутентифицирует пользователя по email и паролю.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Пользователь успешно авторизован",
+                content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserDTO.class))),
+        @ApiResponse(responseCode = "401", description = "Неверный email или пароль")
+    })
     public ResponseEntity<?> authenticateUser(@RequestBody UserDTO authorizationDto) {
         Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(
