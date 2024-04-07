@@ -14,7 +14,7 @@ function Calculations() {
           <h2 class="h2Calc">Matrices :</h2>
           <Link className="link" to="/matrixtranspose">Matrix Transpose</Link>
           <br></br>
-          <Link className="link" to="/matrixtranspose">Matrix Multiplication</Link>
+          <Link className="link" to="/matrixmultiplication">Matrix Multiplication</Link>
           <br></br>
           <Link className="link" to="/matrixtranspose">Matrix Addition</Link>
           <br></br>

@@ -1,7 +1,7 @@
 .matrix-transpose-container {
     display: flex;
     flex-direction: column;
-    position:fixed;
+    position: fixed;
     /* justify-content: center; */
     top: 0;
     left: 0;
@@ -12,62 +12,62 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-  }
+}
 
-  /* Определение анимации */
+/* Определение анимации */
 @keyframes slideInFromLeft {
-  0% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 /* Применение анимации ко всем элементам */
 .matrix-transpose-container * {
-  animation: slideInFromLeft 1s ease-out forwards;
-  }
+    animation: slideInFromLeft 1s ease-out forwards;
+}
 
-  .h1Transpose {
+.h1Transpose {
     margin-left: 12%;
     margin-top: 5%;
     color: #fff;
-    font-family: "Mulish", sans-serif;
+    font-family: 'Mulish', sans-serif;
     font-weight: lighter;
     font-size: 200%;
-  }
+}
 
-  .matrix-transpose-text1 {
+.matrix-transpose-text1 {
     margin-left: 12%;
     margin-top: 5%;
-    color:#fff;
-    font-family: "Mulish", sans-serif;
+    color: #fff;
+    font-family: 'Mulish', sans-serif;
     font-size: 120%;
-  }
+}
 
-  .matrix-transpose-text2 {
+.matrix-transpose-text2 {
     margin-left: 12%;
-    color:#fff;
-    font-family: "Mulish", sans-serif;
+    color: #fff;
+    font-family: 'Mulish', sans-serif;
     font-size: 120%;
-  }
+}
 
-  .matrix-transpose-button {
+.matrix-transpose-button {
     margin-left: 12%;
     margin-top: 1%;
-    font-family: "Mulish", sans-serif;
+    font-family: 'Mulish', sans-serif;
     height: 7%;
     width: 8%;
-    background-color: #EF7135;
+    background-color: #ef7135;
     color: #fff;
     border: none;
     border-radius: 10px;
-  }
+}
 
-  .matrix-transpose-input {
+.matrix-transpose-input {
     /* margin-top: 3%; */
     margin-left: 12%;
     width: 50%;
@@ -76,11 +76,11 @@
     border: 1px solid #c0c0c0;
     border-radius: 10px;
     font-size: 120%;
-    color:#c0c0c0;
-    background-color: rgba(0,0,0,0);
-  }
+    color: #c0c0c0;
+    background-color: rgba(0, 0, 0, 0);
+}
 
-  .matrix-transpose-textarea {
+.matrix-transpose-textarea {
     margin-left: 12%;
     width: 50%;
     padding-top: 1%;
@@ -88,6 +88,31 @@
     border: 1px solid #c0c0c0;
     border-radius: 10px;
     font-size: 120%;
-    color:#c0c0c0;
-    background-color: rgba(0,0,0,0);
-  }
+    color: #c0c0c0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.rowWithTextTranspose {
+    display: flex;
+    flex-direction: row;
+}
+
+.matrix-transpose-text-threads {
+    margin-left: 50%;
+    margin-top: 5%;
+    color: #fff;
+    font-family: 'Mulish', sans-serif;
+    font-size: 120%;
+}
+
+.matrix-transpose-input-threads {
+    margin-left: 4%;
+    width: 8%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border: 1px solid #c0c0c0;
+    border-radius: 10px;
+    font-size: 120%;
+    color: #c0c0c0;
+    background-color: rgba(0, 0, 0, 0);
+}

@@ -4,6 +4,7 @@ import SignInPage from './components/SignInPage';
 import SignUpPage from './components/SignUpPage';
 import Calculations from './components/Calculations';
 import MatrixTranspose from './components/MatrixTranspose';
+import MatrixMultiplication from './components/MatrixMultiplication';
 import './App.css'; 
 import logoSVG from './assets/logo.svg';
 
@@ -49,6 +50,7 @@ function AppContent() {
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/calculations" element={<Calculations />} />
         <Route path="/matrixtranspose" element={<MatrixTranspose />} />
+        <Route path="/matrixmultiplication" element={<MatrixMultiplication/>}/>
       </Routes>
     </div>
   );
