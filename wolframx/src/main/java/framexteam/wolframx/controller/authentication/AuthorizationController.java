@@ -1,4 +1,4 @@
-package framexteam.wolframx.controller;
+package framexteam.wolframx.controller.authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -58,5 +58,48 @@ public class AuthorizationController {
         UserDTO userDTO = userService.getUserByEmail(authorizationDto.getEmail());
 
         return ResponseEntity.ok(userDTO);
+    }
+
+    private static class AuthRequest {
+
+        private String email;
+        private String password;
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+        
+        private static class AuthResponse {
+            private String firstName;
+            private String lastName;
+
+            public String getFirstName() {
+                return firstName;
+            }
+    
+            public void setFirstName(String firstName) {
+                this.firstName = firstName;
+            }
+    
+            public String getLastName() {
+                return lastName;
+            }
+    
+            public void setLastName(String lastName) {
+                this.lastName = lastName;
+            }
+        }
     }
 }
