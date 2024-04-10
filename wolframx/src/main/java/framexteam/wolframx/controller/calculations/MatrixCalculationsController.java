@@ -77,11 +77,46 @@ public class MatrixCalculationsController {
         return ResponseEntity.ok(matrixResponse);
     }
 
+    @PostMapping("/substract")
+    public ResponseEntity<?> substractMatrices(@RequestBody MatrixRequest matrixRequest) throws MatrixOperationException {
+        int [][] matrix1 = matrixRequest.getMatrix1AsArray();
+        int [][] matrix2 = matrixRequest.getMatrix2AsArray();
+
+        int threads = matrixRequest.getThreads();
+
+        MatrixOperation operation = new MatrixSubtraction();
+        int [][] resultMatrix = MatrixLibrary.performMatrixOperationMT(matrix1, matrix2, threads, operation);
+
+        MatrixResponse matrixResponse = new MatrixResponse();
+        matrixResponse.setResultMatrix(resultMatrix);
+
+        return ResponseEntity.ok(matrixResponse);
+    }
+
+    @PostMapping("/multiplybyscalar")
+    public ResponseEntity<?> multiplyMatrixByScalar(@RequestBody MatrixRequest matrixRequest) throws MatrixOperationException {
+        int [][] matrix1 = matrixRequest.getMatrix1AsArray();
+
+        int [][] scalarArray = new int[1][1];
+        scalarArray[0][0] = matrixRequest.getScalar();
+
+        int threads = matrixRequest.getThreads();
+
+        MatrixOperation operation = new MatrixScalarMultiplication();
+        int [][] resultMatrix = MatrixLibrary.performMatrixOperationMT(matrix1, scalarArray, threads, operation);
+
+        MatrixResponse matrixResponse = new MatrixResponse();
+        matrixResponse.setResultMatrix(resultMatrix);
+
+        return ResponseEntity.ok(matrixResponse);
+    }
+
 
     private static class MatrixRequest {
         private String matrix1;
         private String matrix2;
         private int threads;
+        private int scalar;
 
         private int[][] getMatrixAsArray(String matrix) {
             // Извлечение содержимого матрицы из строки
@@ -126,6 +161,10 @@ public class MatrixCalculationsController {
             return matrix2;
         }
 
+        public int getScalar() {
+            return scalar;
+        }
+
         public int getThreads(){
             return threads;
         }
@@ -140,6 +179,10 @@ public class MatrixCalculationsController {
 
         public void setThreads(int threads) {
             this.threads = threads;
+        }
+
+        public void setScalar(int scalar) {
+            this.scalar = scalar;
         }
     }
 
