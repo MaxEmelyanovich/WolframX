@@ -1,8 +1,10 @@
 package framexteam.wolframx.calculations.matrices;
 
+import framexteam.wolframx.calculations.arithmeticOperations.ArithmeticOperations;
+
 public class MatrixMultiplication implements MatrixOperation {
     @Override
-    public void performOperation(int[][] firstMatrix, int[][] secondMatrix, int[][] resultMatrix, int startIndex, int endIndex) throws MatrixOperationException {
+    public <T extends Number> void performOperation(T[][] firstMatrix, T[][] secondMatrix, T[][] resultMatrix, int startIndex, int endIndex) throws MatrixOperationException {
         if (firstMatrix == null || secondMatrix == null || resultMatrix == null) {
             throw new MatrixOperationException("Matrices cannot be null.");
         }
@@ -22,16 +24,16 @@ public class MatrixMultiplication implements MatrixOperation {
         for (int index = startIndex; index < endIndex; ++index) {
             final int row = index / secondMatrix[0].length;
             final int col = index % secondMatrix[0].length;
-            int value = 0;
+            Double value = 0.0;
             for (int i = 0; i < secondMatrix.length; ++i) {
-                value += firstMatrix[row][i] * secondMatrix[i][col];
+                value = ArithmeticOperations.add(value, ArithmeticOperations.mul(firstMatrix[row][i], secondMatrix[i][col])).doubleValue();
             }
-            resultMatrix[row][col] = value;
+            resultMatrix[row][col] = (T) value;
         }
     }
 
     @Override
-    public int[][] getResultMatrixSize(int[][] firstMatrix, int[][] secondMatrix) throws MatrixOperationException {
+    public <T extends Number> Double[][] getResultMatrixSize(T[][] firstMatrix, T[][] secondMatrix) throws MatrixOperationException {
         if (firstMatrix == null || secondMatrix == null) {
             throw new MatrixOperationException("Matrices cannot be null.");
         }
@@ -43,6 +45,6 @@ public class MatrixMultiplication implements MatrixOperation {
         if (firstMatrix[0].length != secondMatrix.length) {
             throw new MatrixOperationException("Invalid matrix dimensions for multiplication operation.");
         }
-        return new int[firstMatrix.length][secondMatrix[0].length];
+        return new Double[firstMatrix.length][secondMatrix[0].length];
     }
 }

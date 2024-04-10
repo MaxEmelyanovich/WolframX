@@ -47,7 +47,7 @@ public class CalculationsController {
         int numCols = rows[0].split(",").length;
 
         // Создание двумерного массива для хранения матрицы
-        int[][] matrix = new int[numRows][numCols];
+        Integer[][] matrix = new Integer[numRows][numCols];
 
         // Заполнение двумерного массива значениями из строки
         for (int i = 0; i < numRows; i++) {
@@ -58,7 +58,7 @@ public class CalculationsController {
         }
 
         MatrixOperation operation = new MatrixTranspose();
-        int [][] resultMatrix = MatrixLibrary.performMatrixOperationMT(matrix, matrix, threadCount, operation);
+        Double [][] resultMatrix = MatrixLibrary.performMatrixOperationMT(matrix, matrix, threadCount, operation);
 
         StringBuilder sb = new StringBuilder();
 

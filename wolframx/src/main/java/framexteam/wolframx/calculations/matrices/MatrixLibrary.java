@@ -2,8 +2,8 @@ package framexteam.wolframx.calculations.matrices;
 
 public class MatrixLibrary {
 
-    public static int[][] performMatrixOperationMT(final int[][] firstMatrix,
-                                                   final int[][] secondMatrix,
+    public static <T extends Number> Double[][] performMatrixOperationMT(final T[][] firstMatrix,
+                                                   final T[][] secondMatrix,
                                                    int threadCount,
                                                    MatrixOperation operation) throws MatrixOperationException {
 
@@ -11,7 +11,7 @@ public class MatrixLibrary {
             throw new MatrixOperationException("Thread count must be greater than zero.");
         }
 
-        final int[][] result = operation.getResultMatrixSize(firstMatrix, secondMatrix);
+        final Double[][] result = operation.getResultMatrixSize(firstMatrix, secondMatrix);
         final int rowCount = result.length;
         final int colCount = result[0].length;
 
@@ -47,49 +47,5 @@ public class MatrixLibrary {
         }
 
         return result;
-    }
-
-    private static class MatrixOperationThread extends Thread {
-        private final int[][] firstMatrix;
-        private final int[][] secondMatrix;
-        private final int[][] resultMatrix;
-        private final int firstIndex;
-        private final int lastIndex;
-        private final MatrixOperation operation;
-        private MatrixOperationException exception;
-
-        private volatile boolean errorOccurred = false;
-
-        public MatrixOperationThread(final int[][] firstMatrix,
-                                     final int[][] secondMatrix,
-                                     final int[][] resultMatrix,
-                                     final int firstIndex,
-                                     final int lastIndex,
-                                     final MatrixOperation operation) {
-            this.firstMatrix = firstMatrix;
-            this.secondMatrix = secondMatrix;
-            this.resultMatrix = resultMatrix;
-            this.firstIndex = firstIndex;
-            this.lastIndex = lastIndex;
-            this.operation = operation;
-        }
-
-        public boolean isErrorOccurred() {
-            return errorOccurred;
-        }
-
-        public MatrixOperationException getException() {
-            return exception;
-        }
-
-        @Override
-        public void run() {
-            try {
-                operation.performOperation(firstMatrix, secondMatrix, resultMatrix, firstIndex, lastIndex);
-            } catch (MatrixOperationException e) {
-                errorOccurred = true;
-                exception = e;
-            }
-        }
     }
 }

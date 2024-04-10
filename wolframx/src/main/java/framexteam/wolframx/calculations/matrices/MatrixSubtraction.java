@@ -1,8 +1,10 @@
 package framexteam.wolframx.calculations.matrices;
 
+import framexteam.wolframx.calculations.arithmeticOperations.ArithmeticOperations;
+
 public class MatrixSubtraction implements MatrixOperation {
     @Override
-    public void performOperation(int[][] firstMatrix, int[][] secondMatrix, int[][] resultMatrix, int startIndex, int endIndex) throws MatrixOperationException {
+    public <T extends Number> void performOperation(T[][] firstMatrix, T[][] secondMatrix, T[][] resultMatrix, int startIndex, int endIndex) throws MatrixOperationException {
         if (firstMatrix == null || secondMatrix == null || resultMatrix == null) {
             throw new MatrixOperationException("Matrices cannot be null.");
         }
@@ -22,12 +24,13 @@ public class MatrixSubtraction implements MatrixOperation {
         for (int index = startIndex; index < endIndex; ++index) {
             final int row = index / resultMatrix[0].length;
             final int col = index % resultMatrix[0].length;
-            resultMatrix[row][col] = firstMatrix[row][col] - secondMatrix[row][col];
+            Double result = ArithmeticOperations.sub(firstMatrix[row][col], secondMatrix[row][col]).doubleValue();
+            resultMatrix[row][col] = (T) result;
         }
     }
 
     @Override
-    public int[][] getResultMatrixSize(int[][] firstMatrix, int[][] secondMatrix) throws MatrixOperationException {
+    public <T extends Number> Double[][] getResultMatrixSize(T[][] firstMatrix, T[][] secondMatrix) throws MatrixOperationException {
         if (firstMatrix == null || secondMatrix == null) {
             throw new MatrixOperationException("Matrices cannot be null.");
         }
@@ -39,6 +42,6 @@ public class MatrixSubtraction implements MatrixOperation {
         if (firstMatrix.length != secondMatrix.length || firstMatrix[0].length != secondMatrix[0].length) {
             throw new MatrixOperationException("Matrices must have the same dimensions.");
         }
-        return new int[firstMatrix.length][secondMatrix[0].length];
+        return new Double[firstMatrix.length][secondMatrix[0].length];
     }
 }

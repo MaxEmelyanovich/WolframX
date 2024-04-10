@@ -2,7 +2,7 @@ package framexteam.wolframx.calculations.matrices;
 
 public class MatrixTranspose implements MatrixOperation {
     @Override
-    public void performOperation(int[][] firstMatrix, int[][] secondMatrix, int[][] resultMatrix, int startIndex, int endIndex) throws MatrixOperationException {
+    public <T extends Number> void performOperation(T[][] firstMatrix, T[][] secondMatrix, T[][] resultMatrix, int startIndex, int endIndex) throws MatrixOperationException {
         if (firstMatrix == null || resultMatrix == null) {
             throw new MatrixOperationException("Matrices cannot be null.");
         }
@@ -18,12 +18,13 @@ public class MatrixTranspose implements MatrixOperation {
         for (int index = startIndex; index < endIndex; ++index) {
             final int row = index / resultMatrix.length;
             final int col = index % resultMatrix.length;
-            resultMatrix[col][row] = firstMatrix[row][col];
+            Double result = firstMatrix[row][col].doubleValue();
+            resultMatrix[col][row] = (T) result;
         }
     }
 
     @Override
-    public int[][] getResultMatrixSize(int[][] firstMatrix, int[][] secondMatrix) throws MatrixOperationException {
+    public <T extends Number> Double[][] getResultMatrixSize(T[][] firstMatrix, T[][] secondMatrix) throws MatrixOperationException {
         if (firstMatrix == null) {
             throw new MatrixOperationException("Matrices cannot be null.");
         }
@@ -31,6 +32,6 @@ public class MatrixTranspose implements MatrixOperation {
         if (firstMatrix.length == 0) {
             throw new MatrixOperationException("Matrices cannot be empty.");
         }
-        return new int[firstMatrix[0].length][firstMatrix.length];
+        return new Double[firstMatrix[0].length][firstMatrix.length];
     }
 }
