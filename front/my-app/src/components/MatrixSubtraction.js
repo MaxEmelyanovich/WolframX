@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './MatrixMultiplication.css';
+import './MatrixSubtraction.css';
 import { toPng } from 'html-to-image';
 
-function MatrixMultiplication() {
+function MatrixSubtraction() {
     const [inputData1, setInputData1] = useState('');
     const [inputData2, setInputData2] = useState('');
     const [inputData3, setInputData3] = useState('');
@@ -23,7 +23,7 @@ function MatrixMultiplication() {
     const sendDataToServer = async () => {
         try {
             const response = await fetch(
-                'http://25.23.19.72:8080/calculations/matrices/multiply',
+                'http://25.23.19.72:8080/calculations/matrices/substract',
                 {
                     method: 'POST',
                     headers: {
@@ -64,35 +64,31 @@ function MatrixMultiplication() {
     };
 
     return (
-        <div className="matrix-multiplication-container">
-            <h1 className="h1Multiplication">Matrix Multiplication</h1>
-            <form className="matrix-multiplication-form">
-                <form className="matrix-multiplication-block">
-                    <p className="matrix-multiplication-text1">Matrix:</p>
+        <div className="matrix-subtraction-container">
+            <h1 className="h1Subtraction">Matrix Subtraction</h1>
+            <form className="matrix-subtraction-form">
+                <form className="matrix-subtraction-block">
+                    <p className="matrix-subtraction-text1">Matrix:</p>
                     <input
                         value={inputData1}
                         onChange={handleInputChange1}
-                        className="matrix-multiplication-input"
+                        className="matrix-subtraction-input"
                         placeholder="Enter the matrix"
                     />
-                    <p className="matrix-multiplication-text1">
-                        Second matrix:
-                    </p>
+                    <p className="matrix-subtraction-text1">Second matrix:</p>
                     <input
                         value={inputData2}
                         onChange={handleInputChange2}
-                        className="matrix-multiplication-input"
+                        className="matrix-subtraction-input"
                         placeholder="Enter the second matrix"
                     />
                 </form>
-                <form className="matrix-multiplication-block">
-                    <p className="matrix-multiplication-text-threads">
-                        Threads:
-                    </p>
+                <form className="matrix-subtraction-block">
+                    <p className="matrix-subtraction-text-threads">Threads:</p>
                     <input
                         value={inputData3}
                         onChange={handleInputChange3}
-                        className="matrix-multiplication-input-threads"
+                        className="matrix-subtraction-input-threads"
                         placeholder="Threads"
                     />
                 </form>
@@ -100,19 +96,16 @@ function MatrixMultiplication() {
 
             <button
                 onClick={handleSubmit}
-                className="matrix-multiplication-button"
+                className="matrix-subtraction-button"
             >
                 {isLoading ? 'Loading...' : 'Get Result'}
             </button>
-            <p className="matrix-multiplication-text2">Result:</p>
-            <form
-                className="matrix-multiplication-form"
-                id="response-container"
-            >
+            <p className="matrix-subtraction-text2">Result:</p>
+            <form className="matrix-subtraction-form" id="response-container">
                 {/* Форма для вывода текста с сервера */}
                 <textarea
                     value={responseData}
-                    className="matrix-multiplication-textarea"
+                    className="matrix-subtraction-textarea"
                     readOnly
                 />
             </form>
@@ -126,4 +119,4 @@ function MatrixMultiplication() {
     );
 }
 
-export default MatrixMultiplication;
+export default MatrixSubtraction;

@@ -1,4 +1,4 @@
-.matrix-transpose-container {
+.scalar-multiplication-container {
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -27,11 +27,11 @@
 }
 
 /* Применение анимации ко всем элементам */
-.matrix-transpose-container * {
+.scalar-multiplication-container * {
     animation: slideInFromLeft 1s ease-out forwards;
 }
 
-.h1Transpose {
+.h1ScalarMult {
     margin-left: 12%;
     margin-top: 5%;
     color: #fff;
@@ -40,33 +40,21 @@
     font-size: 200%;
 }
 
-.matrix-transpose-form {
-    display: flex;
-    flex-direction: row;
-}
-
-.matrix-transpose-block {
+.scalar-multiplication-block {
     display: flex;
     flex-direction: column;
     margin-left: 12%;
     width: 50%;
 }
 
-.matrix-transpose-text1 {
+.scalar-multiplication-text1 {
     margin-top: 5%;
     color: #fff;
     font-family: 'Mulish', sans-serif;
     font-size: 120%;
 }
 
-.matrix-transpose-text2 {
-    margin-left: 12%;
-    color: #fff;
-    font-family: 'Mulish', sans-serif;
-    font-size: 120%;
-}
-
-.matrix-transpose-button {
+.scalar-multiplication-button {
     margin-left: 12%;
     margin-top: 1%;
     font-family: 'Mulish', sans-serif;
@@ -78,7 +66,7 @@
     border-radius: 10px;
 }
 
-.matrix-transpose-input {
+.scalar-multiplication-input {
     width: 131%;
     padding-top: 2%;
     padding-bottom: 2%;
@@ -89,7 +77,18 @@
     background-color: rgba(0, 0, 0, 0);
 }
 
-.matrix-transpose-textarea {
+.scalar-multiplication-input-scalar {
+    width: 40%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border: 1px solid #c0c0c0;
+    border-radius: 10px;
+    font-size: 120%;
+    color: #c0c0c0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.scalar-multiplication-textarea {
     margin-left: 12%;
     width: 50%;
     padding-top: 1%;
@@ -101,15 +100,12 @@
     background-color: rgba(0, 0, 0, 0);
 }
 
-.matrix-transpose-text-threads {
-    margin-left: 8%;
-    margin-top: 5%;
-    color: #fff;
-    font-family: 'Mulish', sans-serif;
-    font-size: 120%;
+.scalar-multiplication-form {
+    display: flex;
+    flex-direction: row;
 }
 
-.matrix-transpose-input-threads {
+.scalar-multiplication-input-threads {
     margin-left: 8%;
     width: 40%;
     padding-top: 2%;
@@ -119,4 +115,19 @@
     font-size: 120%;
     color: #c0c0c0;
     background-color: rgba(0, 0, 0, 0);
+}
+
+.scalar-multiplication-text-threads {
+    margin-left: 8%;
+    margin-top: 5%;
+    color: #fff;
+    font-family: 'Mulish', sans-serif;
+    font-size: 120%;
+}
+
+.scalar-multiplication-text2 {
+    margin-left: 12%;
+    color: #fff;
+    font-family: 'Mulish', sans-serif;
+    font-size: 120%;
 }

@@ -77,7 +77,7 @@ function MatrixTranspose() {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        matrix: inputData,
+                        matrix1: inputData,
                         threads: inputData2,
                     }), // Отправка данных на сервер
                 }
@@ -103,24 +103,25 @@ function MatrixTranspose() {
     return (
         <div className="matrix-transpose-container">
             <h1 className="h1Transpose">Matrix Transpose</h1>
-            <div className="rowWithTextTranspose">
-                <p className="matrix-transpose-text1">Matrix:</p>
-                <p className="matrix-transpose-text-threads">Threads:</p>
-            </div>
             <form className="matrix-transpose-form">
-                {/* Форма для ввода данных */}
-                <input
-                    value={inputData}
-                    onChange={handleInputChange}
-                    className="matrix-transpose-input"
-                    placeholder="Enter the matrix"
-                />
-                <input
-                    value={inputData2}
-                    onChange={handleInputChange2}
-                    className="matrix-transpose-input-threads"
-                    placeholder="Threads"
-                />
+                <form className="matrix-transpose-block">
+                    <p className="matrix-transpose-text1">Matrix:</p>
+                    <input
+                        value={inputData}
+                        onChange={handleInputChange}
+                        className="matrix-transpose-input"
+                        placeholder="Enter the matrix"
+                    />
+                </form>
+                <form className="matrix-transpose-block">
+                    <p className="matrix-transpose-text-threads">Threads:</p>
+                    <input
+                        value={inputData2}
+                        onChange={handleInputChange2}
+                        className="matrix-transpose-input-threads"
+                        placeholder="Threads"
+                    />
+                </form>
             </form>
             <button onClick={handleSubmit} className="matrix-transpose-button">
                 {isLoading ? 'Loading...' : 'Get Result'}

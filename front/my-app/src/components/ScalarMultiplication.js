@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './MatrixMultiplication.css';
+import './ScalarMultiplication.css';
 import { toPng } from 'html-to-image';
 
-function MatrixMultiplication() {
+function ScalarMultiplication() {
     const [inputData1, setInputData1] = useState('');
     const [inputData2, setInputData2] = useState('');
     const [inputData3, setInputData3] = useState('');
@@ -23,7 +23,7 @@ function MatrixMultiplication() {
     const sendDataToServer = async () => {
         try {
             const response = await fetch(
-                'http://25.23.19.72:8080/calculations/matrices/multiply',
+                'http://25.23.19.72:8080/calculations/matrices/multiplybyscalar',
                 {
                     method: 'POST',
                     headers: {
@@ -31,7 +31,7 @@ function MatrixMultiplication() {
                     },
                     body: JSON.stringify({
                         matrix1: inputData1,
-                        matrix2: inputData2,
+                        scalar: inputData2,
                         threads: inputData3,
                     }), // Отправка данных на сервер
                 }
@@ -64,35 +64,33 @@ function MatrixMultiplication() {
     };
 
     return (
-        <div className="matrix-multiplication-container">
-            <h1 className="h1Multiplication">Matrix Multiplication</h1>
-            <form className="matrix-multiplication-form">
-                <form className="matrix-multiplication-block">
-                    <p className="matrix-multiplication-text1">Matrix:</p>
+        <div className="scalar-multiplication-container">
+            <h1 className="h1ScalarMult">Scalar Multiplicaton</h1>
+            <form className="scalar-multiplication-form">
+                <form className="scalar-multiplication-block">
+                    <p className="scalar-multiplication-text1">Matrix:</p>
                     <input
                         value={inputData1}
                         onChange={handleInputChange1}
-                        className="matrix-multiplication-input"
+                        className="scalar-multiplication-input"
                         placeholder="Enter the matrix"
                     />
-                    <p className="matrix-multiplication-text1">
-                        Second matrix:
-                    </p>
+                    <p className="scalar-multiplication-text1">Scalar:</p>
                     <input
                         value={inputData2}
                         onChange={handleInputChange2}
-                        className="matrix-multiplication-input"
-                        placeholder="Enter the second matrix"
+                        className="scalar-multiplication-input-scalar"
+                        placeholder="Enter the scalar"
                     />
                 </form>
-                <form className="matrix-multiplication-block">
-                    <p className="matrix-multiplication-text-threads">
+                <form className="scalar-multiplication-block">
+                    <p className="scalar-multiplication-text-threads">
                         Threads:
                     </p>
                     <input
                         value={inputData3}
                         onChange={handleInputChange3}
-                        className="matrix-multiplication-input-threads"
+                        className="scalar-multiplication-input-threads"
                         placeholder="Threads"
                     />
                 </form>
@@ -100,19 +98,19 @@ function MatrixMultiplication() {
 
             <button
                 onClick={handleSubmit}
-                className="matrix-multiplication-button"
+                className="scalar-multiplication-button"
             >
                 {isLoading ? 'Loading...' : 'Get Result'}
             </button>
-            <p className="matrix-multiplication-text2">Result:</p>
+            <p className="scalar-multiplication-text2">Result:</p>
             <form
-                className="matrix-multiplication-form"
+                className="scalar-multiplication-form"
                 id="response-container"
             >
                 {/* Форма для вывода текста с сервера */}
                 <textarea
                     value={responseData}
-                    className="matrix-multiplication-textarea"
+                    className="scalar-multiplication-textarea"
                     readOnly
                 />
             </form>
@@ -126,4 +124,4 @@ function MatrixMultiplication() {
     );
 }
 
-export default MatrixMultiplication;
+export default ScalarMultiplication;
