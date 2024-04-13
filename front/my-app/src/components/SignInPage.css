@@ -5,90 +5,90 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position:fixed;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('assets/background2.png');
+    background-image: url('../assets/background2.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
-form[type="formAuth"] {
-  align-items: center;
-  margin-top: 2%;
-  width: 30%;
-  height: 45%;
-  border: 1px solid #c0c0c0;
-  border-radius: 10px;
-  text-align: center;
-  align-items: center;
+form[type='formAuth'] {
+    align-items: center;
+    margin-top: 2%;
+    width: 30%;
+    height: 45%;
+    border: 1px solid #c0c0c0;
+    border-radius: 10px;
+    text-align: center;
+    align-items: center;
 }
 
-  input[type="signInPageInput"] {
+input[type='signInPageInput'] {
     margin-top: 6%;
     height: 12%;
     width: 75%;
     border: 1px solid #c0c0c0;
     border-radius: 10px;
     font-size: 80%;
-    color:#c0c0c0;
-    background-color: rgba(0,0,0,0);
-  }
-  
-  .signInPageSubmit {
+    color: #c0c0c0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.signInPageSubmit {
     margin-top: 7%;
-    font-family: "Mulish", sans-serif;
+    font-family: 'Mulish', sans-serif;
     height: 14%;
     width: 25%;
-    background-color: #EF7135;
+    background-color: #ef7135;
     color: #fff;
     border: none;
     border-radius: 10px;
-  }
+}
 
-  p[type="signInPageP"] {
-    font-family: "Mulish", sans-serif;
-    font-size:85%;
+p[type='signInPageP'] {
+    font-family: 'Mulish', sans-serif;
+    font-size: 85%;
     text-align: left;
     margin-left: 14%;
     margin-top: 5%;
-  }
+}
 
-  a[type="signInPageRef1"] {
-    color:#fff;
-  }
+a[type='signInPageRef1'] {
+    color: #fff;
+}
 
-  a:hover[type="signInPageRef1"] {
-    color:#c0c0c0;
-  }
-  
-  p[type="signInPageP2"] {
+a:hover[type='signInPageRef1'] {
+    color: #c0c0c0;
+}
+
+p[type='signInPageP2'] {
     margin-top: 12%;
-    color:#fff;
-    font-family: "Mulish", sans-serif;
+    color: #fff;
+    font-family: 'Mulish', sans-serif;
     font-size: 85%;
-  }
+}
 
-  a[type="signInPageRef2"] {
-    color:#EF7135;
-  }
+a[type='signInPageRef2'] {
+    color: #ef7135;
+}
 
-  a:hover[type="signInPageRef2"] {
+a:hover[type='signInPageRef2'] {
     color: #ec530c;
     cursor: pointer;
-  }
+}
 
-  input[type="signInPagePassword"] {
+input[type='signInPagePassword'] {
     margin-top: 6%;
     height: 12%;
     width: 75%;
     border: 1px solid #c0c0c0;
     border-radius: 10px;
     font-size: 80%;
-    color:#c0c0c0;
-    background-color: rgba(0,0,0,0);
+    color: #c0c0c0;
+    background-color: rgba(0, 0, 0, 0);
     -webkit-text-security: disc;
-  }
+}

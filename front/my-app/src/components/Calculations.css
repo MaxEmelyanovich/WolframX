@@ -1,4 +1,4 @@
-  .calculations-container {
+.calculations-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,14 +8,14 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('assets/background1.png');
+    background-image: url('../assets/background1.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     text-align: center;
-  }
-  
-  .form-container {
+}
+
+.form-container {
     display: flex;
     /* flex-wrap: wrap; */
     align-items: flex-start;
@@ -28,31 +28,31 @@
     animation-duration: 1s;
     animation-timing-function: ease;
     animation-fill-mode: both;
-  }
+}
 
-  @keyframes slideInFromBottom {
+@keyframes slideInFromBottom {
     0% {
-      transform: translateY(100%);
+        transform: translateY(100%);
     }
     100% {
-      transform: translateY(0);
+        transform: translateY(0);
     }
-  }
-  
-  .rect {
+}
+
+.rect {
     flex: 0 0 60%;
     background-color: rgba(192, 192, 192, 0.08);
     border-radius: 10%;
     padding-bottom: 8%;
     padding-left: 3%;
     padding-right: 3%;
-  }
-  
-  .h1Calc {
+}
+
+.h1Calc {
     border-bottom: 2px solid #c0c0c0;
     margin-top: 5%;
     color: #fff;
-    font-family: "Mulish", sans-serif;
+    font-family: 'Mulish', sans-serif;
     font-weight: lighter;
     font-size: 200%;
 
@@ -60,38 +60,35 @@
     animation-duration: 1s;
     animation-timing-function: ease;
     animation-fill-mode: both;
-  }
+}
 
-  @keyframes slideInFromTop {
+@keyframes slideInFromTop {
     0% {
-      transform: translateY(-100%);
+        transform: translateY(-100%);
     }
     100% {
-      transform: translateY(0);
+        transform: translateY(0);
     }
-  }
+}
 
-  .h2Calc {
-    color:#EF7135;
-    font-family: "Mulish", sans-serif;
+.h2Calc {
+    color: #ef7135;
+    font-family: 'Mulish', sans-serif;
     font-weight: lighter;
     font-size: 120%;
-  }
+}
 
-  .link {
-    color:#fff;
+.link {
+    color: #fff;
     text-decoration: none;
-    font-family: "Mulish", sans-serif;
+    font-family: 'Mulish', sans-serif;
     font-weight: lighter;
     font-size: 100%;
     line-height: 2;
-  }
+}
 
-
-  .link:hover {
+.link:hover {
     text-decoration: underline;
     text-decoration-thickness: 10%;
     color: #c0c0c0;
-  }
-  
-  
+}
