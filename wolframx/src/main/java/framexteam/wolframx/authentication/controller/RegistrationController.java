@@ -1,4 +1,4 @@
-package framexteam.wolframx.controller.authentication;
+package framexteam.wolframx.authentication.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;

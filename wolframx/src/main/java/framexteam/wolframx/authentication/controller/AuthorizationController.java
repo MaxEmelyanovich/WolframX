@@ -1,4 +1,4 @@
-package framexteam.wolframx.controller.authentication;
+package framexteam.wolframx.authentication.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import lombok.*;
 
 import framexteam.wolframx.authentication.dto.UserDTO;
 import framexteam.wolframx.authentication.service.UserService;
@@ -45,61 +46,38 @@ public class AuthorizationController {
                 content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserDTO.class))),
         @ApiResponse(responseCode = "401", description = "Неверный email или пароль")
     })
-    public ResponseEntity<?> authenticateUser(@RequestBody UserDTO authorizationDto) {
+    public ResponseEntity<?> authorizeUser(@RequestBody AuthRequest authRequest) {
         Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(
-                authorizationDto.getEmail(),
-                authorizationDto.getPassword()
+                authRequest.getEmail(),
+                authRequest.getPassword()
             )
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        UserDTO userDTO = userService.getUserByEmail(authorizationDto.getEmail());
+        UserDTO userDTO = userService.getUserByEmail(authRequest.getEmail());
 
-        return ResponseEntity.ok(userDTO);
+        AuthResponse authResponse = new AuthResponse();
+        authResponse.setFirstName(userDTO.getFirstName());
+        authResponse.setLastName(userDTO.getLastName());
+
+        return ResponseEntity.ok(authResponse);
     }
 
+    @Getter
+    @Setter
     private static class AuthRequest {
 
         private String email;
         private String password;
+    }
 
-        public String getEmail() {
-            return email;
-        }
 
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-        
-        private static class AuthResponse {
-            private String firstName;
-            private String lastName;
-
-            public String getFirstName() {
-                return firstName;
-            }
-    
-            public void setFirstName(String firstName) {
-                this.firstName = firstName;
-            }
-    
-            public String getLastName() {
-                return lastName;
-            }
-    
-            public void setLastName(String lastName) {
-                this.lastName = lastName;
-            }
-        }
+    @Getter
+    @Setter
+    private static class AuthResponse {
+        private String firstName;
+        private String lastName;
     }
 }

@@ -1,4 +1,4 @@
-package framexteam.wolframx.controller.calculations;
+package framexteam.wolframx.calculations.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import lombok.*;
 
 import framexteam.wolframx.calculations.matrices.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,8 +30,6 @@ public class MatrixCalculationsController {
         @ApiResponse(responseCode = "400", description = "Ошибка в формате входных данных")
     })
     public ResponseEntity<?> transposeMatrix(@RequestBody MatrixRequest matrixRequest) throws MatrixOperationException {
-        // String matrixString = matrixRequest.getMatrix();
-        // System.out.println(matrixString);
 
         int [][] matrix = matrixRequest.getMatrix1AsArray();
 
@@ -111,7 +110,8 @@ public class MatrixCalculationsController {
         return ResponseEntity.ok(matrixResponse);
     }
 
-
+    @Getter
+    @Setter
     private static class MatrixRequest {
         private String matrix1;
         private String matrix2;
@@ -152,50 +152,12 @@ public class MatrixCalculationsController {
         public int [][] getMatrix2AsArray() {
             return getMatrixAsArray(matrix2);
         }
-
-        public String getMatrix1() {
-            return matrix1;
-        }
-
-        public String getMatrix2() {
-            return matrix2;
-        }
-
-        public int getScalar() {
-            return scalar;
-        }
-
-        public int getThreads(){
-            return threads;
-        }
-
-        public void setMatrix1(String matrix1) {
-            this.matrix1 = matrix1;
-        }
-
-        public void setMatrix2(String matrix2) {
-            this.matrix2 = matrix2;
-        }
-
-        public void setThreads(int threads) {
-            this.threads = threads;
-        }
-
-        public void setScalar(int scalar) {
-            this.scalar = scalar;
-        }
     }
 
+    @Getter
+    @Setter
     private static class MatrixResponse {
         private String result;
-
-        public void setResult(String result) {
-            this.result = result;
-        }
-
-        public String getResult() {
-            return result;
-        }
 
         public void setResultMatrix (int[][] resultMatrix) {
             StringBuilder sb = new StringBuilder();
