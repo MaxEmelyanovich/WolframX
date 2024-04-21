@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './MatrixAddition.css';
 import { toPng } from 'html-to-image';
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './LanguageSelector';
 
 function MatrixAddition() {
     const [inputData1, setInputData1] = useState('');
@@ -63,41 +65,47 @@ function MatrixAddition() {
         sendDataToServer();
     };
 
+    const { t } = useTranslation();
+
     return (
         <div className="matrix-addition-container">
-            <h1 className="h1Addition">Matrix Addition</h1>
+            <h1 className="h1Addition">{t('addition')}</h1>
             <form className="matrix-addition-form">
                 <form className="matrix-addition-block">
-                    <p className="matrix-addition-text1">Matrix:</p>
+                    <p className="matrix-addition-text1">{t('matrix')}:</p>
                     <input
                         value={inputData1}
                         onChange={handleInputChange1}
                         className="matrix-addition-input"
-                        placeholder="Enter the matrix"
+                        placeholder={t('enterthematrix')}
                     />
-                    <p className="matrix-addition-text1">Second matrix:</p>
+                    <p className="matrix-addition-text1">
+                        {t('secondmatrix')}:
+                    </p>
                     <input
                         value={inputData2}
                         onChange={handleInputChange2}
                         className="matrix-addition-input"
-                        placeholder="Enter the second matrix"
+                        placeholder={t('enterthesecondmatrix')}
                     />
                 </form>
                 <form className="matrix-addition-block">
-                    <p className="matrix-addition-text-threads">Threads:</p>
+                    <p className="matrix-addition-text-threads">
+                        {t('threads')}:
+                    </p>
                     <input
                         value={inputData3}
                         onChange={handleInputChange3}
                         className="matrix-addition-input-threads"
-                        placeholder="Threads"
+                        placeholder={t('threads')}
                     />
                 </form>
             </form>
 
             <button onClick={handleSubmit} className="matrix-addition-button">
-                {isLoading ? 'Loading...' : 'Get Result'}
+                {isLoading ? t('loading') : t('getresult')}
             </button>
-            <p className="matrix-addition-text2">Result:</p>
+            <p className="matrix-addition-text2">{t('result')}:</p>
             <form className="matrix-addition-form" id="response-container">
                 {/* Форма для вывода текста с сервера */}
                 <textarea
@@ -105,6 +113,7 @@ function MatrixAddition() {
                     className="matrix-addition-textarea"
                     readOnly
                 />
+                <LanguageSelector />
             </form>
             {imageData && (
                 <div>

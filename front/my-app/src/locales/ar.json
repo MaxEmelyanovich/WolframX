@@ -1,0 +1,22 @@
+{
+    "about": "نبذة عنا",
+    "calculations": "الحسابات",
+    "signin": "تسجيل الدخول",
+    "signup": "التسجيل",
+    "transpose": "تدوير المصفوفة",
+    "multiplication": "ضرب المصفوفات",
+    "addition": "إضافة المصفوفة",
+    "subtraction": "طرح المصفوفة",
+    "scalarmult": "الضرب في عدد ثابت",
+    "matrices": "المصفوفات",
+    "matrix": "المصفوفة",
+    "threads": "الخيوط",
+    "result": "النتيجة",
+    "getresult": "الحصول على نتيجة",
+    "loading": "التحميل",
+    "enterthematrix": "أدخل المصفوفة",
+    "secondmatrix": "المصفوفة الثانية",
+    "enterthesecondmatrix": "أدخل المصفوفة الثانية",
+    "scalar": "سكالار",
+    "enterthescalar": "أدخل الكمية القياسية"
+}

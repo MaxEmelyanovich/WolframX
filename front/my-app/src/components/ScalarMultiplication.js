@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './ScalarMultiplication.css';
 import { toPng } from 'html-to-image';
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './LanguageSelector';
 
 function ScalarMultiplication() {
     const [inputData1, setInputData1] = useState('');
@@ -63,35 +65,41 @@ function ScalarMultiplication() {
         sendDataToServer();
     };
 
+    const { t } = useTranslation();
+
     return (
         <div className="scalar-multiplication-container">
-            <h1 className="h1ScalarMult">Scalar Multiplicaton</h1>
+            <h1 className="h1ScalarMult">{t('scalarmult')}</h1>
             <form className="scalar-multiplication-form">
                 <form className="scalar-multiplication-block">
-                    <p className="scalar-multiplication-text1">Matrix:</p>
+                    <p className="scalar-multiplication-text1">
+                        {t('matrix')}:
+                    </p>
                     <input
                         value={inputData1}
                         onChange={handleInputChange1}
                         className="scalar-multiplication-input"
-                        placeholder="Enter the matrix"
+                        placeholder={t('enterthematrix')}
                     />
-                    <p className="scalar-multiplication-text1">Scalar:</p>
+                    <p className="scalar-multiplication-text1">
+                        {t('scalar')}:
+                    </p>
                     <input
                         value={inputData2}
                         onChange={handleInputChange2}
                         className="scalar-multiplication-input-scalar"
-                        placeholder="Enter the scalar"
+                        placeholder={t('enterthescalar')}
                     />
                 </form>
                 <form className="scalar-multiplication-block">
                     <p className="scalar-multiplication-text-threads">
-                        Threads:
+                        {t('threads')}:
                     </p>
                     <input
                         value={inputData3}
                         onChange={handleInputChange3}
                         className="scalar-multiplication-input-threads"
-                        placeholder="Threads"
+                        placeholder={t('threads')}
                     />
                 </form>
             </form>
@@ -100,9 +108,9 @@ function ScalarMultiplication() {
                 onClick={handleSubmit}
                 className="scalar-multiplication-button"
             >
-                {isLoading ? 'Loading...' : 'Get Result'}
+                {isLoading ? t('loading') : t('getresult')}
             </button>
-            <p className="scalar-multiplication-text2">Result:</p>
+            <p className="scalar-multiplication-text2">{t('result')}:</p>
             <form
                 className="scalar-multiplication-form"
                 id="response-container"
@@ -113,6 +121,7 @@ function ScalarMultiplication() {
                     className="scalar-multiplication-textarea"
                     readOnly
                 />
+                <LanguageSelector />
             </form>
             {imageData && (
                 <div>

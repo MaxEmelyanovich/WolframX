@@ -1,0 +1,22 @@
+{
+    "about": "О Нас",
+    "calculations": "Вычисления",
+    "signin": "Вход",
+    "signup": "Регистрация",
+    "transpose": "Транспонирование Матрицы",
+    "multiplication": "Перемножение Матриц",
+    "addition": "Сложение Матриц",
+    "subtraction": "Вычитание Матриц",
+    "scalarmult": "Скалярное Умножение",
+    "matrices": "Матрицы",
+    "matrix": "Матрица",
+    "threads": "Потоки",
+    "result": "Результат",
+    "getresult": "Посчитать",
+    "loading": "Загрузка",
+    "enterthematrix": "Введите матрицу",
+    "secondmatrix": "Вторая матрица",
+    "enterthesecondmatrix": "Введите вторую матрицу",
+    "scalar": "Скаляр",
+    "enterthescalar": "Введите скаляр"
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import './SignInPage.css';
 import wolframX from '../assets/wolframx.svg';
+import { useTranslation } from 'react-i18next';
 
 class SignInPage extends React.Component {
     constructor(props) {

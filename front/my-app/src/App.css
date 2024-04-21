@@ -51,6 +51,15 @@
     border-color: #c0c0c0;
 }
 
+/* .mainLabel {
+    margin-top: 9%;
+    margin-left: 12%;
+    font-size: 400%;
+    width: 60%;
+    font-family: 'Mulish', sans-serif;
+    color: #c0c0c0;
+} */
+
 .secondary-buttons {
     display: flex;
     /* justify-content: flex-end; */
@@ -90,7 +99,7 @@
 .about-button {
     color: #fff;
     text-decoration: none;
-    margin-left: 30%;
+    margin-left: 25%;
     margin-top: 3%;
     font-family: 'Mulish', sans-serif;
 }

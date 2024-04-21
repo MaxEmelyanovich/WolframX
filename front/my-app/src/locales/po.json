@@ -1,0 +1,22 @@
+{
+    "about": "Sobre nós",
+    "calculations": "Cálculos",
+    "signin": "Iniciar sessão",
+    "signup": "Inscrever-se",
+    "transpose": "Transposição de matriz",
+    "multiplication": "Multiplicação de matrizes",
+    "addition": "Adição de matriz",
+    "subtraction": "Subtração de matrizes",
+    "scalarmult": "Multiplicação escalar",
+    "matrices": "Matrizes",
+    "matrix": "Matriz",
+    "threads": "Fios",
+    "result": "Resultado",
+    "getresult": "Obter resultado",
+    "loading": "Carregamento",
+    "enterthematrix": "Introduzir a matriz",
+    "secondmatrix": "Segunda matriz",
+    "enterthesecondmatrix": "Introduzir a segunda matriz",
+    "scalar": "Escalar",
+    "enterthescalar": "Introduzir o escalar"
+}

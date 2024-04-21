@@ -1,0 +1,22 @@
+{
+    "about": "Σχετικά με εμάς",
+    "calculations": "Υπολογισμοί",
+    "signin": "Συνδεθείτε",
+    "signup": "Εγγραφείτε",
+    "transpose": "Μετατόπιση μήτρας",
+    "multiplication": "Πολλαπλασιασμός πινάκων",
+    "addition": "Προσθήκη μήτρας",
+    "subtraction": "Αφαίρεση πινάκων",
+    "scalarmult": "Πολλαπλασιασμός κλιμάκων",
+    "matrices": "Πίνακες",
+    "matrix": "Μήτρα",
+    "threads": "Νήματα",
+    "result": "Αποτέλεσμα",
+    "getresult": "Καταμέτρηση",
+    "loading": "Φόρτωση",
+    "enterthematrix": "Εισάγετε τον πίνακα",
+    "secondmatrix": "Δεύτερος πίνακας",
+    "enterthesecondmatrix": "Εισάγετε τον δεύτερο πίνακα",
+    "scalar": "Κλίμακα",
+    "enterthescalar": "Εισάγετε το κλιμάκιο"
+}

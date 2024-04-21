@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './MatrixSubtraction.css';
 import { toPng } from 'html-to-image';
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './LanguageSelector';
 
 function MatrixSubtraction() {
     const [inputData1, setInputData1] = useState('');
@@ -63,33 +65,39 @@ function MatrixSubtraction() {
         sendDataToServer();
     };
 
+    const { t } = useTranslation();
+
     return (
         <div className="matrix-subtraction-container">
-            <h1 className="h1Subtraction">Matrix Subtraction</h1>
+            <h1 className="h1Subtraction">{t('subtraction')}</h1>
             <form className="matrix-subtraction-form">
                 <form className="matrix-subtraction-block">
-                    <p className="matrix-subtraction-text1">Matrix:</p>
+                    <p className="matrix-subtraction-text1">{t('matrix')}:</p>
                     <input
                         value={inputData1}
                         onChange={handleInputChange1}
                         className="matrix-subtraction-input"
-                        placeholder="Enter the matrix"
+                        placeholder={t('enterthematrix')}
                     />
-                    <p className="matrix-subtraction-text1">Second matrix:</p>
+                    <p className="matrix-subtraction-text1">
+                        {t('secondmatrix')}:
+                    </p>
                     <input
                         value={inputData2}
                         onChange={handleInputChange2}
                         className="matrix-subtraction-input"
-                        placeholder="Enter the second matrix"
+                        placeholder={t('enterthesecondmatrix')}
                     />
                 </form>
                 <form className="matrix-subtraction-block">
-                    <p className="matrix-subtraction-text-threads">Threads:</p>
+                    <p className="matrix-subtraction-text-threads">
+                        {t('threads')}:
+                    </p>
                     <input
                         value={inputData3}
                         onChange={handleInputChange3}
                         className="matrix-subtraction-input-threads"
-                        placeholder="Threads"
+                        placeholder={t('threads')}
                     />
                 </form>
             </form>
@@ -98,9 +106,9 @@ function MatrixSubtraction() {
                 onClick={handleSubmit}
                 className="matrix-subtraction-button"
             >
-                {isLoading ? 'Loading...' : 'Get Result'}
+                {isLoading ? t('loading') : t('getresult')}
             </button>
-            <p className="matrix-subtraction-text2">Result:</p>
+            <p className="matrix-subtraction-text2">{t('result')}:</p>
             <form className="matrix-subtraction-form" id="response-container">
                 {/* Форма для вывода текста с сервера */}
                 <textarea
@@ -108,6 +116,7 @@ function MatrixSubtraction() {
                     className="matrix-subtraction-textarea"
                     readOnly
                 />
+                <LanguageSelector />
             </form>
             {imageData && (
                 <div>

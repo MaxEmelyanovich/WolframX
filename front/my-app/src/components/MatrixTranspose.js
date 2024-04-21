@@ -52,6 +52,8 @@
 
 import React, { useState } from 'react';
 import './MatrixTranspose.css';
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './LanguageSelector';
 
 function MatrixTranspose() {
     const [inputData, setInputData] = useState('');
@@ -100,33 +102,37 @@ function MatrixTranspose() {
         sendDataToServer();
     };
 
+    const { t } = useTranslation();
+
     return (
         <div className="matrix-transpose-container">
-            <h1 className="h1Transpose">Matrix Transpose</h1>
+            <h1 className="h1Transpose">{t('transpose')}</h1>
             <form className="matrix-transpose-form">
                 <form className="matrix-transpose-block">
-                    <p className="matrix-transpose-text1">Matrix:</p>
+                    <p className="matrix-transpose-text1">{t('matrix')}:</p>
                     <input
                         value={inputData}
                         onChange={handleInputChange}
                         className="matrix-transpose-input"
-                        placeholder="Enter the matrix"
+                        placeholder={t('enterthematrix')}
                     />
                 </form>
                 <form className="matrix-transpose-block">
-                    <p className="matrix-transpose-text-threads">Threads:</p>
+                    <p className="matrix-transpose-text-threads">
+                        {t('threads')}:
+                    </p>
                     <input
                         value={inputData2}
                         onChange={handleInputChange2}
                         className="matrix-transpose-input-threads"
-                        placeholder="Threads"
+                        placeholder={t('threads')}
                     />
                 </form>
             </form>
             <button onClick={handleSubmit} className="matrix-transpose-button">
-                {isLoading ? 'Loading...' : 'Get Result'}
+                {isLoading ? t('loading') : t('getresult')}
             </button>
-            <p className="matrix-transpose-text2">Result:</p>
+            <p className="matrix-transpose-text2">{t('result')}:</p>
             <form className="matrix-transpose-form">
                 {/* Форма для вывода текста с сервера */}
                 <textarea
@@ -134,6 +140,7 @@ function MatrixTranspose() {
                     className="matrix-transpose-textarea"
                     readOnly
                 />
+                <LanguageSelector />
             </form>
         </div>
     );

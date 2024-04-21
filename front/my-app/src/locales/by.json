@@ -1,0 +1,22 @@
+{
+    "about": "Пра нас",
+    "calculations": "Вылічэнні",
+    "signin": "Уваход",
+    "signup": "Рэгістрацыя",
+    "transpose": "Транспанаванне Матрыцы",
+    "multiplication": "Перамнажэнне Матрыц",
+    "addition": "Складанне Матрыц",
+    "subtraction": "Адніманне Матрыц",
+    "scalarmult": "Скалярнае множанне",
+    "matrices": "Матрыцы",
+    "matrix": "Матрыца",
+    "threads": "Патокі",
+    "result": "Вынік",
+    "getresult": "Палічыць",
+    "loading": "Загрузка",
+    "enterthematrix": "Увядзіце матрыцу",
+    "secondmatrix": "Другая матрыца",
+    "enterthesecondmatrix": "Увядзіце другую матрыцу",
+    "scalar": "Скаляр",
+    "enterthescalar": "Увядзіце скаляр"
+}

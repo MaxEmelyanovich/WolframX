@@ -1,0 +1,22 @@
+{
+    "about": "About",
+    "calculations": "Calculations",
+    "signin": "Sign In",
+    "signup": "Sign Up",
+    "transpose": "Matrix Transpose",
+    "multiplication": "Matrix Multiplication",
+    "addition": "Matrix Addition",
+    "subtraction": "Matrix Subtraction",
+    "scalarmult": "Scalar Multiplication",
+    "matrices": "Matrices",
+    "matrix": "Matrix",
+    "threads": "Threads",
+    "result": "Result",
+    "getresult": "Get Result",
+    "loading": "Loading",
+    "enterthematrix": "Enter the matrix",
+    "secondmatrix": "Second matrix",
+    "enterthesecondmatrix": "Enter the second matrix",
+    "scalar": "Scalar",
+    "enterthescalar": "Enter the scalar"
+}

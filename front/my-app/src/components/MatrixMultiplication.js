@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './MatrixMultiplication.css';
 import { toPng } from 'html-to-image';
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './LanguageSelector';
 
 function MatrixMultiplication() {
     const [inputData1, setInputData1] = useState('');
@@ -63,37 +65,41 @@ function MatrixMultiplication() {
         sendDataToServer();
     };
 
+    const { t } = useTranslation();
+
     return (
         <div className="matrix-multiplication-container">
-            <h1 className="h1Multiplication">Matrix Multiplication</h1>
+            <h1 className="h1Multiplication">{t('multiplication')}</h1>
             <form className="matrix-multiplication-form">
                 <form className="matrix-multiplication-block">
-                    <p className="matrix-multiplication-text1">Matrix:</p>
+                    <p className="matrix-multiplication-text1">
+                        {t('matrix')}:
+                    </p>
                     <input
                         value={inputData1}
                         onChange={handleInputChange1}
                         className="matrix-multiplication-input"
-                        placeholder="Enter the matrix"
+                        placeholder={t('enterthematrix')}
                     />
                     <p className="matrix-multiplication-text1">
-                        Second matrix:
+                        {t('secondmatrix')}:
                     </p>
                     <input
                         value={inputData2}
                         onChange={handleInputChange2}
                         className="matrix-multiplication-input"
-                        placeholder="Enter the second matrix"
+                        placeholder={t('enterthesecondmatrix')}
                     />
                 </form>
                 <form className="matrix-multiplication-block">
                     <p className="matrix-multiplication-text-threads">
-                        Threads:
+                        {t('threads')}:
                     </p>
                     <input
                         value={inputData3}
                         onChange={handleInputChange3}
                         className="matrix-multiplication-input-threads"
-                        placeholder="Threads"
+                        placeholder={t('threads')}
                     />
                 </form>
             </form>
@@ -102,9 +108,9 @@ function MatrixMultiplication() {
                 onClick={handleSubmit}
                 className="matrix-multiplication-button"
             >
-                {isLoading ? 'Loading...' : 'Get Result'}
+                {isLoading ? t('loading') : t('getresult')}
             </button>
-            <p className="matrix-multiplication-text2">Result:</p>
+            <p className="matrix-multiplication-text2">{t('result')}:</p>
             <form
                 className="matrix-multiplication-form"
                 id="response-container"
@@ -115,6 +121,7 @@ function MatrixMultiplication() {
                     className="matrix-multiplication-textarea"
                     readOnly
                 />
+                <LanguageSelector />
             </form>
             {imageData && (
                 <div>

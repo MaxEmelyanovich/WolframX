@@ -6,6 +6,8 @@ import {
     Route,
     useLocation,
 } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './components/LanguageSelector';
 import SignInPage from './components/SignInPage';
 import SignUpPage from './components/SignUpPage';
 import Calculations from './components/Calculations';
@@ -14,6 +16,7 @@ import MatrixMultiplication from './components/MatrixMultiplication';
 import MatrixAddition from './components/MatrixAddition';
 import MatrixSubtraction from './components/MatrixSubtraction';
 import ScalarMultiplication from './components/ScalarMultiplication';
+import ChatRoom from './components/ChatRoom';
 import './App.css';
 import logoSVG from './assets/logo.svg';
 
@@ -29,27 +32,32 @@ function AppContent() {
     const location = useLocation();
     const isMainPage = location.pathname === '/';
 
+    const { t } = useTranslation();
+
     return (
         <div>
             {isMainPage && (
                 <nav className="main-nav">
                     <img className="logoSVG" src={logoSVG} alt="Logo" />
                     <Link to="/" className="about-button">
-                        About
+                        {t('about')}
                     </Link>
                     <Link to="/calculations" className="calculations-button">
-                        Calculations
+                        {t('calculations')}
                     </Link>
                     <Link to="/signup" className="signup-button">
-                        Sign Up
+                        {t('signup')}
                     </Link>
+                    <LanguageSelector />
                 </nav>
             )}
+
+            {/* <h1 className="mainLabel">Your personal calculating assistant</h1> */}
 
             {isMainPage && (
                 <div className="secondary-buttons">
                     <Link to="/signin" className="signin-button">
-                        Sign In
+                        {t('signin')}
                     </Link>
                 </div>
             )}
@@ -72,6 +80,7 @@ function AppContent() {
                     path="/scalarmultiplication"
                     element={<ScalarMultiplication />}
                 />
+                <Route path="/chatroom" element={<ChatRoom />}/>
             </Routes>
         </div>
     );

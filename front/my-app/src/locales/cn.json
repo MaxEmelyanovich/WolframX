@@ -1,0 +1,22 @@
+{
+    "about": "关于我们",
+    "calculations": "计算",
+    "signin": "登录",
+    "signup": "注册",
+    "transpose": "矩阵移调",
+    "multiplication": "矩阵乘法",
+    "addition": "矩阵添加",
+    "subtraction": "矩阵减法",
+    "scalarmult": "标量乘法",
+    "matrices": "矩阵",
+    "matrix": "矩阵",
+    "threads": "线程",
+    "result": "结果",
+    "getresult": "获取结果",
+    "loading": "加载中",
+    "enterthematrix": "输入矩阵",
+    "secondmatrix": "第二矩阵",
+    "enterthesecondmatrix": "输入第二个矩阵",
+    "scalar": "标量",
+    "enterthescalar": "输入标量"
+}

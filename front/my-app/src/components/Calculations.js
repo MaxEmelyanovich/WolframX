@@ -1,33 +1,38 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Calculations.css';
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './LanguageSelector';
 
 function Calculations() {
+    const { t } = useTranslation();
+
     return (
         <div className="calculations-container">
-            <h1 class="h1Calc">Calculations</h1>
+            <h1 class="h1Calc">{t('calculations')}</h1>
+            <LanguageSelector />
 
             <div className="form-container">
                 <div className="rect">
-                    <h2 class="h2Calc">Matrices :</h2>
+                    <h2 class="h2Calc">{t('matrices')} :</h2>
                     <Link className="link" to="/matrixtranspose">
-                        Matrix Transpose
+                        {t('transpose')}
                     </Link>
                     <br></br>
                     <Link className="link" to="/matrixmultiplication">
-                        Matrix Multiplication
+                        {t('multiplication')}
                     </Link>
                     <br></br>
                     <Link className="link" to="/matrixaddition">
-                        Matrix Addition
+                        {t('addition')}
                     </Link>
                     <br></br>
                     <Link className="link" to="/matrixsubtraction">
-                        Matrix Subtraction
+                        {t('subtraction')}
                     </Link>
                     <br></br>
                     <Link className="link" to="/scalarmultiplication">
-                        Scalar Multiplication
+                        {t('scalarmult')}
                     </Link>
                 </div>
 

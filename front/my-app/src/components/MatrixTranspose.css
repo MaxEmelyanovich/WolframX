@@ -87,7 +87,7 @@
     border-radius: 10px;
     font-size: 120%;
     color: #c0c0c0;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0,0,0,0);
 }
 
 .matrix-transpose-textarea {
@@ -99,7 +99,7 @@
     border-radius: 10px;
     font-size: 120%;
     color: #c0c0c0;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0,0,0,0);
 }
 
 .matrix-transpose-text-threads {
@@ -119,5 +119,5 @@
     border-radius: 10px;
     font-size: 120%;
     color: #c0c0c0;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0,0,0,0);
 }
