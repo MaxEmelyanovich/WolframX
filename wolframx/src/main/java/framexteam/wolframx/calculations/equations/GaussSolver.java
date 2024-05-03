@@ -74,7 +74,7 @@ public class GaussSolver extends Thread {
                 sum += coefficients[i][j] * solution[j];
             }
                 if (coefficients[i][i] == 0){
-                    //no roots
+                    throw new IllegalArgumentException("No solutions, matrix is invertible.");
                 }
                 else {
                     solution[i] = (constants[i] - sum) / coefficients[i][i];

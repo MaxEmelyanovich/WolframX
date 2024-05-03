@@ -4,7 +4,7 @@ import framexteam.wolframx.calculations.arithmeticOperations.ArithmeticOperation
 
 public class MatrixScalarMultiplication implements MatrixOperation {
     @Override
-    public <T extends Number> void performOperation(T[][] firstMatrix, T[][] secondMatrix, T[][] resultMatrix, int startIndex, int endIndex) throws MatrixOperationException {
+    public void performOperation(int[][] firstMatrix, int[][] secondMatrix, int[][] resultMatrix, int startIndex, int endIndex) throws MatrixOperationException {
         if (firstMatrix == null || secondMatrix == null || resultMatrix == null) {
             throw new MatrixOperationException("Matrices cannot be null.");
         }
@@ -20,13 +20,12 @@ public class MatrixScalarMultiplication implements MatrixOperation {
         for (int index = startIndex; index < endIndex; ++index) {
             final int row = index / resultMatrix[0].length;
             final int col = index % resultMatrix[0].length;
-            Double result = ArithmeticOperations.mul(secondMatrix[0][0], firstMatrix[row][col]).doubleValue();
-            resultMatrix[row][col] = (T) result;
+            resultMatrix[row][col] = ArithmeticOperations.mul(secondMatrix[0][0], firstMatrix[row][col]);
         }
     }
 
     @Override
-    public <T extends Number> Double[][] getResultMatrixSize(T[][] firstMatrix, T[][] secondMatrix) throws MatrixOperationException {
+    public int[][] getResultMatrixSize(int[][] firstMatrix, int[][] secondMatrix) throws MatrixOperationException {
         if (firstMatrix == null || secondMatrix == null) {
             throw new MatrixOperationException("Matrices cannot be null.");
         }
@@ -34,6 +33,6 @@ public class MatrixScalarMultiplication implements MatrixOperation {
         if (firstMatrix.length == 0 || secondMatrix.length == 0) {
             throw new MatrixOperationException("Matrices cannot be empty.");
         }
-        return new Double[firstMatrix.length][firstMatrix[0].length];
+        return new int[firstMatrix.length][firstMatrix[0].length];
     }
 }

@@ -1,9 +1,9 @@
 package framexteam.wolframx.calculations.matrices;
 
-    public class MatrixOperationThread <T extends Number> extends Thread {
-        private final T[][] firstMatrix;
-        private final T[][] secondMatrix;
-        private final T[][] resultMatrix;
+    public class MatrixOperationThread extends Thread {
+        private final int[][] firstMatrix;
+        private final int[][] secondMatrix;
+        private final int[][] resultMatrix;
         private final int firstIndex;
         private final int lastIndex;
         private final MatrixOperation operation;
@@ -11,9 +11,9 @@ package framexteam.wolframx.calculations.matrices;
 
         private volatile boolean errorOccurred = false;
 
-        public MatrixOperationThread(final T[][] firstMatrix,
-                                     final T[][] secondMatrix,
-                                     final T[][] resultMatrix,
+        public MatrixOperationThread(final int[][] firstMatrix,
+                                     final int[][] secondMatrix,
+                                     final int[][] resultMatrix,
                                      final int firstIndex,
                                      final int lastIndex,
                                      final MatrixOperation operation) {

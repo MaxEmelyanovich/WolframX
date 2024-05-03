@@ -2,16 +2,21 @@ package framexteam.wolframx.calculations.matrices;
 
 public class MatrixLibrary {
 
-    public static <T extends Number> Double[][] performMatrixOperationMT(final T[][] firstMatrix,
-                                                   final T[][] secondMatrix,
+    public static int[][] performMatrixOperationMT(final int[][] firstMatrix,
+                                                   final int[][] secondMatrix,
                                                    int threadCount,
                                                    MatrixOperation operation) throws MatrixOperationException {
 
         if (threadCount <= 0) {
-            throw new MatrixOperationException("Thread count must be greater than zero.");
+            throw new IllegalArgumentException("Thread count must be greater than zero.");
         }
 
-        final Double[][] result = operation.getResultMatrixSize(firstMatrix, secondMatrix);
+        if (threadCount > Runtime.getRuntime().availableProcessors()) {
+            throw new IllegalArgumentException("Thread count exceeded the maximum. Current device have " +
+                    Runtime.getRuntime().availableProcessors() + " available processors");
+        }
+
+        final int[][] result = operation.getResultMatrixSize(firstMatrix, secondMatrix);
         final int rowCount = result.length;
         final int colCount = result[0].length;
 

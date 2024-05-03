@@ -73,7 +73,7 @@ public class NonlinearEquationSolver extends Thread {
         }
     }
 
-    public static Set<Double> solve(double[] coefficients, int threadCount) {
+    public static Set<Double> solve(double[] coefficients, int threadCount) throws Exception {
         Objects.requireNonNull(coefficients, "Coefficients cannot be null");
         Objects.requireNonNull(threadCount, "Number of threads cannot be null");
 
@@ -99,7 +99,9 @@ public class NonlinearEquationSolver extends Thread {
                 e.printStackTrace();
             }
         }
-
+        if (roots.isEmpty()){
+            throw new Exception("No solutions exists");
+        }
         return roots;
     }
 }
