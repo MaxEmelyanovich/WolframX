@@ -1,6 +1,13 @@
 package framexteam.wolframx.calculations.matrices;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import framexteam.wolframx.calculations.arithmeticOperations.ArithmeticOperations;
+
 public class MatrixTranspose implements MatrixOperation {
+
+    private static final Logger logger = LogManager.getLogger(MatrixTranspose.class);
+
     @Override
     public void performOperation(int[][] firstMatrix, int[][] secondMatrix, int[][] resultMatrix, int startIndex, int endIndex) throws MatrixOperationException {
         if (firstMatrix == null || resultMatrix == null) {
@@ -15,11 +22,18 @@ public class MatrixTranspose implements MatrixOperation {
             throw new MatrixOperationException("Invalid start index or end index.");
         }
 
+        String logMessage = String.format("Matrix transpose started for coordinates (%d,%d) (%d,%d)",
+                startIndex / resultMatrix[0].length, startIndex % resultMatrix[0].length,
+                (endIndex - 1) / resultMatrix[0].length, (endIndex - 1) % resultMatrix[0].length);
+        logger.info(logMessage);
+
         for (int index = startIndex; index < endIndex; ++index) {
             final int row = index / resultMatrix.length;
             final int col = index % resultMatrix.length;
             resultMatrix[col][row] = firstMatrix[row][col];
         }
+
+        logger.info("Cell transpose completed");
     }
 
     @Override

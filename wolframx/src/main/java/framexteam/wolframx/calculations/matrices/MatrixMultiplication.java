@@ -1,8 +1,12 @@
 package framexteam.wolframx.calculations.matrices;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import framexteam.wolframx.calculations.arithmeticOperations.ArithmeticOperations;
 
 public class MatrixMultiplication implements MatrixOperation {
+
+    private static final Logger logger = LogManager.getLogger(MatrixMultiplication.class);
     @Override
     public void performOperation(int[][] firstMatrix, int[][] secondMatrix, int[][] resultMatrix, int startIndex, int endIndex) throws MatrixOperationException {
         if (firstMatrix == null || secondMatrix == null || resultMatrix == null) {
@@ -21,6 +25,11 @@ public class MatrixMultiplication implements MatrixOperation {
             throw new MatrixOperationException("Invalid start index or end index.");
         }
 
+        String logMessage = String.format("Matrix multiplication started for rows (%d-%d) and columns (%d-%d)",
+                startIndex / secondMatrix[0].length, (endIndex - 1) / secondMatrix[0].length,
+                startIndex % secondMatrix[0].length, (endIndex - 1) % secondMatrix[0].length);
+        logger.info(logMessage);
+
         for (int index = startIndex; index < endIndex; ++index) {
             final int row = index / secondMatrix[0].length;
             final int col = index % secondMatrix[0].length;
@@ -30,6 +39,8 @@ public class MatrixMultiplication implements MatrixOperation {
             }
             resultMatrix[row][col] = value;
         }
+
+        logger.info("Cell multiplication completed");
     }
 
     @Override
