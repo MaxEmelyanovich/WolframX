@@ -1,5 +1,7 @@
 package framexteam.wolframx.calculations.matrices;
 
+import framexteam.wolframx.calculations.arithmeticOperations.ArithmeticOperations;
+
 public class MatrixScalarMultiplication implements MatrixOperation {
     @Override
     public void performOperation(int[][] firstMatrix, int[][] secondMatrix, int[][] resultMatrix, int startIndex, int endIndex) throws MatrixOperationException {
@@ -18,7 +20,7 @@ public class MatrixScalarMultiplication implements MatrixOperation {
         for (int index = startIndex; index < endIndex; ++index) {
             final int row = index / resultMatrix[0].length;
             final int col = index % resultMatrix[0].length;
-            resultMatrix[row][col] = secondMatrix[0][0] * firstMatrix[row][col];
+            resultMatrix[row][col] = ArithmeticOperations.mul(secondMatrix[0][0], firstMatrix[row][col]);
         }
     }
 

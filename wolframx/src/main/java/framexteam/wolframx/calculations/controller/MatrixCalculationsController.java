@@ -1,5 +1,7 @@
 package framexteam.wolframx.calculations.controller;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +23,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @RequestMapping("/calculations/matrices")
 @Tag(name = "Вычисления", description = "API для выполнения математических операций")
 public class MatrixCalculationsController {
+
+    private static final Logger logger = LogManager.getLogger(MatrixCalculationsController.class);
+
     @PostMapping("/transpose")
     @Operation(summary = "Транспонирование матрицы",
                description = "Вычисляет транспонированную матрицу.")
@@ -29,85 +34,120 @@ public class MatrixCalculationsController {
                 content = @Content(mediaType = "application/json", schema = @Schema(implementation = MatrixResponse.class))),
         @ApiResponse(responseCode = "400", description = "Ошибка в формате входных данных")
     })
-    public ResponseEntity<?> transposeMatrix(@RequestBody MatrixRequest matrixRequest) throws MatrixOperationException {
+    public ResponseEntity<?> transposeMatrix(@RequestBody MatrixRequest matrixRequest) {
+        try {
+            logger.info("Received request to transpose matrix: {}", matrixRequest.getMatrix1());
 
-        int [][] matrix = matrixRequest.getMatrix1AsArray();
+            int[][] matrix = matrixRequest.getMatrix1AsArray();
+            int threads = matrixRequest.getThreads();
 
-        int threads = matrixRequest.getThreads();
+            MatrixOperation operation = new MatrixTranspose();
+            int[][] resultMatrix = MatrixLibrary.performMatrixOperationMT(matrix, matrix, threads, operation);
 
-        MatrixOperation operation = new MatrixTranspose();
-        int [][] resultMatrix = MatrixLibrary.performMatrixOperationMT(matrix, matrix, threads, operation);
+            MatrixResponse matrixResponse = new MatrixResponse();
+            matrixResponse.setResultMatrix(resultMatrix);
 
-        MatrixResponse matrixResponse = new MatrixResponse();
-        matrixResponse.setResultMatrix(resultMatrix);
-
-        return ResponseEntity.ok(matrixResponse);
+            logger.info("Transpose operation completed successfully.");
+            return ResponseEntity.ok(matrixResponse);
+        } catch (MatrixOperationException e) {
+            logger.error("Error during matrix transpose operation: {}", e.getMessage());
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @PostMapping("/multiply")
-    public ResponseEntity<?> multiplyMatrices(@RequestBody MatrixRequest matrixRequest) throws MatrixOperationException {
-        int [][] matrix1 = matrixRequest.getMatrix1AsArray();
-        int [][] matrix2 = matrixRequest.getMatrix2AsArray();
+    public ResponseEntity<?> multiplyMatrices(@RequestBody MatrixRequest matrixRequest) {
+        try {
+            logger.info("Received request to multiply matrices: {} and {}", matrixRequest.getMatrix1(), matrixRequest.getMatrix2());
 
-        int threads = matrixRequest.getThreads();
+            int[][] matrix1 = matrixRequest.getMatrix1AsArray();
+            int[][] matrix2 = matrixRequest.getMatrix2AsArray();
+            int threads = matrixRequest.getThreads();
 
-        MatrixOperation operation = new MatrixMultiplication();
-        int [][] resultMatrix = MatrixLibrary.performMatrixOperationMT(matrix1, matrix2, threads, operation);
+            MatrixOperation operation = new MatrixMultiplication();
+            int[][] resultMatrix = MatrixLibrary.performMatrixOperationMT(matrix1, matrix2, threads, operation);
 
-        MatrixResponse matrixResponse = new MatrixResponse();
-        matrixResponse.setResultMatrix(resultMatrix);
+            MatrixResponse matrixResponse = new MatrixResponse();
+            matrixResponse.setResultMatrix(resultMatrix);
 
-        return ResponseEntity.ok(matrixResponse);
+            logger.info("Matrix multiplication operation completed successfully.");
+            return ResponseEntity.ok(matrixResponse);
+        } catch (MatrixOperationException e) {
+            logger.error("Error during matrix multiplication operation: {}", e.getMessage());
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> addMatrices(@RequestBody MatrixRequest matrixRequest) throws MatrixOperationException {
-        int [][] matrix1 = matrixRequest.getMatrix1AsArray();
-        int [][] matrix2 = matrixRequest.getMatrix2AsArray();
+    public ResponseEntity<?> addMatrices(@RequestBody MatrixRequest matrixRequest) {
+        try {
+            logger.info("Received request to add matrices: {} and {}", matrixRequest.getMatrix1(), matrixRequest.getMatrix2());
 
-        int threads = matrixRequest.getThreads();
+            int[][] matrix1 = matrixRequest.getMatrix1AsArray();
+            int[][] matrix2 = matrixRequest.getMatrix2AsArray();
+            int threads = matrixRequest.getThreads();
 
-        MatrixOperation operation = new MatrixAddition();
-        int [][] resultMatrix = MatrixLibrary.performMatrixOperationMT(matrix1, matrix2, threads, operation);
+            MatrixOperation operation = new MatrixAddition();
+            int[][] resultMatrix = MatrixLibrary.performMatrixOperationMT(matrix1, matrix2, threads, operation);
 
-        MatrixResponse matrixResponse = new MatrixResponse();
-        matrixResponse.setResultMatrix(resultMatrix);
+            MatrixResponse matrixResponse = new MatrixResponse();
+            matrixResponse.setResultMatrix(resultMatrix);
 
-        return ResponseEntity.ok(matrixResponse);
+            logger.info("Matrix addition operation completed successfully.");
+            return ResponseEntity.ok(matrixResponse);
+        } catch (MatrixOperationException e) {
+            logger.error("Error during matrix addition operation: {}", e.getMessage());
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @PostMapping("/substract")
-    public ResponseEntity<?> substractMatrices(@RequestBody MatrixRequest matrixRequest) throws MatrixOperationException {
-        int [][] matrix1 = matrixRequest.getMatrix1AsArray();
-        int [][] matrix2 = matrixRequest.getMatrix2AsArray();
+    public ResponseEntity<?> subtractMatrices(@RequestBody MatrixRequest matrixRequest) {
+        try {
+            logger.info("Received request to subtract matrices: {} and {}", matrixRequest.getMatrix1(), matrixRequest.getMatrix2());
 
-        int threads = matrixRequest.getThreads();
+            int[][] matrix1 = matrixRequest.getMatrix1AsArray();
+            int[][] matrix2 = matrixRequest.getMatrix2AsArray();
+            int threads = matrixRequest.getThreads();
 
-        MatrixOperation operation = new MatrixSubtraction();
-        int [][] resultMatrix = MatrixLibrary.performMatrixOperationMT(matrix1, matrix2, threads, operation);
+            MatrixOperation operation = new MatrixSubtraction();
+            int[][] resultMatrix = MatrixLibrary.performMatrixOperationMT(matrix1, matrix2, threads, operation);
 
-        MatrixResponse matrixResponse = new MatrixResponse();
-        matrixResponse.setResultMatrix(resultMatrix);
+            MatrixResponse matrixResponse = new MatrixResponse();
+            matrixResponse.setResultMatrix(resultMatrix);
 
-        return ResponseEntity.ok(matrixResponse);
+            logger.info("Matrix subtraction operation completed successfully.");
+            return ResponseEntity.ok(matrixResponse);
+        } catch (MatrixOperationException e) {
+            logger.error("Error during matrix subtraction operation: {}", e.getMessage());
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @PostMapping("/multiplybyscalar")
-    public ResponseEntity<?> multiplyMatrixByScalar(@RequestBody MatrixRequest matrixRequest) throws MatrixOperationException {
-        int [][] matrix1 = matrixRequest.getMatrix1AsArray();
+    public ResponseEntity<?> multiplyMatrixByScalar(@RequestBody MatrixRequest matrixRequest) {
+        try {
+            logger.info("Received request to multiply matrix by scalar: {} * {}", matrixRequest.getMatrix1(), matrixRequest.getScalar());
 
-        int [][] scalarArray = new int[1][1];
-        scalarArray[0][0] = matrixRequest.getScalar();
+            int[][] matrix1 = matrixRequest.getMatrix1AsArray();
 
-        int threads = matrixRequest.getThreads();
+            int[][] scalarArray = new int[1][1];
+            scalarArray[0][0] = matrixRequest.getScalar();
 
-        MatrixOperation operation = new MatrixScalarMultiplication();
-        int [][] resultMatrix = MatrixLibrary.performMatrixOperationMT(matrix1, scalarArray, threads, operation);
+            int threads = matrixRequest.getThreads();
 
-        MatrixResponse matrixResponse = new MatrixResponse();
-        matrixResponse.setResultMatrix(resultMatrix);
+            MatrixOperation operation = new MatrixScalarMultiplication();
+            int[][] resultMatrix = MatrixLibrary.performMatrixOperationMT(matrix1, scalarArray, threads, operation);
 
-        return ResponseEntity.ok(matrixResponse);
+            MatrixResponse matrixResponse = new MatrixResponse();
+            matrixResponse.setResultMatrix(resultMatrix);
+
+            logger.info("Matrix scalar multiplication operation completed successfully.");
+            return ResponseEntity.ok(matrixResponse);
+        } catch (MatrixOperationException e) {
+            logger.error("Error during matrix scalar multiplication operation: {}", e.getMessage());
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @Getter

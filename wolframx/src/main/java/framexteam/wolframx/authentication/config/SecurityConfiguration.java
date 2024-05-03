@@ -2,6 +2,8 @@ package framexteam.wolframx.authentication.config;
 
 import java.util.Arrays;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +18,8 @@ import framexteam.wolframx.authentication.service.MyUserDetailsService;
  
 @Configuration
 public class SecurityConfiguration   {
+
+    private static final Logger logger = LogManager.getLogger(SecurityConfiguration.class); 
      
     @Autowired
     private MyUserDetailsService userDetailsService;
@@ -30,7 +34,7 @@ public class SecurityConfiguration   {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
-         
+        logger.debug("Created DaoAuthenticationProvider bean");
         return authProvider;
     }
 
@@ -44,13 +48,19 @@ public class SecurityConfiguration   {
         http.csrf(AbstractHttpConfigurer::disable);
         http.authenticationProvider(authenticationProvider());
          
-        http.authorizeHttpRequests(auth ->
-            auth.requestMatchers("/users",
+        
+        http.authorizeHttpRequests(auth -> {
+            // auth.requestMatchers("/users",
+            // "/js/**",
+            // "/css/**",
+            // "/img/**").authenticated()
+            // .anyRequest().permitAll();
+            logger.debug("Configuring HttpSecurity with authorized paths: {}", auth.requestMatchers("/users",
             "/js/**",
             "/css/**",
             "/img/**").authenticated()
-            .anyRequest().permitAll()
-            )
+            .anyRequest().permitAll());
+        })
             .formLogin(login ->
                 login.usernameParameter("email")
                 //.defaultSuccessUrl("/users")
@@ -60,6 +70,7 @@ public class SecurityConfiguration   {
             .invalidateHttpSession(true)
             .clearAuthentication(true)
             .permitAll()
+            
         );
          
         return http.build();

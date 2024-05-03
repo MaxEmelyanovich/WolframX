@@ -1,5 +1,8 @@
 package framexteam.wolframx.authentication.controller;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +24,8 @@ import framexteam.wolframx.authentication.exception.UserAlreadyExistsException;
 @Tag(name = "Регистрация", description = "API для регистрации пользователей")
 public class RegistrationController {
 
+    private static final Logger logger = LogManager.getLogger(RegistrationController.class);
+
     private UserService userService;
 
     public RegistrationController(UserService userService) {
@@ -36,16 +41,22 @@ public class RegistrationController {
         @ApiResponse(responseCode = "400", description = "Ошибка валидации данных пользователя"),
         @ApiResponse(responseCode = "409", description = "Пользователь с таким email уже существует")
     })
-    public ResponseEntity<String> registerUserAccount(@RequestBody UserDTO registrationDto) throws UserAlreadyExistsException {
-        String firstname = registrationDto.getFirstName();
-        String lastname = registrationDto.getLastName();
+    public ResponseEntity<String> registerUserAccount(@RequestBody UserDTO registrationDto) {
+        //String firstname = registrationDto.getFirstName();
+        //String lastname = registrationDto.getLastName();
         String email = registrationDto.getEmail();
-        String password = registrationDto.getPassword();
-        System.out.println("Firstname: " + firstname);
-        System.out.println("Lastname: " + lastname);
-        System.out.println("Email: " + email);
-        System.out.println("Password: " + password);
-        userService.registerNewUserAccount(registrationDto);
-        return ResponseEntity.ok("\"Данные пользователя сохранены\"");
+        //String password = registrationDto.getPassword();
+        
+        try {
+            userService.registerNewUserAccount(registrationDto);
+            logger.info("User successfully registered with email: {}", email);
+            return ResponseEntity.ok("\"Данные пользователя сохранены\"");
+        } catch (UserAlreadyExistsException e) {
+            logger.warn("Registration failed: user with email {} already exists", email);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        } catch (Exception e) {
+            logger.error("Unexpected error during registration", e);
+            return ResponseEntity.badRequest().body("Произошла ошибка при регистрации");
+        }
     }
 }

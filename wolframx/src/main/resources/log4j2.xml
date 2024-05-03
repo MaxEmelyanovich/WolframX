@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Appenders>
+    <!-- Appender for authentication package logs -->
+    <RollingFile name="AuthFile" fileName="logs/authentication.log"
+                 filePattern="logs/authentication-%d{yyyy-MM-dd}.log">
+      <PatternLayout>
+        <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Pattern>
+      </PatternLayout>
+      <Policies>
+        <TimeBasedTriggeringPolicy />
+        <SizeBasedTriggeringPolicy size="10 MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="10"/>
+    </RollingFile>
+
+    <!-- Appender for calculations package logs -->
+    <RollingFile name="CalcFile" fileName="logs/calculations.log"
+                 filePattern="logs/calculations-%d{yyyy-MM-dd}.log">
+      <PatternLayout>
+        <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Pattern>
+      </PatternLayout>
+      <Policies>
+        <TimeBasedTriggeringPolicy />
+        <SizeBasedTriggeringPolicy size="10 MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="10"/>
+    </RollingFile>
+
+    <!-- Appender for chat package logs -->
+    <RollingFile name="ChatFile" fileName="logs/chat.log"
+                 filePattern="logs/chat-%d{yyyy-MM-dd}.log">
+      <PatternLayout>
+        <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Pattern>
+      </PatternLayout>
+      <Policies>
+        <TimeBasedTriggeringPolicy />
+        <SizeBasedTriggeringPolicy size="10 MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="10"/>
+    </RollingFile>
+
+    <!-- Appender for database package logs -->
+    <RollingFile name="DatabaseFile" fileName="logs/database.log"
+                 filePattern="logs/database-%d{yyyy-MM-dd}.log">
+      <PatternLayout>
+        <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Pattern>
+      </PatternLayout>
+      <Policies>
+        <TimeBasedTriggeringPolicy />
+        <SizeBasedTriggeringPolicy size="10 MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="10"/>
+    </RollingFile>
+  </Appenders>
+
+  <Loggers>
+    <!-- Logger for authentication package -->
+    <Logger name="framexteam.wolframx.authentication" level="debug" additivity="false">
+      <AppenderRef ref="AuthFile"/>
+    </Logger>
+
+    <!-- Logger for calculations package -->
+    <Logger name="framexteam.wolframx.calculations" level="info" additivity="false">
+      <AppenderRef ref="CalcFile"/>
+    </Logger>
+
+    <!-- Logger for chat package -->
+    <Logger name="framexteam.wolframx.chat" level="info" additivity="false">
+      <AppenderRef ref="ChatFile"/>
+    </Logger>
+
+    <!-- Logger for database package -->
+    <Logger name="framexteam.wolframx.database" level="info" additivity="false">
+      <AppenderRef ref="DatabaseFile"/>
+    </Logger>
+
+    <!-- Root logger -->
+    <Root level="info">
+      <AppenderRef ref="RollingFile"/>
+    </Root>
+  </Loggers>
+</Configuration>
