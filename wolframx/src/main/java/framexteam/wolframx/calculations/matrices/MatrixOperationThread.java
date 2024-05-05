@@ -1,6 +1,12 @@
 package framexteam.wolframx.calculations.matrices;
 
-    public class MatrixOperationThread extends Thread {
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+public class MatrixOperationThread extends Thread {
+
+
+        private static final Logger logger = LogManager.getLogger(MatrixOperationThread.class);
         private final int[][] firstMatrix;
         private final int[][] secondMatrix;
         private final int[][] resultMatrix;
@@ -36,6 +42,7 @@ package framexteam.wolframx.calculations.matrices;
         @Override
         public void run() {
             try {
+                logger.info("Thread started");
                 operation.performOperation(firstMatrix, secondMatrix, resultMatrix, firstIndex, lastIndex);
             } catch (MatrixOperationException e) {
                 errorOccurred = true;

@@ -9,6 +9,9 @@ import framexteam.wolframx.authentication.dto.UserDTO;
 import framexteam.wolframx.database.entity.User;
 import framexteam.wolframx.authentication.exception.UserAlreadyExistsException;
 import framexteam.wolframx.database.repository.UserRepository;
+
+import java.util.UUID;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,6 +26,9 @@ public class UserService implements IUserService {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    private MailSender mailSender;
     
     @Override
     public User registerNewUserAccount(UserDTO userDto) throws UserAlreadyExistsException {
@@ -41,8 +47,19 @@ public class UserService implements IUserService {
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setEmail(userDto.getEmail());
         user.setStatus("offline");
+        user.setActivationToken(UUID.randomUUID().toString());
+        user.setEnabled(false);
 
         User savedUser = repository.save(user);
+        if (!user.getEmail().isEmpty()) {
+            String message = String.format(
+                "Hello, %s! \n" +
+                        "Welcome to WolframX. Please, click the link to confirm your email: http://25.23.19.72:8080/signup/activate/%s",
+                user.getFirstName(),
+                user.getActivationToken());
+
+            mailSender.send(user.getEmail(), "Confirm your email", message);
+        }
         logger.info("Successfully registered new user with email: {}", savedUser.getEmail());
         return savedUser;
     }
@@ -61,5 +78,20 @@ public class UserService implements IUserService {
     private boolean emailExists(String email) {
         logger.debug("Checking if email exists: {}", email);
         return repository.findByEmail(email) != null;
+    }
+
+    public boolean activateUser(String token) {
+        User user = repository.findByActivationToken(token);
+
+        if (user == null) {
+            return false;
+        }
+
+        user.setActivationToken(null);
+        user.setEnabled(true);
+
+        repository.save(user);
+
+        return true;
     }
 }

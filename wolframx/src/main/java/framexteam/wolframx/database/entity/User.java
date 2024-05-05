@@ -31,4 +31,10 @@ public class User {
     
     @Column(nullable = false, length = 10)
     private String status;
+
+    @Column(name = "activation_token", length = 36)
+    private String activationToken;
+
+    @Column(nullable = false)
+    private boolean enabled;
 }

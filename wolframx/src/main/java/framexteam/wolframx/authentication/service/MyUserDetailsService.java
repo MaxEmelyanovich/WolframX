@@ -36,13 +36,13 @@ public class MyUserDetailsService implements UserDetailsService {
             logger.debug("Found user: email={}, status={}", // Логирование найденного пользователя
                     user.getEmail(), user.getStatus());
         }
-        boolean enabled = true;
+        //boolean enabled = true;
         boolean accountNonExpired = true;
         boolean credentialsNonExpired = true;
         boolean accountNonLocked = true;
         
         return new org.springframework.security.core.userdetails.User(
-          user.getEmail(), user.getPassword(), enabled, accountNonExpired,
+          user.getEmail(), user.getPassword(), user.isEnabled(), accountNonExpired,
           credentialsNonExpired, accountNonLocked, getAuthorities());
     }
     

@@ -1,6 +1,11 @@
 package framexteam.wolframx.calculations.matrices;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class MatrixLibrary {
+    private static final Logger logger = LogManager.getLogger(MatrixLibrary.class);
+    private static long elapsedTime;
 
     public static int[][] performMatrixOperationMT(final int[][] firstMatrix,
                                                    final int[][] secondMatrix,
@@ -24,6 +29,10 @@ public class MatrixLibrary {
         int firstIndex = 0;
         final MatrixOperationThread[] operationThreads = new MatrixOperationThread[threadCount];
         MatrixOperationException exception = null;
+
+        logger.info("Starting matrix operation with {} threads", threadCount);
+
+        long startTime = System.currentTimeMillis();
 
         for (int threadIndex = threadCount - 1; threadIndex >= 0; --threadIndex) {
             int lastIndex = firstIndex + cellsForThread;
@@ -50,6 +59,11 @@ public class MatrixLibrary {
         if (exception != null) {
             throw exception;
         }
+
+        elapsedTime = System.currentTimeMillis() - startTime;
+
+        logger.info( "Total elapsed time: {} seconds.", (elapsedTime / 1000.0));
+        logger.info("Matrix operation completed successfully");
 
         return result;
     }
