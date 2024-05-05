@@ -18,5 +18,9 @@
     "secondmatrix": "Вторая матрица",
     "enterthesecondmatrix": "Введите вторую матрицу",
     "scalar": "Скаляр",
-    "enterthescalar": "Введите скаляр"
+    "enterthescalar": "Введите скаляр",
+    "email": "Эл. почта",
+    "password": "Пароль",
+    "forgotpassword": "Забыли пароль",
+    "donthave": "Нет аккаунта?"
 }

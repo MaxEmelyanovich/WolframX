@@ -18,25 +18,29 @@ const ChatRoom = () => {
       console.log(userData);
     }, [userData]);
 
-    const connect =()=>{
+    const connect =()=>{ 
         let Sock = new SockJS('http://25.23.19.72:8080/ws');
         stompClient = over(Sock);
         stompClient.connect({},onConnected, onError);
     }
 
     const onConnected = () => {
-        setUserData({...userData,"connected": true});
-        stompClient.subscribe('/chatroom/public', onMessageReceived);
-        stompClient.subscribe('/user/'+userData.username+'/private', onPrivateMessage);
-        userJoin();
+        if (stompClient && stompClient.connected) {
+            stompClient.subscribe('/chatroom/public', onMessageReceived);
+            stompClient.subscribe('/user/'+userData.username+'/private', onPrivateMessage);
+            userJoin();
+            setUserData({...userData,"connected": true});
+        }
     }
 
     const userJoin=()=>{
+        if(stompClient && stompClient.connected) {
           var chatMessage = {
             senderName: userData.username,
             status:"JOIN"
           };
           stompClient.send("/app/message", {}, JSON.stringify(chatMessage));
+        }
     }
 
     const onMessageReceived = (payload)=>{
@@ -79,7 +83,7 @@ const ChatRoom = () => {
         setUserData({...userData,"message": value});
     }
     const sendValue=()=>{
-            if (stompClient) {
+            if (userData.connected) {
               var chatMessage = {
                 senderName: userData.username,
                 message: userData.message,
@@ -109,17 +113,25 @@ const ChatRoom = () => {
         }
     }
 
-    const handleUsername=(event)=>{
-        const {value}=event.target;
-        setUserData({...userData,"username": value});
-    }
+    useEffect(() => {
+        const storedUsername = localStorage.getItem('username');
+        if (storedUsername) {
+          setUserData((prevUserData) => ({
+            ...prevUserData,
+            username: storedUsername
+          }));
+        }
+    }, []); 
 
-    const registerUser=()=>{
-        connect();
-    }
+    useEffect(() => {
+        if (userData.username && !userData.connected) {
+            connect();
+        }
+    }, [userData.username])
+    
+
     return (
     <div className="container">
-        {userData.connected?
         <div className="chat-box">
             <div className="member-list">
                 <ul>
@@ -162,21 +174,7 @@ const ChatRoom = () => {
                 </div>
             </div>}
         </div>
-        :
-        <div className="register">
-            <input
-                className="regInput"
-                id="user-name"
-                placeholder="Enter your name"
-                name="userName"
-                value={userData.username}
-                onChange={handleUsername}
-                margin="normal"
-              />
-              <button className="connectionButton" onClick={registerUser}>
-                    Connect
-              </button> 
-        </div>}
+        
     </div>
     )
 }

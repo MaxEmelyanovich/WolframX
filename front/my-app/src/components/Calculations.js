@@ -9,8 +9,12 @@ function Calculations() {
 
     return (
         <div className="calculations-container">
-            <h1 class="h1Calc">{t('calculations')}</h1>
-            <LanguageSelector />
+
+            <div className="headerWithSelector">
+                <h1 class="h1Calc">{t('calculations')}</h1>
+                <LanguageSelector />
+            </div>
+            
 
             <div className="form-container">
                 <div className="rect">

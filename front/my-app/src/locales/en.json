@@ -18,5 +18,9 @@
     "secondmatrix": "Second matrix",
     "enterthesecondmatrix": "Enter the second matrix",
     "scalar": "Scalar",
-    "enterthescalar": "Enter the scalar"
+    "enterthescalar": "Enter the scalar",
+    "email": "Email",
+    "password": "Password",
+    "forgotpassword": "Forgot password",
+    "donthave": "Dont't have an account?"
 }
