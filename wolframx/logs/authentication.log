@@ -1,0 +1,18 @@
+2024-05-06 16:28:13.373 [restartedMain] DEBUG framexteam.wolframx.authentication.config.SecurityConfiguration - Created DaoAuthenticationProvider bean
+2024-05-06 16:28:14.006 [restartedMain] DEBUG framexteam.wolframx.authentication.config.SecurityConfiguration - Configuring HttpSecurity with authorized paths: org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry@28607f5e
+2024-05-06 16:32:05.897 [http-nio-8080-exec-2] INFO  framexteam.wolframx.authentication.controller.AuthorizationController - Попытка авторизации пользователя: example@gmail.com
+2024-05-06 16:32:05.956 [http-nio-8080-exec-2] DEBUG framexteam.wolframx.authentication.service.MyUserDetailsService - Searching for user with email: example@gmail.com
+2024-05-06 16:32:06.036 [http-nio-8080-exec-2] WARN  framexteam.wolframx.authentication.service.MyUserDetailsService - User not found with email: example@gmail.com
+2024-05-06 16:32:06.089 [http-nio-8080-exec-2] WARN  framexteam.wolframx.authentication.controller.AuthorizationController - Неудачная попытка входа для пользователя: example@gmail.com
+2024-05-06 16:32:50.258 [http-nio-8080-exec-3] INFO  framexteam.wolframx.authentication.controller.AuthorizationController - Попытка авторизации пользователя: gay@gmail.com
+2024-05-06 16:32:50.258 [http-nio-8080-exec-3] DEBUG framexteam.wolframx.authentication.service.MyUserDetailsService - Searching for user with email: gay@gmail.com
+2024-05-06 16:32:50.274 [http-nio-8080-exec-3] DEBUG framexteam.wolframx.authentication.service.MyUserDetailsService - Found user: email=gay@gmail.com, status=offline
+2024-05-06 16:32:50.343 [http-nio-8080-exec-3] DEBUG framexteam.wolframx.authentication.service.UserService - Fetching user by email: gay@gmail.com
+2024-05-06 16:32:50.343 [http-nio-8080-exec-3] DEBUG framexteam.wolframx.authentication.service.UserService - Saving user: User(userId=5, email=gay@gmail.com, password=$2a$10$9m251izCwHXCoIU7CnyzIe5zBws7fOgVg7rjndUtGkBByHO5uwPsK, firstName=gay, lastName=gay, status=online, activationToken=null, enabled=true)
+2024-05-06 16:32:50.359 [http-nio-8080-exec-3] INFO  framexteam.wolframx.authentication.controller.AuthorizationController - Пользователь gay@gmail.com успешно авторизован
+2024-05-06 16:33:29.213 [http-nio-8080-exec-9] INFO  framexteam.wolframx.authentication.controller.AuthorizationController - Попытка авторизации пользователя: loh@gmail.com
+2024-05-06 16:33:29.217 [http-nio-8080-exec-9] DEBUG framexteam.wolframx.authentication.service.MyUserDetailsService - Searching for user with email: loh@gmail.com
+2024-05-06 16:33:29.217 [http-nio-8080-exec-9] DEBUG framexteam.wolframx.authentication.service.MyUserDetailsService - Found user: email=loh@gmail.com, status=offline
+2024-05-06 16:33:29.280 [http-nio-8080-exec-9] DEBUG framexteam.wolframx.authentication.service.UserService - Fetching user by email: loh@gmail.com
+2024-05-06 16:33:29.283 [http-nio-8080-exec-9] DEBUG framexteam.wolframx.authentication.service.UserService - Saving user: User(userId=4, email=loh@gmail.com, password=$2a$10$mkx1ZqNxR4t2OLTfJjO.f.75Ty1BdDORC.QiZQBTUolREE5xqT8VG, firstName=loh, lastName=loh, status=online, activationToken=null, enabled=true)
+2024-05-06 16:33:29.283 [http-nio-8080-exec-9] INFO  framexteam.wolframx.authentication.controller.AuthorizationController - Пользователь loh@gmail.com успешно авторизован

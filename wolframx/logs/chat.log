@@ -1,0 +1,10 @@
+2024-05-06 16:32:56.650 [clientInboundChannel-10] INFO  framexteam.wolframx.chat.controller.ChatController - Received public message from gay: null
+2024-05-06 16:33:01.651 [clientInboundChannel-13] INFO  framexteam.wolframx.chat.controller.ChatController - Received public message from gay: im gay
+2024-05-06 16:33:07.435 [clientInboundChannel-25] INFO  framexteam.wolframx.chat.controller.ChatController - Received public message from gay: null
+2024-05-06 16:33:17.435 [clientInboundChannel-40] INFO  framexteam.wolframx.chat.controller.ChatController - Received public message from gay: null
+2024-05-06 16:33:33.346 [clientInboundChannel-10] INFO  framexteam.wolframx.chat.controller.ChatController - Received public message from loh: null
+2024-05-06 16:33:42.740 [clientInboundChannel-13] INFO  framexteam.wolframx.chat.controller.ChatController - Received public message from loh: im loh
+2024-05-06 16:33:51.678 [clientInboundChannel-21] INFO  framexteam.wolframx.chat.controller.ChatController - Received private message from gay to loh: u r loh
+2024-05-06 16:33:59.573 [clientInboundChannel-41] INFO  framexteam.wolframx.chat.controller.ChatController - Received private message from loh to gay: u r gay
+2024-05-06 16:34:05.764 [clientInboundChannel-44] INFO  framexteam.wolframx.chat.controller.ChatController - Received private message from gay to gay: okay
+2024-05-06 16:34:13.568 [clientInboundChannel-47] INFO  framexteam.wolframx.chat.controller.ChatController - Received private message from loh to loh: okay
