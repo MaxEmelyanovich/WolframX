@@ -1,4 +1,4 @@
-package framexteam.wolframx.calculations.vectors;
+package framexteam.wolframx.calculations.operations.vectors;
 
 
 public class VectorLibraryJNI {
