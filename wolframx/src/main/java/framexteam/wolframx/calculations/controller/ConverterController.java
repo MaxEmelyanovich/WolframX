@@ -26,7 +26,7 @@ public class ConverterController {
 
     private static final Logger logger = LogManager.getLogger(ConverterController.class);
 
-    @PostMapping("/convert")
+    @PostMapping
     @Operation(summary = "Перевод числа из одной системы счисления в другую",
                description = "Переводит число из одной системы счисления в другую.")
     @ApiResponses(value = {

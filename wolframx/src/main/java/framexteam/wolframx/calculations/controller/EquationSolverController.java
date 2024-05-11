@@ -1,5 +1,7 @@
 package framexteam.wolframx.calculations.controller;
 
+import java.util.Set;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.*;
 
 import framexteam.wolframx.calculations.operations.equations.GaussSolver;
+import framexteam.wolframx.calculations.operations.equations.NonlinearEquationSolver;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -52,6 +55,35 @@ public class EquationSolverController {
         } catch (InterruptedException | IllegalArgumentException e) {
             logger.error("Error during equations solving: {}", e.getMessage());
             return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+        @PostMapping("/newton")
+    @Operation(summary = "Решение нелинейного уравнения",
+               description = "Решает нелинейное уравнение методом Ньютона.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Корни уравнения",
+                content = @Content(mediaType = "application/json", schema = @Schema(implementation = NonlinearEquationSolverResponse.class))),
+        @ApiResponse(responseCode = "400", description = "Ошибка в формате входных данных"),
+        @ApiResponse(responseCode = "500", description = "Ошибка при решении уравнения")
+    })
+    public ResponseEntity<?> solveNonlinearEquation(@RequestBody NonlinearEquationSolverRequest request) {
+        try {
+            logger.info("Received request to solve nonlinear equation: {}", request);
+
+            double[] coefficients = request.getCoefficientsAsArray();
+            int threads = request.getThreads();
+
+            Set<Double> roots = NonlinearEquationSolver.solve(coefficients, threads);
+
+            NonlinearEquationSolverResponse response = new NonlinearEquationSolverResponse();
+            response.setRoots(roots);
+
+            logger.info("Nonlinear equation solved successfully.");
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            logger.error("Error during nonlinear equation solving: {}", e.getMessage());
+            return ResponseEntity.status(500).body(e.getMessage());
         }
     }
 
@@ -115,5 +147,27 @@ public class EquationSolverController {
             sb.append("}");
             solution = sb.toString();
         }
+    }
+
+    @Getter
+    @Setter
+    private static class NonlinearEquationSolverRequest {
+        private String coefficients;
+        private int threads;
+
+        private double[] getCoefficientsAsArray() {
+            String[] parts = coefficients.substring(1, coefficients.length() - 1).split(",");
+            double[] array = new double[parts.length];
+            for (int i = 0; i < parts.length; i++) {
+                array[i] = Double.parseDouble(parts[i]);
+            }
+            return array;
+        }
+    }
+
+    @Getter
+    @Setter
+    private static class NonlinearEquationSolverResponse {
+        private Set<Double> roots;
     }
 }

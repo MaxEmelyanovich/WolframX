@@ -130,6 +130,17 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+
+        <!-- <resources>
+            <resource>
+                <directory>lib</directory>
+                <targetPath>${project.build.directory}</targetPath>
+                <includes>
+                    <include>*.dll</include>
+                </includes>
+            </resource>
+        </resources> -->
+
 	</build>
 
 </project>
