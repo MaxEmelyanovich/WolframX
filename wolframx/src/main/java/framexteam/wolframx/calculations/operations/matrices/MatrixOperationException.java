@@ -1,4 +1,4 @@
-package framexteam.wolframx.calculations.matrices;
+package framexteam.wolframx.calculations.operations.matrices;
 
 public class MatrixOperationException extends Exception {
     public MatrixOperationException(String message) {

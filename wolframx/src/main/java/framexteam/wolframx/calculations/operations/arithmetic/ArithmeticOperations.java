@@ -1,4 +1,4 @@
-package framexteam.wolframx.calculations.arithmeticOperations;
+package framexteam.wolframx.calculations.operations.arithmetic;
 
 import java.util.Objects;
 

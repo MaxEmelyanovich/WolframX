@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import lombok.*;
 
-import framexteam.wolframx.calculations.matrices.*;
+import framexteam.wolframx.calculations.operations.matrices.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -22,9 +22,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @CrossOrigin(origins = "*")
 @RequestMapping("/calculations/matrices")
 @Tag(name = "Вычисления", description = "API для выполнения математических операций")
-public class MatrixCalculationsController {
+public class MatrixOperationsController {
 
-    private static final Logger logger = LogManager.getLogger(MatrixCalculationsController.class);
+    private static final Logger logger = LogManager.getLogger(MatrixOperationsController.class);
 
     @PostMapping("/transpose")
     @Operation(summary = "Транспонирование матрицы",

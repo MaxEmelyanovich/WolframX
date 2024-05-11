@@ -1,4 +1,4 @@
-package framexteam.wolframx.calculations.matrices;
+package framexteam.wolframx.calculations.operations.matrices;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
