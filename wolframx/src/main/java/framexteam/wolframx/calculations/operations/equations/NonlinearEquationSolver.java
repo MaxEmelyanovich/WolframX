@@ -10,7 +10,7 @@ public class NonlinearEquationSolver extends Thread {
     private static double epsilon = 0.000001;
     private static final double answerThreshold = 0.001;
     private static int maxIterations = 100;
-    private static final int TOTAL_ITERATIONS = 1000000;
+    private static final int TOTAL_ITERATIONS = 10000;
 
     private static final Object lock = new Object();
     private static Set<Double> roots = new HashSet<>();
