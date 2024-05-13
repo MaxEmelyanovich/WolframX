@@ -1,7 +1,4 @@
-package framexteam.wolframx.calculations.equations;
-
-import framexteam.wolframx.WolframxApplication;
-import org.springframework.boot.SpringApplication;
+package framexteam.wolframx.calculations.operations.equations;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -10,9 +7,10 @@ import java.util.Set;
 
 public class NonlinearEquationSolver extends Thread {
 
-    private static final double epsilon = 0.0001;
-    private static final int maxIterations = 100;
-    private static final int TOTAL_ITERATIONS = 1000;
+    private static double epsilon = 0.000001;
+    private static final double answerThreshold = 0.001;
+    private static int maxIterations = 100;
+    private static final int TOTAL_ITERATIONS = 1000000;
 
     private static final Object lock = new Object();
     private static Set<Double> roots = new HashSet<>();
@@ -45,7 +43,8 @@ public class NonlinearEquationSolver extends Thread {
         Random random = new Random();
 
         for (int j = 0; j < TOTAL_ITERATIONS / numThreads; j++) {
-            double x0 = -100000000 + random.nextDouble() * 100000000;
+            double x0 = random.nextDouble() * 20000 - 10000;
+            System.out.println(x0);
             double x = x0;
             for (int i = 0; i < maxIterations; i++) {
                 double fx = function(coefficients, x);
@@ -56,7 +55,7 @@ public class NonlinearEquationSolver extends Thread {
                     boolean isUnique = true;
                     synchronized (lock) {
                         for (double root : roots) {
-                            if (Math.abs(newX - root) < epsilon) {
+                            if (Math.abs(newX - root) < answerThreshold) {
                                 isUnique = false;
                                 break;
                             }
@@ -73,9 +72,12 @@ public class NonlinearEquationSolver extends Thread {
         }
     }
 
-    public static Set<Double> solve(double[] coefficients, int threadCount) throws Exception {
+    public static Set<Double> solve(double[] coefficients, int threadCount, double epsilon, int maxIterations) throws Exception {
         Objects.requireNonNull(coefficients, "Coefficients cannot be null");
         Objects.requireNonNull(threadCount, "Number of threads cannot be null");
+
+        NonlinearEquationSolver.epsilon = epsilon;
+        NonlinearEquationSolver.maxIterations = maxIterations;
 
         if (threadCount <= 0) {
             throw new IllegalArgumentException("Thread count must be greater than zero.");
