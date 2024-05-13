@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.*;
 
 import framexteam.wolframx.calculations.operations.equations.GaussSolver;
+import framexteam.wolframx.calculations.operations.equations.GaussSolverJNI;
 import framexteam.wolframx.calculations.operations.equations.NonlinearEquationSolver;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -44,15 +45,22 @@ public class EquationSolverController {
             double[][] coefficients = request.getCoefficientsAsArray();
             double[] constants = request.getConstantsAsArray();
             int threads = request.getThreads();
-
-            double[] solution = GaussSolver.solve(coefficients, constants, threads);
+            String language = request.getLanguage();
+            double[] solution;
+            
+            if ("C++".equalsIgnoreCase(language)) {
+                solution = GaussSolverJNI.solve(coefficients, constants, threads);
+            }
+            else {
+                solution = GaussSolver.solve(coefficients, constants, threads);
+            }
 
             EquationSolverResponse response = new EquationSolverResponse();
             response.setSolution(solution);
 
             logger.info("Equations solved successfully.");
             return ResponseEntity.ok(response);
-        } catch (InterruptedException | IllegalArgumentException e) {
+        } catch (InterruptedException | RuntimeException e) {
             logger.error("Error during equations solving: {}", e.getMessage());
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -95,6 +103,7 @@ public class EquationSolverController {
         private String coefficients;
         private String constants;
         private int threads;
+        private String language;
 
         private double[][] getCoefficientsAsArray() {
             return getArrayFromString(coefficients);
