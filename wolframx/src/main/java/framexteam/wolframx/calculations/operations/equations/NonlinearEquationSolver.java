@@ -7,9 +7,9 @@ import java.util.Set;
 
 public class NonlinearEquationSolver extends Thread {
 
-    private static final double epsilon = 0.000001;
+    private static double epsilon = 0.000001;
     private static final double answerThreshold = 0.001;
-    private static final int maxIterations = 100;
+    private static int maxIterations = 100;
     private static final int TOTAL_ITERATIONS = 1000000;
 
     private static final Object lock = new Object();
@@ -72,9 +72,12 @@ public class NonlinearEquationSolver extends Thread {
         }
     }
 
-    public static Set<Double> solve(double[] coefficients, int threadCount) throws Exception {
+    public static Set<Double> solve(double[] coefficients, int threadCount, double epsilon, int maxIterations) throws Exception {
         Objects.requireNonNull(coefficients, "Coefficients cannot be null");
         Objects.requireNonNull(threadCount, "Number of threads cannot be null");
+
+        NonlinearEquationSolver.epsilon = epsilon;
+        NonlinearEquationSolver.maxIterations = maxIterations;
 
         if (threadCount <= 0) {
             throw new IllegalArgumentException("Thread count must be greater than zero.");

@@ -42,8 +42,11 @@ public class IntegralController {
             double start = integralRequest.getStart();
             double stop = integralRequest.getStop();
 
+            int N = integralRequest.getN();
+
+
             IntegralOperation operation = new TrapezoidalMethod();
-            double result = IntegralLibrary.performIntegralOperation(function, start, stop, operation);
+            double result = IntegralLibrary.performIntegralOperation(function, start, stop, operation, 0, N);
 
             IntegralResponse integralResponse = new IntegralResponse();
             integralResponse.setResult(result);
@@ -72,8 +75,10 @@ public class IntegralController {
             double start = integralRequest.getStart();
             double stop = integralRequest.getStop();
 
+            int N = integralRequest.getN();
+
             IntegralOperation operation = new SimpsonMethod();
-            double result = IntegralLibrary.performIntegralOperation(function, start, stop, operation);
+            double result = IntegralLibrary.performIntegralOperation(function, start, stop, operation, 0, N);
 
             IntegralResponse integralResponse = new IntegralResponse();
             integralResponse.setResult(result);
@@ -103,8 +108,12 @@ public class IntegralController {
             double start = integralRequest.getStart();
             double stop = integralRequest.getStop();
 
+            double tolerance = integralRequest.getTolerance();
+
+            int N = integralRequest.getN();
+
             IntegralOperation operation = new RombergMethod();
-            double result = IntegralLibrary.performIntegralOperation(function, start, stop, operation);
+            double result = IntegralLibrary.performIntegralOperation(function, start, stop, operation, tolerance, N);
 
             IntegralResponse integralResponse = new IntegralResponse();
             integralResponse.setResult(result);
@@ -123,6 +132,8 @@ public class IntegralController {
         private String function;
         private double start;
         private double stop;
+        private double tolerance;
+        private int n;
     }
 
     @Getter

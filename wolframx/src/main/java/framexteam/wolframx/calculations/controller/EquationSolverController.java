@@ -58,7 +58,7 @@ public class EquationSolverController {
         }
     }
 
-        @PostMapping("/newton")
+    @PostMapping("/newton")
     @Operation(summary = "Решение нелинейного уравнения",
                description = "Решает нелинейное уравнение методом Ньютона.")
     @ApiResponses(value = {
@@ -73,8 +73,10 @@ public class EquationSolverController {
 
             double[] coefficients = request.getCoefficientsAsArray();
             int threads = request.getThreads();
+            double epsilon = request.getEpsilon();
+            int maxIterations = request.getMaxIterations();
 
-            Set<Double> roots = NonlinearEquationSolver.solve(coefficients, threads);
+            Set<Double> roots = NonlinearEquationSolver.solve(coefficients, threads, epsilon, maxIterations);
 
             NonlinearEquationSolverResponse response = new NonlinearEquationSolverResponse();
             response.setRoots(roots);
@@ -154,6 +156,8 @@ public class EquationSolverController {
     private static class NonlinearEquationSolverRequest {
         private String coefficients;
         private int threads;
+        private double epsilon;
+        private int maxIterations;
 
         private double[] getCoefficientsAsArray() {
             String[] parts = coefficients.substring(1, coefficients.length() - 1).split(",");

@@ -83,4 +83,4 @@ public class GaussSolver extends Thread {
 
         return solution;
     }
-    }
+}
