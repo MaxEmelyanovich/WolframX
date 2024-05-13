@@ -43,6 +43,9 @@ public class MatrixOperationThread extends Thread {
         public void run() {
             try {
                 logger.info("Thread started");
+                if (firstIndex < 0 || lastIndex > resultMatrix.length * resultMatrix[0].length || firstIndex >= lastIndex) {
+                    throw new MatrixOperationException("Invalid start index or end index.");
+                }
                 operation.performOperation(firstMatrix, secondMatrix, resultMatrix, firstIndex, lastIndex);
             } catch (MatrixOperationException e) {
                 errorOccurred = true;

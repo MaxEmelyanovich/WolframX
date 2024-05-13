@@ -21,6 +21,25 @@ public class MatrixLibrary {
                     Runtime.getRuntime().availableProcessors() + " available processors");
         }
 
+        if (operation instanceof MatrixTranspose){
+            if (firstMatrix == null) {
+                throw new MatrixOperationException("Matrices cannot be null.");
+            }
+
+            if (firstMatrix.length == 0) {
+                throw new MatrixOperationException("Matrices cannot be empty.");
+            }
+        }
+        else {
+            if (firstMatrix == null || secondMatrix == null) {
+                throw new MatrixOperationException("Matrices cannot be null.");
+            }
+
+            if (firstMatrix.length == 0 || secondMatrix.length == 0) {
+                throw new MatrixOperationException("Matrices cannot be empty.");
+            }
+        }
+
         final int[][] result = operation.getResultMatrixSize(firstMatrix, secondMatrix);
         final int rowCount = result.length;
         final int colCount = result[0].length;
