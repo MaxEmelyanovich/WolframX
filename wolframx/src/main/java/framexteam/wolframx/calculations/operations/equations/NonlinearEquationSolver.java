@@ -81,6 +81,8 @@ public class NonlinearEquationSolver extends Thread {
         Objects.requireNonNull(coefficients, "Coefficients cannot be null");
         Objects.requireNonNull(threadCount, "Number of threads cannot be null");
 
+        roots.clear();
+
         NonlinearEquationSolver.epsilon = epsilon;
         NonlinearEquationSolver.maxIterations = maxIterations;
 
