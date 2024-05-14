@@ -44,7 +44,6 @@ public class NonlinearEquationSolver extends Thread {
 
         for (int j = 0; j < TOTAL_ITERATIONS / numThreads; j++) {
             double x0 = random.nextDouble() * 20000 - 10000;
-            System.out.println(x0);
             double x = x0;
             for (int i = 0; i < maxIterations; i++) {
                 double fx = function(coefficients, x);
@@ -75,6 +74,8 @@ public class NonlinearEquationSolver extends Thread {
     public static Set<Double> solve(double[] coefficients, int threadCount, double epsilon, int maxIterations) throws Exception {
         Objects.requireNonNull(coefficients, "Coefficients cannot be null");
         Objects.requireNonNull(threadCount, "Number of threads cannot be null");
+
+        roots.clear();
 
         NonlinearEquationSolver.epsilon = epsilon;
         NonlinearEquationSolver.maxIterations = maxIterations;

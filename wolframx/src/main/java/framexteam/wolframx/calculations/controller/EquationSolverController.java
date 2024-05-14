@@ -15,6 +15,7 @@ import lombok.*;
 import framexteam.wolframx.calculations.operations.equations.GaussSolver;
 import framexteam.wolframx.calculations.operations.equations.GaussSolverJNI;
 import framexteam.wolframx.calculations.operations.equations.NonlinearEquationSolver;
+import framexteam.wolframx.calculations.operations.equations.NonlinearEquationSolverJNI;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -83,8 +84,17 @@ public class EquationSolverController {
             int threads = request.getThreads();
             double epsilon = request.getEpsilon();
             int maxIterations = request.getMaxIterations();
+            String language = request.getLanguage();
+            Set<Double> roots;
+            
+            if ("C++".equalsIgnoreCase(language)) {
+                roots = NonlinearEquationSolverJNI.solve(coefficients, threads, epsilon, maxIterations);
+            }
+            else {
+                roots = NonlinearEquationSolver.solve(coefficients, threads, epsilon, maxIterations);
+            }
 
-            Set<Double> roots = NonlinearEquationSolver.solve(coefficients, threads, epsilon, maxIterations);
+            //Set<Double> roots = NonlinearEquationSolver.solve(coefficients, threads, epsilon, maxIterations);
 
             NonlinearEquationSolverResponse response = new NonlinearEquationSolverResponse();
             response.setRoots(roots);
@@ -167,6 +177,7 @@ public class EquationSolverController {
         private int threads;
         private double epsilon;
         private int maxIterations;
+        private String language;
 
         private double[] getCoefficientsAsArray() {
             String[] parts = coefficients.substring(1, coefficients.length() - 1).split(",");
