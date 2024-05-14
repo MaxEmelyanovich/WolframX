@@ -45,6 +45,7 @@ public:
     void solve() {
         std::random_device rd;
         std::mt19937 random(rd());
+        roots.clear();
         std::uniform_real_distribution<double> dist(-10000.0, 10000.0);
 
         for (int j = 0; j < totalIterations / numThreads; j++) {

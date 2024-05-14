@@ -14,11 +14,15 @@ public class NonlinearEquationSolver extends Thread {
     private static final double answerThreshold = 0.001;
     private static int maxIterations = 100;
     private static final int TOTAL_ITERATIONS = 10000;
+
     private static final Logger logger = LogManager.getLogger(NonlinearEquationSolver.class);
+
     private static final Object lock = new Object();
     private static Set<Double> roots = new HashSet<>();
     private final int numThreads;
+
     private static long elapsedTime;
+
     private final double[] coefficients;
 
     public NonlinearEquationSolver(double[] coefficients, int numThreads) {
@@ -45,6 +49,7 @@ public class NonlinearEquationSolver extends Thread {
         Random random = new Random();
         int pointsProcessed = TOTAL_ITERATIONS / numThreads;
         logger.info("Thread started: Processing {} points", pointsProcessed);
+
         for (int j = 0; j < pointsProcessed; j++) {
             double x0 = random.nextDouble() * 20000 - 10000;
             // logger.info("Processing point {}", x0);
