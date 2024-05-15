@@ -18,6 +18,10 @@ import MatrixSubtraction from './components/MatrixSubtraction';
 import ScalarMultiplication from './components/ScalarMultiplication';
 import ChatRoom from './components/ChatRoom';
 import Calculator from './components/Calculator';
+import Trapezoidal from './components/Trapezoidal';
+import Simpson from './components/Simpson';
+import Romberg from './components/Romberg';
+import Converter from './components/Converter';
 import './App.css';
 import logoSVG from './assets/logo.svg';
 
@@ -83,6 +87,10 @@ function AppContent() {
                 />
                 <Route path="/chatroom" element={<ChatRoom />}/>
                 <Route path="/calculator" element={<Calculator />}/>
+                <Route path="/trapezoidal" element={<Trapezoidal />}/>
+                <Route path="/simpson" element={<Simpson />}/>
+                <Route path="/romberg" element={<Romberg />}/>
+                <Route path="/converter" element={<Converter />}/>
             </Routes>
         </div>
     );

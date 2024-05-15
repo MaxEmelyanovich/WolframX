@@ -41,13 +41,13 @@ function Calculations() {
                 </div>
 
                 <div className="rect">
-                    <h2 class="h2Calc">Form 2</h2>
+                    <h2 class="h2Calc">Arithmetics :</h2>
                     <Link className="link" to="/calculator">
                         Calculator
                     </Link>
                     <br></br>
-                    <Link className="link" to="/">
-                        Link 2
+                    <Link className="link" to="/converter">
+                        Converter
                     </Link>
                     <br></br>
                     <Link className="link" to="/">
@@ -64,17 +64,17 @@ function Calculations() {
                 </div>
 
                 <div className="rect">
-                    <h2 class="h2Calc">Form 3</h2>
-                    <Link className="link" to="/">
-                        Link 1
+                    <h2 class="h2Calc">Integrals :</h2>
+                    <Link className="link" to="/trapezoidal">
+                        Trapezoidal
                     </Link>
                     <br></br>
-                    <Link className="link" to="/">
-                        Link 2
+                    <Link className="link" to="/simpson">
+                        Simpson
                     </Link>
                     <br></br>
-                    <Link className="link" to="/">
-                        Link 3
+                    <Link className="link" to="/romberg">
+                        Romberg
                     </Link>
                     <br></br>
                     <Link className="link" to="/">
