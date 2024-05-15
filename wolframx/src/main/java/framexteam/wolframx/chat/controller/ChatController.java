@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import framexteam.wolframx.chat.model.ChatMessage;
 import framexteam.wolframx.chat.model.LogicalTimestamp;
 import framexteam.wolframx.chat.model.MessageType;
-import framexteam.wolframx.chat.repository.MessageRepository;
 import framexteam.wolframx.chat.service.LogicalClockService;
 
 import java.util.HashMap;
@@ -29,9 +28,6 @@ public class ChatController {
     @Autowired
     private LogicalClockService logicalClockService;
 
-    @Autowired
-    private MessageRepository messageRepository;
-
     @MessageMapping("/message")
     @SendTo("/chatroom/public")
     public ChatMessage receiveMessage(@Payload ChatMessage message){
@@ -42,8 +38,6 @@ public class ChatController {
         logicalClockService.incrementClock(message.getSenderName());
     
         logicalClockService.addHistoryEntry(message.getSenderName(), message.getTimestamp(), message, MessageType.MESSAGE);
-
-        messageRepository.save(message);
     
         return message;
     }
@@ -79,7 +73,7 @@ public class ChatController {
         logicalClockService.incrementClock(username); 
 
         // Отправка истории сообщений
-        List<ChatMessage> messages = logicalClockService.getHistory(); // Извлекаем из базы данных
+        List<ChatMessage> messages = logicalClockService.getHistory(); 
 
         simpMessagingTemplate.convertAndSendToUser(username, "/history", messages); 
     }

@@ -3,24 +3,19 @@ package framexteam.wolframx.chat.service;
 import framexteam.wolframx.chat.model.ChatMessage;
 import framexteam.wolframx.chat.model.LogicalTimestamp;
 import framexteam.wolframx.chat.model.MessageType;
-import framexteam.wolframx.chat.repository.MessageRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Comparator;
+import java.util.ArrayList;
 
 @Service
 public class LogicalClockService {
 
-    @Autowired
-    private MessageRepository messageRepository;
-
     private HashMap<String, Integer> activeVector = new HashMap<>();
-    //private List<ChatMessage> history = new ArrayList<>(); // Теперь хранит ChatMessage
-    private HashMap<String, ChatMessage> lastUserEntry = new HashMap<>(); // Теперь хранит ChatMessage
+    private List<ChatMessage> history = new ArrayList<>(); 
+    private HashMap<String, ChatMessage> lastUserEntry = new HashMap<>();
 
     public LogicalTimestamp getLogicalTimestamp(String userId) {
         return new LogicalTimestamp(activeVector);
@@ -30,26 +25,21 @@ public class LogicalClockService {
         activeVector.put(userId, activeVector.getOrDefault(userId, 0) + 1);
         ChatMessage entry = lastUserEntry.get(userId);
         if (entry != null) {
-            LogicalTimestamp newTimestamp = new LogicalTimestamp(new HashMap<>(activeVector));
-            entry.setTimestamp(newTimestamp);
+            entry.setTimestamp(new LogicalTimestamp(new HashMap<>(activeVector))); // Обновляем timestamp у существующего сообщения
+            lastUserEntry.put(userId, entry); // Обновляем lastUserEntry
         }
     }
 
     public void addHistoryEntry(String userId, LogicalTimestamp timestamp, ChatMessage message, MessageType type) {
         LogicalTimestamp newTimestamp = new LogicalTimestamp(new HashMap<>(activeVector));
-
         message.setTimestamp(newTimestamp); 
-        messageRepository.save(message); 
-        lastUserEntry.put(userId, message);
 
-        messageRepository.save(message); // Сохраняем сообщение в базе данных
+        history.add(message);
         lastUserEntry.put(userId, message);
     }
 
     public List<ChatMessage> getHistory() {
-        List<ChatMessage> messages = messageRepository.findAll(); 
-        messages.sort(Comparator.comparing(ChatMessage::getTimestamp));
-        return messages;
+        return new ArrayList<>(history);
     }
 
     public void removeUser(String userId) {
