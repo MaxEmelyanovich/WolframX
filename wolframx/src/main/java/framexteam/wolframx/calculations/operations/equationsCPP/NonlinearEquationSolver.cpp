@@ -5,7 +5,6 @@
 #include <thread>
 #include <mutex>
 #include <jni.h>
-#include <unordered_set>
 
 class NonlinearEquationSolver {
 private:
@@ -15,7 +14,7 @@ private:
     int totalIterations;
 
     std::mutex lock;
-    std::unordered_set<double> roots;
+    std::vector<double> roots;
 
     int numThreads;
     std::vector<double> coefficients;
@@ -66,7 +65,7 @@ public:
                         }
                     }
                     if (isUnique) {
-                        roots.insert(newX);
+                        roots.push_back(newX);
                     }
                     break;
                 }
@@ -76,12 +75,12 @@ public:
         }
     }
 
-    std::unordered_set<double> getRoots() const {
+    std::vector<double> getRoots() const {
         return roots;
     }
 };
 
-std::unordered_set<double> solveNonlinearEquation(const std::vector<double>& coefficients, int threadCount,
+std::vector<double> solveNonlinearEquation(const std::vector<double>& coefficients, int threadCount,
     double epsilon, int maxIterations)
 {
     if (coefficients.empty()) {
@@ -97,7 +96,7 @@ std::unordered_set<double> solveNonlinearEquation(const std::vector<double>& coe
             std::to_string(std::thread::hardware_concurrency()) + " available processors");
     }
 
-    std::unordered_set<double> roots;
+    std::vector<double> roots;
     NonlinearEquationSolver solver(coefficients, threadCount, epsilon, maxIterations);
 
     std::vector<std::thread> threads;
@@ -118,7 +117,7 @@ std::unordered_set<double> solveNonlinearEquation(const std::vector<double>& coe
     return roots;
 }
 
-JNIEXPORT jobject JNICALL Java_framexteam_wolframx_calculations_operations_equations_NonlinearEquationSolverJNI_solve(
+JNIEXPORT jdoubleArray JNICALL Java_framexteam_wolframx_calculations_operations_equations_NonlinearEquationSolverJNI_solve(
     JNIEnv* env, jclass clazz, jdoubleArray coefficientsArray, jint threadCount, jdouble epsilon, jint maxIterations)
 {
     jsize coefficientsLength = env->GetArrayLength(coefficientsArray);
@@ -127,22 +126,12 @@ JNIEXPORT jobject JNICALL Java_framexteam_wolframx_calculations_operations_equat
 
     std::vector<double> coefficients(coefficientsData, coefficientsData + coefficientsLength);
 
-    std::unordered_set<double> roots = solveNonlinearEquation(coefficients, threadCount, epsilon, maxIterations);
+    std::vector<double> roots = solveNonlinearEquation(coefficients, threadCount, epsilon, maxIterations);
 
-    jclass hashSetClass = env->FindClass("java/util/HashSet");
-    jmethodID hashSetConstructor = env->GetMethodID(hashSetClass, "<init>", "()V");
-    jmethodID hashSetAddMethod = env->GetMethodID(hashSetClass, "add", "(Ljava/lang/Object;)Z");
-    jobject resultSet = env->NewObject(hashSetClass, hashSetConstructor);
-
-    jclass doubleClass = env->FindClass("java/lang/Double");
-    jmethodID doubleConstructor = env->GetMethodID(doubleClass, "<init>", "(D)V");
-    for (double root : roots) {
-        jobject doubleObject = env->NewObject(doubleClass, doubleConstructor, root);
-        env->CallBooleanMethod(resultSet, hashSetAddMethod, doubleObject);
-        env->DeleteLocalRef(doubleObject);
-    }
+    jdoubleArray resultArray = env->NewDoubleArray(roots.size());
+    env->SetDoubleArrayRegion(resultArray, 0, roots.size(), roots.data());
 
     env->ReleaseDoubleArrayElements(coefficientsArray, coefficientsData, JNI_ABORT);
 
-    return resultSet;
+    return resultArray;
 }

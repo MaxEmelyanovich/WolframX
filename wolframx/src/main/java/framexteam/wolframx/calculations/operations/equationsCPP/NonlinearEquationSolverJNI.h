@@ -10,9 +10,9 @@ extern "C" {
 /*
  * Class:     framexteam_wolframx_calculations_operations_equations_NonlinearEquationSolverJNI
  * Method:    solve
- * Signature: ([DIDI)Ljava/util/Set;
+ * Signature: ([DIDI)[D
  */
-JNIEXPORT jobject JNICALL Java_framexteam_wolframx_calculations_operations_equations_NonlinearEquationSolverJNI_solve
+JNIEXPORT jdoubleArray JNICALL Java_framexteam_wolframx_calculations_operations_equations_NonlinearEquationSolverJNI_solve
   (JNIEnv *, jclass, jdoubleArray, jint, jdouble, jint);
 
 #ifdef __cplusplus

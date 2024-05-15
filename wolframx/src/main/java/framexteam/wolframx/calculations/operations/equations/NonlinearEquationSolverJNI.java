@@ -6,6 +6,6 @@ public class NonlinearEquationSolverJNI {
     static {
         System.loadLibrary("NonlinearEquationSolver"); // Загрузка библиотеки JNI
     }
-    public native static Set<Double> solve(double[] coefficients, int threadCount, double epsilon, int maxIterations);
+    public native static double[] solve(double[] coefficients, int threadCount, double epsilon, int maxIterations);
 
 }
