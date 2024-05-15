@@ -9,17 +9,6 @@ public class MatrixTranspose implements MatrixOperation {
 
     @Override
     public void performOperation(int[][] firstMatrix, int[][] secondMatrix, int[][] resultMatrix, int startIndex, int endIndex) throws MatrixOperationException {
-        if (firstMatrix == null || resultMatrix == null) {
-            throw new MatrixOperationException("Matrices cannot be null.");
-        }
-
-        if (firstMatrix.length == 0 || resultMatrix.length == 0) {
-            throw new MatrixOperationException("Matrices cannot be empty.");
-        }
-
-        if (startIndex < 0 || endIndex > resultMatrix.length * resultMatrix[0].length || startIndex >= endIndex) {
-            throw new MatrixOperationException("Invalid start index or end index.");
-        }
 
         String logMessage = String.format("Matrix transpose started for coordinates (%d,%d) (%d,%d)",
                 startIndex / resultMatrix[0].length, startIndex % resultMatrix[0].length,
@@ -37,13 +26,7 @@ public class MatrixTranspose implements MatrixOperation {
 
     @Override
     public int[][] getResultMatrixSize(int[][] firstMatrix, int[][] secondMatrix) throws MatrixOperationException {
-        if (firstMatrix == null) {
-            throw new MatrixOperationException("Matrices cannot be null.");
-        }
 
-        if (firstMatrix.length == 0) {
-            throw new MatrixOperationException("Matrices cannot be empty.");
-        }
         return new int[firstMatrix[0].length][firstMatrix.length];
     }
 }

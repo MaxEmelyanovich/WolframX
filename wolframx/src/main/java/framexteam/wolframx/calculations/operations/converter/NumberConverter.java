@@ -1,8 +1,13 @@
 package framexteam.wolframx.calculations.operations.converter;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Objects;
 
 public class NumberConverter {
+    private static final Logger logger = LogManager.getLogger(NumberConverter.class);
+    private static long elapsedTime;
     public static String convert(String number, int sourceBase, int targetBase) {
 
         Objects.requireNonNull(number, "Number cannot be null");
@@ -13,6 +18,7 @@ public class NumberConverter {
             throw new IllegalArgumentException("Unacceptable bases of number systems");
         }
 
+        long startTime = System.currentTimeMillis();
         String[] parts = number.split("\\.");
         String integerPart = parts[0];
         String fractionalPart = parts.length > 1 ? parts[1] : "";
@@ -46,6 +52,8 @@ public class NumberConverter {
             result.append(resultFractionalPart);
         }
 
+        elapsedTime = System.currentTimeMillis() - startTime;
+        logger.info( "Total elapsed time: {} seconds.", (elapsedTime / 1000.0));
         return result.toString();
     }
 }

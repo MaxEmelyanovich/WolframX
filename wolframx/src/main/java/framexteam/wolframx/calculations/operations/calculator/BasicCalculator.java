@@ -11,7 +11,6 @@ public class BasicCalculator {
 
         Stack<String> stack = new Stack<String>();
         double x, y;
-        //String result = "";
         String choice;
         double value = 0;
 
