@@ -42,8 +42,8 @@ function Calculations() {
 
                 <div className="rect">
                     <h2 class="h2Calc">Form 2</h2>
-                    <Link className="link" to="/">
-                        Link 1
+                    <Link className="link" to="/calculator">
+                        Calculator
                     </Link>
                     <br></br>
                     <Link className="link" to="/">

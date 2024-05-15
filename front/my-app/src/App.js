@@ -17,6 +17,7 @@ import MatrixAddition from './components/MatrixAddition';
 import MatrixSubtraction from './components/MatrixSubtraction';
 import ScalarMultiplication from './components/ScalarMultiplication';
 import ChatRoom from './components/ChatRoom';
+import Calculator from './components/Calculator';
 import './App.css';
 import logoSVG from './assets/logo.svg';
 
@@ -81,6 +82,7 @@ function AppContent() {
                     element={<ScalarMultiplication />}
                 />
                 <Route path="/chatroom" element={<ChatRoom />}/>
+                <Route path="/calculator" element={<Calculator />}/>
             </Routes>
         </div>
     );
