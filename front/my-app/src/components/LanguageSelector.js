@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 // eslint-disable-next-line no-unused-vars
 import i18n from '../i18n';
-// import './LanguageSelector.css';
+import './LanguageSelector.css';
 
 function LanguageSelector() {
     const { t, i18n } = useTranslation();
@@ -14,13 +14,13 @@ function LanguageSelector() {
 
     return (
         <select className="selector" onChange={changeLanguage}>
-            <option value="en">{t('English')}</option>
-            <option value="by">{t('Беларуская')}</option>
-            <option value="ru">{t('Русский')}</option>
-            <option value="po">{t('Português')}</option>
-            <option value="ar">{t('اللغة العربية')}</option>
-            <option value="cn">{t('中文')}</option>
-            <option value="gr">{t('Ελληνική')}</option>
+            <option style={{backgroundColor: '#403c4c'}} value="en">{t('English')}</option>
+            <option style={{backgroundColor: '#403c4c'}} value="by">{t('Беларуская')}</option>
+            <option style={{backgroundColor: '#403c4c'}} value="ru">{t('Русский')}</option>
+            <option style={{backgroundColor: '#403c4c'}} value="po">{t('Português')}</option>
+            <option style={{backgroundColor: '#403c4c'}} value="ar">{t('اللغة العربية')}</option>
+            <option style={{backgroundColor: '#403c4c'}} value="cn">{t('中文')}</option>
+            <option style={{backgroundColor: '#403c4c'}} value="gr">{t('Ελληνική')}</option>
         </select>
     );
 }

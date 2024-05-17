@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './VectorPage.css';
 
-function VectorPage() {
+function VectorSecondPage() {
     const [vector1, setVector1] = useState('');
-    const [vector2, setVector2] = useState('');
+    const [num, setNum] = useState('');
     const [language, setLanguage] = useState('Java');
     const [operation, setOperation] = useState('');
     const [responseData, setResponseData] = useState('');
@@ -12,8 +12,8 @@ function VectorPage() {
         setVector1(event.target.value);
     };
 
-    const handleVector2Change = (event) => {
-        setVector2(event.target.value);
+    const handleNumChange = (event) => {
+        setNum(event.target.value);
     };
     
 
@@ -28,7 +28,7 @@ function VectorPage() {
                     },
                     body: JSON.stringify({
                         vector1: '{'+vector1+'}',
-                        vector2: '{'+vector2+'}',
+                        number: num,
                         language: language,
                         operation: operation
                     }), // Отправка данных на сервер
@@ -55,18 +55,15 @@ function VectorPage() {
     return (
         <div className="vectorPageContainer">
             <div className="vectorHeaderContainer">
-                <h1 className="vectorPageHeader">Two Vectors</h1>
+                <h1 className="vectorPageHeader">One Vector</h1>
             </div>
         <div className="vectorPageButtons">
-            <button onClick={() => setOperation('sum')} className={operation === 'sum' ? 'vector-button active' : 'vector-button'}>Vector Sum</button>
-            <button onClick={() => setOperation('sub')} className={operation === 'sub' ? 'vector-button active' : 'vector-button'}>Vector Subtraction</button>
-            <button onClick={() => setOperation('scalarMul')} className={operation === 'scalarMul' ? 'vector-button active' : 'vector-button'}>Scalar Multiplication</button>
-            <button onClick={() => setOperation('vectorMul')} className={operation === 'vectorMul' ? 'vector-button active' : 'vector-button'}>Vector Multiplication</button>
-            <button onClick={() => setOperation('angle')} className={operation === 'angle' ? 'vector-button active' : 'vector-button'}>Angle</button>
+            <button onClick={() => setOperation('numberMul')} className={operation === 'numberMul' ? 'vector-button active' : 'vector-button'}>Number Multiplication</button>
+            <button onClick={() => setOperation('numberDiv')} className={operation === 'numberDiv' ? 'vector-button active' : 'vector-button'}>Number Division</button>
         </div>
         <div className="vectorPageInputs">
         <div style={{width: '25%', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-        <p className="vectorPageP">Vector 1:</p>
+        <p className="vectorPageP">Vector:</p>
         <input
             value={vector1}
             onChange={handleVector1Change}
@@ -74,10 +71,10 @@ function VectorPage() {
         />
         </div>
         <div style={{width: '25%', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-        <p className="vectorPageP">Vector 2:</p>
+        <p className="vectorPageP">Number:</p>
         <input           
-            value={vector2}
-            onChange={handleVector2Change}
+            value={num}
+            onChange={handleNumChange}
             className="vectInput"
         />
         </div>
@@ -103,4 +100,4 @@ function VectorPage() {
     );
 }
 
-export default VectorPage;
+export default VectorSecondPage;

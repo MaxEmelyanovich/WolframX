@@ -23,6 +23,7 @@ import Simpson from './components/Simpson';
 import Romberg from './components/Romberg';
 import Converter from './components/Converter';
 import VectorPage from './components/VectorPage';
+import VectorSecondPage from './components/VectorSecondPage';
 import './App.css';
 import logoSVG from './assets/logo.svg';
 
@@ -54,7 +55,9 @@ function AppContent() {
                     <Link to="/signup" className="signup-button">
                         {t('signup')}
                     </Link>
+                    <div className="startPageSelector">
                     <LanguageSelector />
+                    </div>
                 </nav>
             )}
 
@@ -93,6 +96,7 @@ function AppContent() {
                 <Route path="/romberg" element={<Romberg />}/>
                 <Route path="/converter" element={<Converter />}/>
                 <Route path="/vectorpage" element={<VectorPage />}/>
+                <Route path="/vectorsecondpage" element={<VectorSecondPage />}/>
             </Routes>
         </div>
     );

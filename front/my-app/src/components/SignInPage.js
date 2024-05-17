@@ -146,6 +146,10 @@ const SignInPage = () => {
     const { t } = useTranslation();
 
     return (
+        <div>
+            <div style={{paddingLeft: '80%', paddingTop: '3%'}}>
+            <LanguageSelector />
+            </div>
         <div className="authpage">
             <div className="wolframXdiv">
                 <img className="wolframX" src={wolframX} alt="WolframX" />
@@ -184,7 +188,8 @@ const SignInPage = () => {
                     </a>
                 </p>
             </form>
-            <LanguageSelector />
+            
+        </div>
         </div>
     );
 };

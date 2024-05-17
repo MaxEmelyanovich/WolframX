@@ -185,7 +185,12 @@ const SignUpPage = () => {
     const { t } = useTranslation();
 
     return (
+        <div>
+            <div style={{paddingLeft: '80%', paddingTop: '3%'}}>
+            <LanguageSelector />
+            </div>
         <div className="registration-page">
+            
             <div className="wolframXdiv">
                 <img className="wolframX" src={wolframX} alt="WolframX" />
             </div>
@@ -234,9 +239,8 @@ const SignUpPage = () => {
                     </a>
                 </p>
             </form>
-            <LanguageSelector />
         </div>
-       
+       </div>
     );
 };
 

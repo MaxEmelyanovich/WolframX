@@ -11,7 +11,12 @@ function Calculations() {
         <div className="calculations-container">
 
             <div className="headerWithSelector">
+                <div style={{display: 'flex', flexDirection: 'row', paddingLeft: '70%', paddingTop: '3%', gap: '50%'}}>
+                <Link to="/" style={{backgroundColor: 'rgba(0,0,0,0)', color: '#fff', border: 'none', fontSize: '120%', textDecoration: 'none'}}>             
+                    🏠︎
+                </Link>
                 <LanguageSelector />
+                </div>
                 <h1 class="h1Calc">{t('calculations')}</h1>
                 
             </div>
@@ -90,11 +95,11 @@ function Calculations() {
                 <div className="rect">
                     <h2 class="h2Calc">Vectors</h2>
                     <Link className="link" to="/vectorpage">
-                        Vector Page
+                        Two Vectors
                     </Link>
                     <br></br>
-                    <Link className="link" to="/">
-                        Link 2
+                    <Link className="link" to="/vectorsecondpage">
+                        One Vector
                     </Link>
                     <br></br>
                     <Link className="link" to="/">
