@@ -11,8 +11,9 @@ function Calculations() {
         <div className="calculations-container">
 
             <div className="headerWithSelector">
-                <h1 class="h1Calc">{t('calculations')}</h1>
                 <LanguageSelector />
+                <h1 class="h1Calc">{t('calculations')}</h1>
+                
             </div>
             
 
@@ -87,9 +88,9 @@ function Calculations() {
                 </div>
 
                 <div className="rect">
-                    <h2 class="h2Calc">Form 4</h2>
-                    <Link className="link" to="/">
-                        Link 1
+                    <h2 class="h2Calc">Vectors</h2>
+                    <Link className="link" to="/vectorpage">
+                        Vector Page
                     </Link>
                     <br></br>
                     <Link className="link" to="/">

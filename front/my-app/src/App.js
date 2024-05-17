@@ -22,6 +22,7 @@ import Trapezoidal from './components/Trapezoidal';
 import Simpson from './components/Simpson';
 import Romberg from './components/Romberg';
 import Converter from './components/Converter';
+import VectorPage from './components/VectorPage';
 import './App.css';
 import logoSVG from './assets/logo.svg';
 
@@ -91,6 +92,7 @@ function AppContent() {
                 <Route path="/simpson" element={<Simpson />}/>
                 <Route path="/romberg" element={<Romberg />}/>
                 <Route path="/converter" element={<Converter />}/>
+                <Route path="/vectorpage" element={<VectorPage />}/>
             </Routes>
         </div>
     );
