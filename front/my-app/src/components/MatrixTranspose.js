@@ -54,6 +54,7 @@ import React, { useState } from 'react';
 import './MatrixTranspose.css';
 import { useTranslation } from 'react-i18next';
 import LanguageSelector from './LanguageSelector';
+import { Link } from 'react-router-dom';
 
 function MatrixTranspose() {
     const [inputData, setInputData] = useState('');
@@ -106,6 +107,12 @@ function MatrixTranspose() {
 
     return (
         <div className="matrix-transpose-container">
+            <div style={{display: 'flex', flexDirection: 'row', paddingLeft: '80%', paddingTop: '2%', gap: '20%'}}>
+                <Link to="/" style={{backgroundColor: 'rgba(0,0,0,0)', color: '#fff', border: 'none', fontSize: '120%', textDecoration: 'none'}}>             
+                    🏠︎
+                </Link>
+                <LanguageSelector />
+            </div>
             <h1 className="h1Transpose">{t('transpose')}</h1>
             <form className="matrix-transpose-form">
                 <form className="matrix-transpose-block">
@@ -140,7 +147,6 @@ function MatrixTranspose() {
                     className="matrix-transpose-textarea"
                     readOnly
                 />
-                <LanguageSelector />
             </form>
         </div>
     );

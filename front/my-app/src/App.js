@@ -24,6 +24,8 @@ import Romberg from './components/Romberg';
 import Converter from './components/Converter';
 import VectorPage from './components/VectorPage';
 import VectorSecondPage from './components/VectorSecondPage';
+import VectorModule from './components/VectorModule';
+import Gauss from './components/Gauss';
 import './App.css';
 import logoSVG from './assets/logo.svg';
 
@@ -97,6 +99,8 @@ function AppContent() {
                 <Route path="/converter" element={<Converter />}/>
                 <Route path="/vectorpage" element={<VectorPage />}/>
                 <Route path="/vectorsecondpage" element={<VectorSecondPage />}/>
+                <Route path="/vectormodule" element={<VectorModule />}/>
+                <Route path="/gauss" element={<Gauss />}/>
             </Routes>
         </div>
     );

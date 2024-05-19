@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
 import './VectorPage.css';
 
-function VectorSecondPage() {
+function VectorModule() {
     const [vector1, setVector1] = useState('');
-    const [num, setNum] = useState('');
     const [language, setLanguage] = useState('Java');
-    const [operation, setOperation] = useState('');
     const [responseData, setResponseData] = useState('');
 
     const handleVector1Change = (event) => {
         setVector1(event.target.value);
-    };
-
-    const handleNumChange = (event) => {
-        setNum(event.target.value);
     };
     
 
@@ -28,9 +22,8 @@ function VectorSecondPage() {
                     },
                     body: JSON.stringify({
                         vector1: '{'+vector1+'}',
-                        number: num,
                         language: language,
-                        operation: operation
+                        operation: 'abs'
                     }), // Отправка данных на сервер
                 }
             );
@@ -55,12 +48,8 @@ function VectorSecondPage() {
     return (
         <div className="vectorPageContainer">
             <div className="vectorHeaderContainer">
-                <h1 className="vectorPageHeader">One Vector</h1>
+                <h1 className="vectorPageHeader">Vector Module</h1>
             </div>
-        <div className="vectorPageButtons">
-            <button onClick={() => setOperation('numberMul')} className={operation === 'numberMul' ? 'vector-button active' : 'vector-button'}>Number Multiplication</button>
-            <button onClick={() => setOperation('numberDiv')} className={operation === 'numberDiv' ? 'vector-button active' : 'vector-button'}>Number Division</button>
-        </div>
         <div className="vectorPageInputs">
         <div style={{width: '25%', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
         <p className="vectorPageP">Vector:</p>
@@ -70,17 +59,9 @@ function VectorSecondPage() {
             className="vectInput"
         />
         </div>
-        <div style={{width: '25%', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-        <p className="vectorPageP">Number:</p>
-        <input           
-            value={num}
-            onChange={handleNumChange}
-            className="vectInput"
-        />
         </div>
-        </div>
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-        <p className="vectorPageP">Lib:</p>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '2%'}}>
+            <p className="vectorPageP">Lib:</p>
         <select
             value={language}
             onChange={event => setLanguage(event.target.value)}
@@ -101,4 +82,4 @@ function VectorSecondPage() {
     );
 }
 
-export default VectorSecondPage;
+export default VectorModule;

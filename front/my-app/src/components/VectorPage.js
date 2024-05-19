@@ -83,6 +83,7 @@ function VectorPage() {
         </div>
         </div>
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <p className="vectorPageP">Lib:</p>
         <select
             value={language}
             onChange={event => setLanguage(event.target.value)}

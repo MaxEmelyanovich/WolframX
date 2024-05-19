@@ -99,6 +99,7 @@ import './SignInPage.css';
 import wolframX from '../assets/wolframx.svg';
 import { useTranslation } from 'react-i18next';
 import LanguageSelector from './LanguageSelector';
+import { Link } from 'react-router-dom';
 
 const SignInPage = () => {
     const [email, setEmail] = useState('');
@@ -146,11 +147,13 @@ const SignInPage = () => {
     const { t } = useTranslation();
 
     return (
-        <div>
-            <div style={{paddingLeft: '80%', paddingTop: '3%'}}>
-            <LanguageSelector />
-            </div>
         <div className="authpage">
+        <div style={{display: 'flex', flexDirection: 'row', paddingLeft: '70%', paddingTop: '3%', paddingBottom: '3%', gap: '50%'}}>
+                <Link to="/" style={{backgroundColor: 'rgba(0,0,0,0)', color: '#fff', border: 'none', fontSize: '120%', textDecoration: 'none'}}>             
+                    🏠︎
+                </Link>
+                <LanguageSelector />
+            </div>
             <div className="wolframXdiv">
                 <img className="wolframX" src={wolframX} alt="WolframX" />
             </div>
@@ -189,7 +192,6 @@ const SignInPage = () => {
                 </p>
             </form>
             
-        </div>
         </div>
     );
 };

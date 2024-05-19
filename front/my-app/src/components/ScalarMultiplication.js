@@ -3,6 +3,7 @@ import './ScalarMultiplication.css';
 import { toPng } from 'html-to-image';
 import { useTranslation } from 'react-i18next';
 import LanguageSelector from './LanguageSelector';
+import { Link } from 'react-router-dom';
 
 function ScalarMultiplication() {
     const [inputData1, setInputData1] = useState('');
@@ -69,6 +70,12 @@ function ScalarMultiplication() {
 
     return (
         <div className="scalar-multiplication-container">
+            <div style={{display: 'flex', flexDirection: 'row', paddingLeft: '80%', paddingTop: '2%', gap: '20%'}}>
+                <Link to="/" style={{backgroundColor: 'rgba(0,0,0,0)', color: '#fff', border: 'none', fontSize: '120%', textDecoration: 'none'}}>             
+                    🏠︎
+                </Link>
+                <LanguageSelector />
+            </div>
             <h1 className="h1ScalarMult">{t('scalarmult')}</h1>
             <form className="scalar-multiplication-form">
                 <form className="scalar-multiplication-block">
@@ -121,7 +128,6 @@ function ScalarMultiplication() {
                     className="scalar-multiplication-textarea"
                     readOnly
                 />
-                <LanguageSelector />
             </form>
             {imageData && (
                 <div>

@@ -3,6 +3,7 @@ import './MatrixAddition.css';
 import { toPng } from 'html-to-image';
 import { useTranslation } from 'react-i18next';
 import LanguageSelector from './LanguageSelector';
+import { Link } from 'react-router-dom';
 
 function MatrixAddition() {
     const [inputData1, setInputData1] = useState('');
@@ -69,6 +70,12 @@ function MatrixAddition() {
 
     return (
         <div className="matrix-addition-container">
+            <div style={{display: 'flex', flexDirection: 'row', paddingLeft: '80%', paddingTop: '2%', gap: '20%'}}>
+                <Link to="/" style={{backgroundColor: 'rgba(0,0,0,0)', color: '#fff', border: 'none', fontSize: '120%', textDecoration: 'none'}}>             
+                    🏠︎
+                </Link>
+                <LanguageSelector />
+            </div>
             <h1 className="h1Addition">{t('addition')}</h1>
             <form className="matrix-addition-form">
                 <form className="matrix-addition-block">
@@ -113,7 +120,6 @@ function MatrixAddition() {
                     className="matrix-addition-textarea"
                     readOnly
                 />
-                <LanguageSelector />
             </form>
             {imageData && (
                 <div>

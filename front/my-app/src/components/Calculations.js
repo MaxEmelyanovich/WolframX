@@ -60,8 +60,8 @@ function Calculations() {
                         Link 3
                     </Link>
                     <br></br>
-                    <Link className="link" to="/">
-                        Link 4
+                    <Link className="link" to="/gauss">
+                        Gauss
                     </Link>
                     <br></br>
                     <Link className="link" to="/">
@@ -93,7 +93,7 @@ function Calculations() {
                 </div>
 
                 <div className="rect">
-                    <h2 class="h2Calc">Vectors</h2>
+                    <h2 class="h2Calc">Vectors :</h2>
                     <Link className="link" to="/vectorpage">
                         Two Vectors
                     </Link>
@@ -102,8 +102,8 @@ function Calculations() {
                         One Vector
                     </Link>
                     <br></br>
-                    <Link className="link" to="/">
-                        Link 3
+                    <Link className="link" to="/vectormodule">
+                        Vector Module
                     </Link>
                     <br></br>
                     <Link className="link" to="/">

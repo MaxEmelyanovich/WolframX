@@ -1,0 +1,33 @@
+.gaussPageButton {
+    padding: 1% 1%;
+    margin-top: 2%;
+    font-family: 'Mulish', sans-serif;
+    font-size: 100%;
+    height: auto;
+    width: 8%;
+    background-color: #ef7135;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+}
+
+.gaussPageTextArea {
+    margin-top: 2%;
+    width: 50%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border: 1px solid #c0c0c0;
+    border-radius: 10px;
+    font-size: 120%;
+    color: #c0c0c0;
+    background-color: rgba(0,0,0,0);
+}
+
+.gaussPageHeader {
+    margin-top: 3%;
+    margin-left: 5%;
+    color: #fff;
+    font-family: 'Mulish', sans-serif;
+    font-weight: lighter;
+    font-size: 200%;
+}
