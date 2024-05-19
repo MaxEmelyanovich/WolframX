@@ -44,7 +44,6 @@ public class IntegralController {
 
             int N = integralRequest.getN();
 
-
             IntegralOperation operation = new TrapezoidalMethod();
             double result = IntegralLibrary.performIntegralOperation(function, start, stop, operation, 0, N);
 
@@ -132,8 +131,12 @@ public class IntegralController {
         private String function;
         private double start;
         private double stop;
-        private double tolerance;
+        private int toleranceDegree;
         private int n;
+
+        public double getTolerance(){
+            return Math.pow(10, -toleranceDegree);
+        }
     }
 
     @Getter

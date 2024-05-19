@@ -76,6 +76,7 @@ public class EquationSolverController {
         @ApiResponse(responseCode = "500", description = "Ошибка при решении уравнения")
     })
     public ResponseEntity<?> solveNonlinearEquation(@RequestBody NonlinearEquationSolverRequest request) {
+        NonlinearEquationSolverResponse response = new NonlinearEquationSolverResponse();
         try {
             logger.info("Received request to solve nonlinear equation: {}", request);
 
@@ -86,15 +87,17 @@ public class EquationSolverController {
             Set<Double> roots;
             roots = NonlinearEquationSolver.solve(coefficients, threads, epsilon, maxIterations);
             
-            NonlinearEquationSolverResponse response = new NonlinearEquationSolverResponse();
-            response.setRoots(roots);
+            
+            response.setSolution(roots.toString());
 
             logger.info("Nonlinear equation solved successfully.");
-            return ResponseEntity.ok(response);
+            //return ResponseEntity.ok(response);
         } catch (Exception e) {
             logger.error("Error during nonlinear equation solving: {}", e.getMessage());
-            return ResponseEntity.status(500).body(e.getMessage());
+            response.setSolution(e.getMessage());
+            //return ResponseEntity.status(500).body(e.getMessage());
         }
+        return ResponseEntity.ok(response);
     }
 
     @Getter
@@ -165,8 +168,12 @@ public class EquationSolverController {
     private static class NonlinearEquationSolverRequest {
         private String coefficients;
         private int threads;
-        private double epsilon;
+        private double epsilonDegree;
         private int maxIterations;
+
+        public double getEpsilon() {
+            return Math.pow(10, -epsilonDegree);
+        }
 
         private double[] getCoefficientsAsArray() {
             String[] parts = coefficients.substring(1, coefficients.length() - 1).split(",");
@@ -181,6 +188,6 @@ public class EquationSolverController {
     @Getter
     @Setter
     private static class NonlinearEquationSolverResponse {
-        private Set<Double> roots;
+        private String solution;
     }
 }

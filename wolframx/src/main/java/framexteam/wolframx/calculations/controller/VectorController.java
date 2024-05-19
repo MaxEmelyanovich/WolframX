@@ -28,100 +28,42 @@ public class VectorController {
 
     private static final Logger logger = LogManager.getLogger(VectorController.class);
 
-    @PostMapping("/sum")
-    @Operation(summary = "Сложение векторов", description = "Вычисляет сумму двух векторов.")
+    @PostMapping("/twoVectors")
+    @Operation(summary = "Операции с двумя векторами", description = "Выполняет операции над двумя векторами.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Результат сложения векторов",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = VectorResultResponse.class))),
+            @ApiResponse(responseCode = "200", description = "Результат операции над векторами",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = VectorResponse.class))),
             @ApiResponse(responseCode = "400", description = "Ошибка в формате входных данных")
     })
-    public ResponseEntity<?> sumVectors(@RequestBody VectorRequest request) {
-        return performVectorOperation(request, "sum");
+    public ResponseEntity<?> twoVectorsOperation(@RequestBody VectorRequest request) {
+        return performVectorOperation(request);
     }
 
-    @PostMapping("/sub")
-    @Operation(summary = "Вычитание векторов", description = "Вычисляет разность двух векторов.")
+    @PostMapping("/vectorAndNumber")
+    @Operation(summary = "Операции с вектором и числом", description = "Выполняет операции над вектором и числом.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Результат вычитания векторов",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = VectorResultResponse.class))),
+            @ApiResponse(responseCode = "200", description = "Результат операции над вектором и числом",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = VectorResponse.class))),
             @ApiResponse(responseCode = "400", description = "Ошибка в формате входных данных")
     })
-    public ResponseEntity<?> subVectors(@RequestBody VectorRequest request) {
-        return performVectorOperation(request, "sub");
+    public ResponseEntity<?> vectorAndNumberOperation(@RequestBody VectorRequest request) {
+        return performVectorOperation(request);
     }
 
-    @PostMapping("/scalarMul")
-    @Operation(summary = "Скалярное произведение векторов",
-            description = "Вычисляет скалярное произведение двух векторов.")
+    @PostMapping("/oneVector")
+    @Operation(summary = "Операции с одним вектором", description = "Выполняет операции над одним вектором.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Результат скалярного произведения векторов",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ScalarResultResponse.class))),
+            @ApiResponse(responseCode = "200", description = "Результат операции над вектором",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = VectorResponse.class))),
             @ApiResponse(responseCode = "400", description = "Ошибка в формате входных данных")
     })
-    public ResponseEntity<?> scalarMulVectors(@RequestBody VectorRequest request) {
-        return performVectorOperation(request, "scalarMul");
+    public ResponseEntity<?> oneVectorOperation(@RequestBody VectorRequest request) {
+        return performVectorOperation(request);
     }
 
-    @PostMapping("/vectorMul")
-    @Operation(summary = "Векторное произведение векторов",
-            description = "Вычисляет векторное произведение двух векторов.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Результат векторного произведения векторов",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = VectorResultResponse.class))),
-            @ApiResponse(responseCode = "400", description = "Ошибка в формате входных данных")
-    })
-    public ResponseEntity<?> vectorMulVectors(@RequestBody VectorRequest request) {
-        return performVectorOperation(request, "vectorMul");
-    }
-
-    @PostMapping("/numberMul")
-    @Operation(summary = "Умножение вектора на число",
-            description = "Вычисляет произведение вектора на число.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Результат умножения вектора на число",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = VectorResultResponse.class))),
-            @ApiResponse(responseCode = "400", description = "Ошибка в формате входных данных")
-    })
-    public ResponseEntity<?> numberMulVector(@RequestBody VectorRequest request) {
-        return performVectorOperation(request, "numberMul");
-    }
-
-    @PostMapping("/numberDiv")
-    @Operation(summary = "Деление вектора на число", description = "Вычисляет частное вектора и числа.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Результат деления вектора на число",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = VectorResultResponse.class))),
-            @ApiResponse(responseCode = "400", description = "Ошибка в формате входных данных")
-    })
-    public ResponseEntity<?> numberDivVector(@RequestBody VectorRequest request) {
-        return performVectorOperation(request, "numberDiv");
-    }
-
-    @PostMapping("/abs")
-    @Operation(summary = "Длина вектора", description = "Вычисляет длину вектора.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Длина вектора",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ScalarResultResponse.class))),
-            @ApiResponse(responseCode = "400", description = "Ошибка в формате входных данных")
-    })
-    public ResponseEntity<?> absVector(@RequestBody VectorRequest request) {
-        return performVectorOperation(request, "abs");
-    }
-
-    @PostMapping("/angle")
-    @Operation(summary = "Угол между векторами", description = "Вычисляет угол между двумя векторами.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Угол между векторами",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ScalarResultResponse.class))),
-            @ApiResponse(responseCode = "400", description = "Ошибка в формате входных данных")
-    })
-    public ResponseEntity<?> angleVectors(@RequestBody VectorRequest request) {
-        return performVectorOperation(request, "angle");
-    }
-
-    private ResponseEntity<?> performVectorOperation(VectorRequest request, String operationName) {
+    private ResponseEntity<?> performVectorOperation(VectorRequest request) {
         try {
-            logger.info("Received request to perform {} operation: {}", operationName, request);
+            logger.info("Received request to perform {} operation: {}", request.getOperation(), request);
 
             double[] v1 = request.getVector1AsArray();
             double[] v2 = request.getVector2AsArray();
@@ -130,9 +72,9 @@ public class VectorController {
 
             VectorLibrary vectorLibrary = getVectorLibrary(language);
 
-            Object result;
+            Object result = null;
 
-            switch (operationName) {
+            switch (request.getOperation()) {
                 case "sum":
                     result = vectorLibrary.sum(v1, v2);
                     break;
@@ -158,18 +100,18 @@ public class VectorController {
                     result = vectorLibrary.angle(v1, v2);
                     break;
                 default:
-                    throw new IllegalArgumentException("Invalid vector operation: " + operationName);
+                    throw new IllegalArgumentException("Invalid vector operation: " + request.getOperation());
             }
 
+            VectorResponse response = new VectorResponse();
+
             if (result instanceof double[]) {
-                VectorResultResponse response = new VectorResultResponse();
                 response.setVectorResult((double[]) result);
-                logger.info("{} operation completed successfully.", operationName);
+                logger.info("{} operation completed successfully.", request.getOperation());
                 return ResponseEntity.ok(response);
             } else if (result instanceof Double) {
-                ScalarResultResponse response = new ScalarResultResponse();
                 response.setScalarResult((double) result);
-                logger.info("{} operation completed successfully.", operationName);
+                logger.info("{} operation completed successfully.", request.getOperation());
                 return ResponseEntity.ok(response);
             } else {
                 throw new IllegalArgumentException("Unsupported result type: " + result.getClass().getName());
@@ -190,6 +132,7 @@ public class VectorController {
     @Getter
     @Setter
     private static class VectorRequest {
+        private String operation;
         private String vector1;
         private String vector2;
         private double number;
@@ -209,17 +152,23 @@ public class VectorController {
         }
 
         public double[] getVector2AsArray() {
-            return getVectorAsArray(vector2);
+            if (vector2 == null) {
+                return null;
+            } else return getVectorAsArray(vector2);
         }
     }
 
     @Getter
     @Setter
-    private static class VectorResultResponse {
-        private String vectorResult;
+    private static class VectorResponse {
+        private String result;
 
         public void setVectorResult(double[] vectorResult) {
-            this.vectorResult = arrayToString(vectorResult);
+            this.result = arrayToString(vectorResult);
+        }
+
+        public void setScalarResult(double scalarResult) {
+            this.result = String.valueOf(scalarResult);
         }
 
         private String arrayToString(double[] array) {
@@ -238,11 +187,5 @@ public class VectorController {
             sb.append("}");
             return sb.toString();
         }
-    }
-
-    @Getter
-    @Setter
-    private static class ScalarResultResponse {
-        private double scalarResult;
     }
 }
