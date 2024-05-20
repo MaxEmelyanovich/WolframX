@@ -56,16 +56,13 @@ function Calculations() {
                         Converter
                     </Link>
                     <br></br>
-                    <Link className="link" to="/">
-                        Link 3
-                    </Link>
-                    <br></br>
+                    <h2 class="h2Calc">Уравнения :</h2>
                     <Link className="link" to="/gauss">
                         Gauss
                     </Link>
                     <br></br>
-                    <Link className="link" to="/">
-                        Link 5
+                    <Link className="link" to="/newton">
+                        Newton
                     </Link>
                 </div>
 

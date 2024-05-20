@@ -26,6 +26,7 @@ import VectorPage from './components/VectorPage';
 import VectorSecondPage from './components/VectorSecondPage';
 import VectorModule from './components/VectorModule';
 import Gauss from './components/Gauss';
+import Newton from './components/Newton';
 import './App.css';
 import logoSVG from './assets/logo.svg';
 
@@ -101,6 +102,7 @@ function AppContent() {
                 <Route path="/vectorsecondpage" element={<VectorSecondPage />}/>
                 <Route path="/vectormodule" element={<VectorModule />}/>
                 <Route path="/gauss" element={<Gauss />}/>
+                <Route path="/newton" element={<Newton />}/>
             </Routes>
         </div>
     );

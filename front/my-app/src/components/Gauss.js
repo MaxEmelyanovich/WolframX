@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Gauss.css';
+import './GaussAndNewton.css';
 
 function Gauss() {
   const [dimension, setDimension] = useState(0);
@@ -71,10 +71,11 @@ function Gauss() {
 
   return (
     <div style={{}}>
-      <h1 className="gaussPageHeader">Linear Equation System Solver</h1>
-      <div>
-        <label htmlFor="dimension">Dimension (n):</label>
+      <h1 className="gaussPageHeader">Gauss Method</h1>
+      <div style={{marginLeft: '5%', marginTop: '2%'}}>
+        <label htmlFor="dimension" className="gaussText">Dimension (n):</label>
         <input
+          style={{marginLeft: '1%', paddingTop:'0.5%', paddingBottom: '0.5%', border: 'none', borderRadius: '5px', fontSize: '100%', color: '#c0c0c0', backgroundColor: '#21222d'}}
           type="number"
           id="dimension"
           value={dimension}
@@ -83,9 +84,10 @@ function Gauss() {
           onKeyDown={handleKeyDown}
         />
       </div>
-      <div>
-        <label htmlFor="threads">Threads:</label>
+      <div style={{marginLeft: '5%', marginTop: '2%'}}>
+        <label htmlFor="threads" className="gaussText">Threads:</label>
         <input
+          style={{marginLeft: '1%', paddingTop:'0.5%', paddingBottom: '0.5%', border: 'none', borderRadius: '5px', fontSize: '100%', color: '#c0c0c0', backgroundColor: '#21222d'}}
           type="text"
           id="threads"
           value={threads}
@@ -93,29 +95,30 @@ function Gauss() {
         //   min="1"
         />
       </div>
-      <div>
-        <label htmlFor="language">Language:</label>
-        <select id="language" value={language} onChange={handleLanguageChange}>
+      <div style={{marginLeft: '5%', marginTop: '2%'}}>
+        <label htmlFor="language" className="gaussText">Language:</label>
+        <select style={{marginLeft: '1%', border: 'none', borderRadius: '5px',  color: '#fff', backgroundColor: '#21222d', paddingTop: '0.5%', paddingBottom: '0.5%'}} id="language" value={language} onChange={handleLanguageChange}>
           <option value="Java">Java</option>
           <option value="C++">C++</option>
         </select>
       </div>
       {dimension > 0 && (
-        <table>
+        <table style={{marginLeft: '5%', marginTop: '2%'}}>
           <thead>
             <tr>
               {Array.from({ length: dimension }, (_, i) => i + 1).map((col) => (
-                <th key={col}>x{col}</th>
+                <th className="gaussText" key={col}>x{col}</th>
               ))}
-              <th>Constant</th>
+              <th className="gaussText">Constant</th>
             </tr>
           </thead>
           <tbody>
             {Array.from({ length: dimension }, (_, i) => i + 1).map((row) => (
-              <tr key={row}>
+              <tr  key={row}>
                 {Array.from({ length: dimension }, (_, j) => j + 1).map((col) => (
                   <td key={`${row}-${col}`}>
                     <input
+                      className="gaussInput"
                       type="number"
                       value={coefficients[row - 1][col - 1]}
                       onChange={(e) =>
@@ -126,6 +129,7 @@ function Gauss() {
                 ))}
                 <td>
                   <input
+                    className="gaussInput"
                     type="number"
                     value={constants[row - 1]}
                     onChange={(e) => handleConstantChange(row - 1, e.target.value)}
