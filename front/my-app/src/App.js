@@ -168,9 +168,28 @@ function AppContent({ isLoggedIn, setIsLoggedIn }) {
     const { t } = useTranslation();
 
     const handleSignOut = () => {
-        localStorage.removeItem('username');
-        setIsLoggedIn(false); 
-        navigate('/');
+        
+         
+        // отправка пост запроса на сервер
+        fetch('http://25.23.19.72:8080/authorization/signout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({}),
+        })
+            .then((response) => response.json())
+            .then(() => {
+                console.log('OK');  
+                localStorage.removeItem('username');
+                setIsLoggedIn(false); 
+                navigate('/');
+            })
+            .catch((error) => {
+                console.error('Ошибка при отправке данных:', error);
+            });
     };
 
     return (
@@ -188,19 +207,14 @@ function AppContent({ isLoggedIn, setIsLoggedIn }) {
                         {t('calculations')}
                     </Link>
                     {isLoggedIn ? (
-                        <button className="signout-button" onClick={handleSignOut}>
-                            {t('signout')}
+                        <button className="signup-button" onClick={handleSignOut}>
+                            Sign Out
                         </button>
                     ) : (
                         <>
-                        <div style={{display: 'flex', flexDirection: 'column'}}>
                         <Link to="/signup" className="signup-button">
                                 {t('signup')}
-                            </Link>
-                            
-                        </div>
-                            
-                            
+                            </Link>                           
                         </>
                     )}
                     
@@ -215,9 +229,11 @@ function AppContent({ isLoggedIn, setIsLoggedIn }) {
             {/* <h1 className="mainLabel">Your personal calculating assistant</h1> */}
 
             {isMainPage && !isLoggedIn && (
+                <div style={{marginTop: '28%'}}>
                 <Link to="/signin" className="signin-button">
                 {t('signin')}
-            </Link>
+                </Link>
+                </div>
             )}
 
             <Routes>

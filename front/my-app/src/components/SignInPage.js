@@ -28,7 +28,7 @@ const SignInPage = ({ setIsLoggedIn }) => {
             password: password,
         };
 
-        fetch('http://25.23.19.72:8080/signin', {
+        fetch('http://25.23.19.72:8080/authorization/signin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
