@@ -15,6 +15,14 @@ extern "C" {
 JNIEXPORT jdoubleArray JNICALL Java_framexteam_wolframx_calculations_operations_equations_GaussSolverJNI_solve
   (JNIEnv *, jclass, jobjectArray, jdoubleArray, jint);
 
+/*
+ * Class:     framexteam_wolframx_calculations_operations_equations_GaussSolverJNI
+ * Method:    getExecutionTime
+ * Signature: ()J
+ */
+JNIEXPORT jlong JNICALL Java_framexteam_wolframx_calculations_operations_equations_GaussSolverJNI_getExecutionTime
+  (JNIEnv *, jclass);
+
 #ifdef __cplusplus
 }
 #endif
