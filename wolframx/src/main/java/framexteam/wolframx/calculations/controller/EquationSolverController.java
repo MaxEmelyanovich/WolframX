@@ -47,16 +47,19 @@ public class EquationSolverController {
             int threads = request.getThreads();
             String language = request.getLanguage();
             double[] solution;
+            long elapsedTime = 0;
             
             if ("C++".equalsIgnoreCase(language)) {
                 solution = GaussSolverJNI.solve(coefficients, constants, threads);
             }
             else {
                 solution = GaussSolver.solve(coefficients, constants, threads);
+                elapsedTime = GaussSolver.getElapsedTime();
             }
 
             EquationSolverResponse response = new EquationSolverResponse();
-            response.setSolution(solution);
+            response.setArraySolution(solution);
+            response.setElapsedTime(elapsedTime);
 
             logger.info("Equations solved successfully.");
             return ResponseEntity.ok(response);
@@ -71,12 +74,12 @@ public class EquationSolverController {
                description = "Решает нелинейное уравнение методом Ньютона.")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Корни уравнения",
-                content = @Content(mediaType = "application/json", schema = @Schema(implementation = NonlinearEquationSolverResponse.class))),
+                content = @Content(mediaType = "application/json", schema = @Schema(implementation = EquationSolverResponse.class))),
         @ApiResponse(responseCode = "400", description = "Ошибка в формате входных данных"),
         @ApiResponse(responseCode = "500", description = "Ошибка при решении уравнения")
     })
     public ResponseEntity<?> solveNonlinearEquation(@RequestBody NonlinearEquationSolverRequest request) {
-        NonlinearEquationSolverResponse response = new NonlinearEquationSolverResponse();
+        EquationSolverResponse response = new EquationSolverResponse();
         try {
             logger.info("Received request to solve nonlinear equation: {}", request);
 
@@ -90,12 +93,12 @@ public class EquationSolverController {
             
             response.setSolution(roots.toString());
 
+            response.setElapsedTime(NonlinearEquationSolver.getElapsedTime());
+
             logger.info("Nonlinear equation solved successfully.");
-            //return ResponseEntity.ok(response);
         } catch (Exception e) {
             logger.error("Error during nonlinear equation solving: {}", e.getMessage());
             response.setSolution(e.getMessage());
-            //return ResponseEntity.status(500).body(e.getMessage());
         }
         return ResponseEntity.ok(response);
     }
@@ -148,8 +151,9 @@ public class EquationSolverController {
     @Setter
     private static class EquationSolverResponse {
         private String solution;
+        private long elapsedTime;
 
-        public void setSolution(double[] solutionArray) {
+        public void setArraySolution(double[] solutionArray) {
             StringBuilder sb = new StringBuilder();
             sb.append("{");
             for (int i = 0; i < solutionArray.length; i++) {
@@ -183,11 +187,5 @@ public class EquationSolverController {
             }
             return array;
         }
-    }
-
-    @Getter
-    @Setter
-    private static class NonlinearEquationSolverResponse {
-        private String solution;
     }
 }

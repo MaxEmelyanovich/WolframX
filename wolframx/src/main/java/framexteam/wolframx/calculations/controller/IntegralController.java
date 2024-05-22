@@ -49,6 +49,7 @@ public class IntegralController {
 
             IntegralResponse integralResponse = new IntegralResponse();
             integralResponse.setResult(result);
+            integralResponse.setElapsedTime(IntegralLibrary.getElapsedTime());
 
             logger.info("Integral calculation completed successfully.");
             return ResponseEntity.ok(integralResponse);
@@ -81,6 +82,7 @@ public class IntegralController {
 
             IntegralResponse integralResponse = new IntegralResponse();
             integralResponse.setResult(result);
+            integralResponse.setElapsedTime(IntegralLibrary.getElapsedTime());
 
             logger.info("Integral calculation completed successfully.");
             return ResponseEntity.ok(integralResponse);
@@ -116,6 +118,7 @@ public class IntegralController {
 
             IntegralResponse integralResponse = new IntegralResponse();
             integralResponse.setResult(result);
+            integralResponse.setElapsedTime(IntegralLibrary.getElapsedTime());
 
             logger.info("Integral calculation completed successfully.");
             return ResponseEntity.ok(integralResponse);
@@ -143,5 +146,6 @@ public class IntegralController {
     @Setter
     private static class IntegralResponse {
         private double result;
+        private long elapsedTime;
     }
 }

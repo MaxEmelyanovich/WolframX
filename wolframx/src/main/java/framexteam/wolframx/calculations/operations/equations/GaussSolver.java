@@ -98,4 +98,8 @@ public class GaussSolver extends Thread {
         logger.info("Calculations completed successfully");
         return solution;
     }
+
+    public static long getElapsedTime() {
+        return elapsedTime;
+    }
 }

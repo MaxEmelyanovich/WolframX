@@ -46,6 +46,7 @@ public class MatrixOperationsController {
 
             MatrixResponse matrixResponse = new MatrixResponse();
             matrixResponse.setResultMatrix(resultMatrix);
+            matrixResponse.setElapsedTime(MatrixLibrary.getElapsedTime());
 
             logger.info("Transpose operation completed successfully.");
             return ResponseEntity.ok(matrixResponse);
@@ -69,6 +70,7 @@ public class MatrixOperationsController {
 
             MatrixResponse matrixResponse = new MatrixResponse();
             matrixResponse.setResultMatrix(resultMatrix);
+            matrixResponse.setElapsedTime(MatrixLibrary.getElapsedTime());
 
             logger.info("Matrix multiplication operation completed successfully.");
             return ResponseEntity.ok(matrixResponse);
@@ -92,6 +94,7 @@ public class MatrixOperationsController {
 
             MatrixResponse matrixResponse = new MatrixResponse();
             matrixResponse.setResultMatrix(resultMatrix);
+            matrixResponse.setElapsedTime(MatrixLibrary.getElapsedTime());
 
             logger.info("Matrix addition operation completed successfully.");
             return ResponseEntity.ok(matrixResponse);
@@ -115,6 +118,7 @@ public class MatrixOperationsController {
 
             MatrixResponse matrixResponse = new MatrixResponse();
             matrixResponse.setResultMatrix(resultMatrix);
+            matrixResponse.setElapsedTime(MatrixLibrary.getElapsedTime());
 
             logger.info("Matrix subtraction operation completed successfully.");
             return ResponseEntity.ok(matrixResponse);
@@ -141,6 +145,7 @@ public class MatrixOperationsController {
 
             MatrixResponse matrixResponse = new MatrixResponse();
             matrixResponse.setResultMatrix(resultMatrix);
+            matrixResponse.setElapsedTime(MatrixLibrary.getElapsedTime());
 
             logger.info("Matrix scalar multiplication operation completed successfully.");
             return ResponseEntity.ok(matrixResponse);
@@ -198,6 +203,7 @@ public class MatrixOperationsController {
     @Setter
     private static class MatrixResponse {
         private String result;
+        private long elapsedTime;
 
         public void setResultMatrix (int[][] resultMatrix) {
             StringBuilder sb = new StringBuilder();

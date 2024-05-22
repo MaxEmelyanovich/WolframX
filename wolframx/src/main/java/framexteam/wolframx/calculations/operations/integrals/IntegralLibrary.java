@@ -24,4 +24,8 @@ public class IntegralLibrary {
         return result;
     }
 
+    public static long getElapsedTime() {
+        return elapsedTime;
+    }
+
 }

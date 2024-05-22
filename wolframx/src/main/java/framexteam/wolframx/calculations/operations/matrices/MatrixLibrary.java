@@ -86,4 +86,8 @@ public class MatrixLibrary {
 
         return result;
     }
+
+    public static long getElapsedTime() {
+        return elapsedTime;
+    }
 }

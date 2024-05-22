@@ -125,4 +125,9 @@ public class NonlinearEquationSolver extends Thread {
         logger.info("Calculations completed successfully");
         return roots;
     }
+
+
+    public static long getElapsedTime() {   
+        return elapsedTime;
+    }
 }

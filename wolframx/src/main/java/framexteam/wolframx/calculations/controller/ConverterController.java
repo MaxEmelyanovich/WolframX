@@ -46,6 +46,7 @@ public class ConverterController {
 
             NumberConverterResponse response = new NumberConverterResponse();
             response.setConvertedNumber(convertedNumber);
+            response.setElapsedTime(NumberConverter.getElapsedTime());
 
             logger.info("Number conversion completed successfully.");
             return ResponseEntity.ok(response);
@@ -67,5 +68,6 @@ public class ConverterController {
     @Setter
     private static class NumberConverterResponse {
         private String convertedNumber;
+        private long elapsedTime;
     }
 }
