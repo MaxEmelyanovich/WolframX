@@ -8,8 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,7 +27,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/signin")
+@RequestMapping("/authorization")
 @Tag(name = "Авторизация", description = "API для авторизации пользователей")
 public class AuthorizationController {
 
@@ -45,7 +43,7 @@ public class AuthorizationController {
         this.userService = userService;
     }
 
-    @PostMapping
+    @PostMapping("/signin")
     @Operation(summary = "Авторизация пользователя",
                description = "Аутентифицирует пользователя по email и паролю.")
     @ApiResponses(value = {
@@ -58,11 +56,9 @@ public class AuthorizationController {
         logger.info("Попытка авторизации пользователя: {}", email); // Логирование попытки входа
 
         try {
-            Authentication authentication = authenticationManager.authenticate(
+            authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(email, authRequest.getPassword())
             );
-
-            SecurityContextHolder.getContext().setAuthentication(authentication);
 
             User user = userService.getUserByEmail(email);
             user.setStatus("online");
@@ -71,11 +67,34 @@ public class AuthorizationController {
             AuthResponse authResponse = new AuthResponse();
             authResponse.setFirstName(user.getFirstName());
             authResponse.setLastName(user.getLastName());
+            authResponse.setEmail(user.getEmail());
 
             logger.info("Пользователь {} успешно авторизован", email); // Логирование успешной авторизации
             return ResponseEntity.ok(authResponse);
         } catch (BadCredentialsException ex) {
             logger.warn("Неудачная попытка входа для пользователя: {}", email); // Логирование неудачной попытки
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
+
+        @PostMapping("/signout")
+    @Operation(summary = "Выход пользователя", description = "Выход пользователя из учетной записи.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Пользователь успешно вышел из системы"),
+        @ApiResponse(responseCode = "401", description = "Пользователь не авторизован")
+    })
+    public ResponseEntity<?> signoutUser(@RequestBody AuthRequest authRequest) {
+        String email = authRequest.getEmail();
+        if (email != null) {   
+            logger.info("Пользователь {} выходит из системы", email); // Логирование выхода
+
+            User user = userService.getUserByEmail(email);
+            user.setStatus("offline");
+            userService.saveUser(user);
+
+            return ResponseEntity.ok("OK");
+        } else {
+            logger.warn("Пользователь не авторизован.");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
@@ -93,5 +112,6 @@ public class AuthorizationController {
     private static class AuthResponse {
         private String firstName;
         private String lastName;
+        private String email;
     }
 }

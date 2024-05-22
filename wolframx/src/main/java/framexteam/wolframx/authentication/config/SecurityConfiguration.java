@@ -48,31 +48,6 @@ public class SecurityConfiguration   {
         http.csrf(AbstractHttpConfigurer::disable);
         http.authenticationProvider(authenticationProvider());
          
-        
-        http.authorizeHttpRequests(auth -> {
-            // auth.requestMatchers("/users",
-            // "/js/**",
-            // "/css/**",
-            // "/img/**").authenticated()
-            // .anyRequest().permitAll();
-            logger.debug("Configuring HttpSecurity with authorized paths: {}", auth.requestMatchers("/users",
-            "/js/**",
-            "/css/**",
-            "/img/**").authenticated()
-            .anyRequest().permitAll());
-        })
-            .formLogin(login ->
-                login.usernameParameter("email")
-                //.defaultSuccessUrl("/users")
-                .permitAll()
-            )
-            .logout(logout -> logout.logoutSuccessUrl("/login?logout")
-            .invalidateHttpSession(true)
-            .clearAuthentication(true)
-            .permitAll()
-            
-        );
-         
         return http.build();
     }  
 }
