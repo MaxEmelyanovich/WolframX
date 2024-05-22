@@ -56,4 +56,8 @@ public class NumberConverter {
         logger.info( "Total elapsed time: {} seconds.", (elapsedTime / 1000.0));
         return result.toString();
     }
+
+    public static long getElapsedTime() {
+        return elapsedTime;
+    }
 }

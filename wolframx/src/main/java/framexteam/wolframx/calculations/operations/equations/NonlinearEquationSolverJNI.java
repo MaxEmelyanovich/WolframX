@@ -1,7 +1,5 @@
 package framexteam.wolframx.calculations.operations.equations;
 
-import java.util.Set;
-
 public class NonlinearEquationSolverJNI {
     static {
         System.loadLibrary("NonlinearEquationSolver"); // Загрузка библиотеки JNI
