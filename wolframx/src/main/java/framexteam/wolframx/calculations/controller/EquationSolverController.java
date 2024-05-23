@@ -51,7 +51,7 @@ public class EquationSolverController {
             
             if ("C++".equalsIgnoreCase(language)) {
                 solution = GaussSolverJNI.solve(coefficients, constants, threads);
-                //elapsedTime = GaussSolverJNI.getExecutionTime();
+                elapsedTime = GaussSolverJNI.getExecutionTime();
             }
             else {
                 solution = GaussSolver.solve(coefficients, constants, threads);
