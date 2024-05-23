@@ -117,8 +117,7 @@
             <groupId>net.objecthunter</groupId>
             <artifactId>exp4j</artifactId>
             <version>0.4.8</version>
-        </dependency>
-
+        </dependency> 
 
 
 	</dependencies>
@@ -130,16 +129,6 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-
-        <!-- <resources>
-            <resource>
-                <directory>lib</directory>
-                <targetPath>${project.build.directory}</targetPath>
-                <includes>
-                    <include>*.dll</include>
-                </includes>
-            </resource>
-        </resources> -->
 
 	</build>
 
