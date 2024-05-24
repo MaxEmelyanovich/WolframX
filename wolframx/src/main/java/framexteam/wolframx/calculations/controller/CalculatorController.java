@@ -27,7 +27,7 @@ public class CalculatorController {
 
         CalculatorResponse response = new CalculatorResponse();
         response.setResult(result);
-        calculationHistoryService.saveCalculationToHistory(request.toString(), response.toString());
+        calculationHistoryService.saveCalculationToHistory(request.toString(), response.toString(), request.getEmail());
 
         return ResponseEntity.ok(response);
     }
@@ -37,6 +37,7 @@ public class CalculatorController {
     @ToString
     private static class CalculatorRequest {
         String expression;
+        String email;
     }
 
     @Getter

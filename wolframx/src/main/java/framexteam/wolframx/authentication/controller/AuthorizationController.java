@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,10 +23,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.servlet.http.HttpSession;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/authorization")
 @Tag(name = "Авторизация", description = "API для авторизации пользователей")
 public class AuthorizationController {
@@ -38,9 +35,6 @@ public class AuthorizationController {
     private AuthenticationManager authenticationManager;
 
     private UserService userService;
-
-    @Autowired
-    private HttpSession session;
 
     public AuthorizationController(UserService userService) {
         super();
@@ -64,21 +58,14 @@ public class AuthorizationController {
                 new UsernamePasswordAuthenticationToken(email, authRequest.getPassword())
             );
 
-            //SecurityContextHolder.getContext().setAuthentication(authentication);
-
             User user = userService.getUserByEmail(email);
             user.setStatus("online");
             userService.saveUser(user);
 
-            session.setAttribute("user", user); // Сохраняем данные пользователя в сессию
-
-            User user2 = (User) session.getAttribute("user");
-            System.out.println(user2.getEmail());
-
             AuthResponse authResponse = new AuthResponse();
             authResponse.setFirstName(user.getFirstName());
             authResponse.setLastName(user.getLastName());
-            //authResponse.setEmail(user.getEmail());
+            authResponse.setEmail(user.getEmail());
 
             logger.info("Пользователь {} успешно авторизован", email); // Логирование успешной авторизации
             return ResponseEntity.ok(authResponse);
@@ -94,14 +81,14 @@ public class AuthorizationController {
         @ApiResponse(responseCode = "200", description = "Пользователь успешно вышел из системы"),
         @ApiResponse(responseCode = "401", description = "Пользователь не авторизован")
     })
-    public ResponseEntity<?> signoutUser() {
+    public ResponseEntity<?> signoutUser(@RequestBody AuthRequest authRequest) {
+
+        User user = userService.getUserByEmail(authRequest.getEmail());
         AuthResponse authResponse = new AuthResponse();
-        User user = (User) session.getAttribute("user"); // Извлекаем данные пользователя из сессии
         if (user != null) {
             logger.info("Пользователь {} выходит из системы", user.getEmail()); // Логирование выхода
             user.setStatus("offline");
             userService.saveUser(user);
-            session.invalidate(); // Очищаем сессию
             return ResponseEntity.ok().build();
         } else {
             logger.warn("Пользователь не авторизован.");
@@ -123,6 +110,6 @@ public class AuthorizationController {
     private static class AuthResponse {
         private String firstName;
         private String lastName;
-        //private String email;
+        private String email;
     }
 }

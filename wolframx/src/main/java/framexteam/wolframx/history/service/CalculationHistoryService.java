@@ -1,8 +1,6 @@
 package framexteam.wolframx.history.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import framexteam.wolframx.authentication.service.UserService;
@@ -19,13 +17,8 @@ public class CalculationHistoryService {
     @Autowired
     private UserService userService;
 
-    public void saveCalculationToHistory(String task, String result) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null) {
-            return;
-        }
+    public void saveCalculationToHistory(String task, String result, String email) {
 
-        String email = authentication.getName();
         User user = userService.getUserByEmail(email);
 
         Calculation calculation = new Calculation();
