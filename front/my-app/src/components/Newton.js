@@ -10,9 +10,17 @@ function Newton() {
   const [responseData, setResponseData] = useState('');
 
   const handleDimensionChange = (e) => {
-    const n = parseInt(e.target.value);
-    setDimension(n);
-    setCoefficients(Array(n).fill(0));
+    const value = e.target.value;
+    const n = value === '' ? 0 : parseInt(value, 10);
+    if (n >= 0) {
+      if (value === '' || n === 0) {
+        setDimension('');
+        setCoefficients([]);
+      } else {
+        setDimension(n);
+        setCoefficients(Array(n).fill(0));
+      }
+    }
   };
 
   const handleCoefficientsChange = (index, value) => {

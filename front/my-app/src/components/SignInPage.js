@@ -43,7 +43,9 @@ const SignInPage = ({ setIsLoggedIn }) => {
                 
                 // Дополнительные действия после успешной отправки данных
                 const username = responseData.firstName;
+                const userEmail = responseData.email;
                 localStorage.setItem('username', username);
+                localStorage.setItem('email', userEmail);
 
                 navigate('/');
                 setIsLoggedIn(true);

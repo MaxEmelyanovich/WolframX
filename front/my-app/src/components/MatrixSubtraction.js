@@ -12,6 +12,7 @@ function MatrixSubtraction() {
     const [responseData, setResponseData] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [imageData, setImageData] = useState(null);
+    const [elapsedTime, setElapsedTime] = useState('');
 
     const handleInputChange1 = (event) => {
         setInputData1(event.target.value);
@@ -43,6 +44,8 @@ function MatrixSubtraction() {
             const data = await response.json(); // Преобразование ответа в JSON формат
 
             setResponseData(data.result); // Установка полученного ответа в состояние responseData
+
+            setElapsedTime(data.elapsedTime + 'ms');
 
             // const image = await toPng(
             //     document.getElementById('response-container')
@@ -121,6 +124,13 @@ function MatrixSubtraction() {
                 <textarea
                     value={responseData}
                     className="matrix-subtraction-textarea"
+                    readOnly
+                />
+                <textarea
+                    value={elapsedTime}
+                    style={{paddingTop: '1%', paddingBottom: '1%', border: '1px solid #c0c0c0',
+                        borderRadius: '10px', color: '#fff', backgroundColor: 'rgba(0,0,0,0)',
+                        marginLeft: '3%', fontSize: '120%'}}
                     readOnly
                 />
             </form>

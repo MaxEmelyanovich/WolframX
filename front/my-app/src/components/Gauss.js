@@ -10,10 +10,19 @@ function Gauss() {
   const [responseData, setResponseData] = useState('');
 
   const handleDimensionChange = (e) => {
-    const n = parseInt(e.target.value);
-    setDimension(n);
-    setCoefficients(new Array(n).fill(0).map(() => new Array(n).fill(0)));
-    setConstants(new Array(n).fill(0));
+    const value = e.target.value;
+    const n = value === '' ? 0 : parseInt(value, 10);
+    if (n >= 0) {
+      if (value === '' || n === 0) {
+        setDimension('');
+        setCoefficients([]);
+        setConstants([]);
+      } else {
+        setDimension(n);
+        setCoefficients(new Array(n).fill(0).map(() => new Array(n).fill(0)));
+        setConstants(new Array(n).fill(0));
+      }
+    }
   };
 
   const handleThreadsChange = (e) => {

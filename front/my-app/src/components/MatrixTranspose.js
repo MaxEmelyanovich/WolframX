@@ -72,6 +72,11 @@ function MatrixTranspose() {
     };
 
     const sendDataToServer = async () => {
+        let userEmail = null;
+        if (localStorage.getItem('email')) {
+            userEmail = localStorage.getItem('email');
+        } 
+
         try {
             const response = await fetch(
                 'http://25.23.19.72:8080/calculations/matrices/transpose',
@@ -83,6 +88,7 @@ function MatrixTranspose() {
                     body: JSON.stringify({
                         matrix1: inputData,
                         threads: inputData2,
+                        email: userEmail
                     }), // Отправка данных на сервер
                 }
             );
