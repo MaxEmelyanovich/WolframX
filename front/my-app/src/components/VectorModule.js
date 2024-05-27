@@ -12,6 +12,11 @@ function VectorModule() {
     
 
     const sendDataToServer = async () => {
+        let userEmail = null;
+        if (localStorage.getItem('email')) {
+            userEmail = localStorage.getItem('email');
+        }
+
         try {
             const response = await fetch(
                 'http://25.23.19.72:8080/calculations/vectors/oneVector',
@@ -23,7 +28,8 @@ function VectorModule() {
                     body: JSON.stringify({
                         vector1: '{'+vector1+'}',
                         language: language,
-                        operation: 'abs'
+                        operation: 'abs',
+                        email: userEmail
                     }), // Отправка данных на сервер
                 }
             );

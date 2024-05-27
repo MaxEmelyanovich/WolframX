@@ -1,5 +1,5 @@
 {
-    "about": "О Нас",
+    "history": "История",
     "calculations": "Вычисления",
     "signin": "Вход",
     "signup": "Регистрация",
@@ -22,5 +22,13 @@
     "email": "Эл. почта",
     "password": "Пароль",
     "forgotpassword": "Забыли пароль",
-    "donthave": "Нет аккаунта?"
+    "donthave": "Нет аккаунта?",
+    "calchistory": "История Вычислений",
+    "operation": "Операция",
+    "task": "Условие",
+    "solution": "Решение",
+    "signout": "Выход",
+    "alreadyhave": "Уже есть аккаунт?",
+    "firstname": "Имя",
+    "lastname": "Фамилия"
 }

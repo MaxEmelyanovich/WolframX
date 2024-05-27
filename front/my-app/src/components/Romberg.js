@@ -32,6 +32,11 @@ function Romberg() {
     }
 
     const sendDataToServer = async () => {
+        let userEmail = null;
+        if (localStorage.getItem('email')) {
+            userEmail = localStorage.getItem('email');
+        }
+
         try {
             const response = await fetch(
                 'http://25.23.19.72:8080/calculations/integrals/romberg',
@@ -45,7 +50,8 @@ function Romberg() {
                         start: start,
                         stop: stop,
                         n: n,
-                        toleranceDegree: tolerance
+                        toleranceDegree: tolerance,
+                        email: userEmail
                     }), // Отправка данных на сервер
                 }
             );

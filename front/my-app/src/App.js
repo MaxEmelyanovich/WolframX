@@ -94,15 +94,15 @@ function AppContent({ isLoggedIn, setIsLoggedIn }) {
                     <img className="logoSVG" src={logoSVG} alt="Logo" />
                     
                     
-                    <Link to="/" className="about-button">
-                        {t('about')}
+                    <Link to="/historypage" className="about-button">
+                        {t('history')}
                     </Link>
                     <Link to="/calculations" className="calculations-button">
                         {t('calculations')}
                     </Link>
                     {isLoggedIn ? (
                         <button className="signup-button" onClick={handleSignOut}>
-                            Sign Out
+                            {t('signout')}
                         </button>
                     ) : (
                         <>

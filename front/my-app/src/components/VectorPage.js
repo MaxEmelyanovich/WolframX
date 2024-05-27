@@ -18,6 +18,11 @@ function VectorPage() {
     
 
     const sendDataToServer = async () => {
+        let userEmail = null;
+        if (localStorage.getItem('email')) {
+            userEmail = localStorage.getItem('email');
+        }
+
         try {
             const response = await fetch(
                 'http://25.23.19.72:8080/calculations/vectors/twoVectors',
@@ -30,7 +35,8 @@ function VectorPage() {
                         vector1: '{'+vector1+'}',
                         vector2: '{'+vector2+'}',
                         language: language,
-                        operation: operation
+                        operation: operation,
+                        email: userEmail
                     }), // Отправка данных на сервер
                 }
             );

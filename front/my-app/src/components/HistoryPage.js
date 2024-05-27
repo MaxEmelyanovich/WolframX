@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './LanguageSelector';
+import { Link } from 'react-router-dom';
 
 const HistoryPage = () => {
   const [history, setHistory] = useState([]);
@@ -6,10 +9,24 @@ const HistoryPage = () => {
   useEffect(() => {
     // Функция для получения данных с сервера
     const fetchHistory = async () => {
+      let userEmail = null;
+      if (localStorage.getItem('email')) {
+          userEmail = localStorage.getItem('email');
+      } 
+
       try {
-        const response = await fetch('http://25.23.19.72:8080/');
+        const response = await fetch('http://25.23.19.72:8080/calculation-history/get-history', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+              email: userEmail
+          }),
+        });
         const data = await response.json();
         setHistory(data);
+        // console.log('data: ' + data);
       } catch (error) {
         console.error('Ошибка при получении данных:', error);
       }
@@ -18,23 +35,31 @@ const HistoryPage = () => {
     fetchHistory();
   }, []);
 
+  const { t } = useTranslation();
+
   return (
-    <div>
-      <h1>История вычислений</h1>
-      <table>
-        <thead>
+    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+      <div style={{display: 'flex', flexDirection: 'row', paddingLeft: '80%', paddingTop: '2%', gap: '20%'}}>
+          <Link to="/" style={{backgroundColor: 'rgba(0,0,0,0)', color: '#fff', border: 'none', fontSize: '120%', textDecoration: 'none'}}>             
+              🏠︎
+          </Link>
+          <LanguageSelector />
+      </div>
+      <h1 style={{color: '#fff', fontFamily: 'Mulish, sans-serif'}}>{t('calchistory')}</h1>
+      <table style={{textAlign: 'center', marginTop: '2%', fontFamily: 'Mulish, sans-serif'}}>
+        <thead style={{fontSize:'120%', color: '#fff'}}>
           <tr>
-            <th>Название операции</th>
-            <th>Условие</th>
-            <th>Результат</th>
+            <th>{t('operation')}</th>
+            <th>{t('task')}</th>
+            <th>{t('solution')}</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody style={{color: '#c0c0c0'}}>
           {history.map((item, index) => (
             <tr key={index}>
-              <td>{item['operationName']}</td>
-              <td>{item['task']}</td>
-              <td>{item['solution']}</td>
+              <td>{item.operationName}</td>
+              <td>{item.task}</td>
+              <td>{item.solution}</td>
             </tr>
           ))}
         </tbody>

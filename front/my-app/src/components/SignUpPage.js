@@ -96,7 +96,7 @@ const SignUpPage = () => {
                         name="firstName"
                         value={firstName}
                         onChange={handleInputChange}
-                        placeholder="First Name"
+                        placeholder={t('firstname')}
                     />
                 </label>
                 <label>
@@ -105,7 +105,7 @@ const SignUpPage = () => {
                         name="lastName"
                         value={lastName}
                         onChange={handleInputChange}
-                        placeholder="Last Name"
+                        placeholder={t('lastname')}
                     />
                 </label>
                 <label>
@@ -114,7 +114,7 @@ const SignUpPage = () => {
                         name="email"
                         value={email}
                         onChange={handleInputChange}
-                        placeholder="Email"
+                        placeholder={t('email')}
                     />
                 </label>
                 <label>
@@ -123,12 +123,12 @@ const SignUpPage = () => {
                         name="password"
                         value={password}
                         onChange={handleInputChange}
-                        placeholder="Password"
+                        placeholder={t('password')}
                     />
                 </label>
-                <button className="signUpPageSubmit">Sign Up</button>
+                <button className="signUpPageSubmit">{t('signup')}</button>
                 <p type="signUpPageP">
-                    Already have an account?{' '}
+                    {t('alreadyhave')}{' '}
                     <a type="signUpPageRef" href="/signin">
                         {t('signin')}
                     </a>

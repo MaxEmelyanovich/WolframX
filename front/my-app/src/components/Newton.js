@@ -30,6 +30,11 @@ function Newton() {
   };
 
   const handleSubmit = () => {
+    let userEmail = null;
+        if (localStorage.getItem('email')) {
+            userEmail = localStorage.getItem('email');
+        }
+
     fetch('http://25.23.19.72:8080/calculations/equations/newton', {
       method: 'POST',
       headers: {
@@ -40,6 +45,7 @@ function Newton() {
         threads,
         epsilonDegree: epsilon,
         maxIterations,
+        email: userEmail
       }),
     })
       .then((response) => response.json())

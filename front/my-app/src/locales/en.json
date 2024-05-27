@@ -1,5 +1,5 @@
 {
-    "about": "About",
+    "history": "History",
     "calculations": "Calculations",
     "signin": "Sign In",
     "signup": "Sign Up",
@@ -22,5 +22,13 @@
     "email": "Email",
     "password": "Password",
     "forgotpassword": "Forgot password",
-    "donthave": "Dont't have an account?"
+    "donthave": "Dont't have an account?",
+    "calchistory": "Calculations History",
+    "operation": "Operation",
+    "task": "Task",
+    "solution": "Solution",
+    "signout": "Sign Out",
+    "alreadyhave": "Already have an account?",
+    "firstname": "First Name",
+    "lastname": "Last Name"
 }

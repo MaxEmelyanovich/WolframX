@@ -25,6 +25,11 @@ function ScalarMultiplication() {
     };
 
     const sendDataToServer = async () => {
+        let userEmail = null;
+        if (localStorage.getItem('email')) {
+            userEmail = localStorage.getItem('email');
+        }
+
         try {
             const response = await fetch(
                 'http://25.23.19.72:8080/calculations/matrices/multiplybyscalar',
@@ -37,6 +42,7 @@ function ScalarMultiplication() {
                         matrix1: inputData1,
                         scalar: inputData2,
                         threads: inputData3,
+                        email: userEmail
                     }), // Отправка данных на сервер
                 }
             );

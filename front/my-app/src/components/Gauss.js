@@ -46,6 +46,11 @@ function Gauss() {
   };
 
   const handleSubmit = () => {
+    let userEmail = null;
+        if (localStorage.getItem('email')) {
+            userEmail = localStorage.getItem('email');
+        }
+
     const coefficientsString = coefficients.map((row) => `{${row.join(',')}}`).join(',');
     const constantsString = `{${constants.join(',')}}`;
 
@@ -59,6 +64,7 @@ function Gauss() {
         constants: constantsString,
         threads,
         language,
+        email: userEmail
       }),
     })
       .then((response) => response.json())
