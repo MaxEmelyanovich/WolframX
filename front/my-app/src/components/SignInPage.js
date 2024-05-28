@@ -63,7 +63,10 @@ const SignInPage = ({ setIsLoggedIn }) => {
 
     return (
         <div className="authpage">
-        <div style={{display: 'flex', flexDirection: 'row', paddingLeft: '70%', paddingTop: '3%', paddingBottom: '3%', gap: '50%'}}>
+        <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', paddingLeft: '50%', paddingTop: '3%', paddingBottom: '3%', gap: '50%'}}>
+                <Link to="/chatroom" style={{color: '#fff', fontFamily: 'Cascadia Mono', fontWeight: 'lighter', textDecoration: 'none'}}>
+                    Chat
+                </Link>
                 <Link to="/" style={{backgroundColor: 'rgba(0,0,0,0)', color: '#fff', border: 'none', fontSize: '120%', textDecoration: 'none'}}>             
                     🏠︎
                 </Link>

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import './Romberg.css';
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './LanguageSelector';
+import { Link } from 'react-router-dom';
 
 function Romberg() {
 
@@ -72,6 +75,15 @@ function Romberg() {
 
     return (
         <div className="romberg-container">
+            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', paddingLeft: '70%', paddingTop: '2%', gap: '20%'}}>
+                <Link to="/chatroom" style={{color: '#fff', fontFamily: 'Cascadia Mono', fontWeight: 'lighter', textDecoration: 'none'}}>
+                    Chat
+                </Link>
+                <Link to="/" style={{backgroundColor: 'rgba(0,0,0,0)', color: '#fff', border: 'none', fontSize: '120%', textDecoration: 'none'}}>             
+                    🏠︎
+                </Link>
+                <LanguageSelector />
+            </div>
             <h1 className="rombergHeader">Romberg Method</h1>
             <form onSubmit={handleSubmit}>
                 <div>

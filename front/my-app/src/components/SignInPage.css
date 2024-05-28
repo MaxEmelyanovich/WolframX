@@ -40,7 +40,8 @@ input[type='signInPageInput'] {
 
 .signInPageSubmit {
     margin-top: 7%;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
     height: 14%;
     width: 25%;
     background-color: #ef7135;
@@ -50,7 +51,8 @@ input[type='signInPageInput'] {
 }
 
 p[type='signInPageP'] {
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
     font-size: 85%;
     text-align: left;
     margin-left: 14%;
@@ -68,7 +70,8 @@ a:hover[type='signInPageRef1'] {
 p[type='signInPageP2'] {
     margin-top: 12%;
     color: #fff;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
     font-size: 85%;
 }
 

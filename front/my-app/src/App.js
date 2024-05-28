@@ -120,10 +120,12 @@ function AppContent({ isLoggedIn, setIsLoggedIn }) {
                 </nav>
             )}
 
-            {/* <h1 className="mainLabel">Your personal calculating assistant</h1> */}
+            {isMainPage && (<h1 style={{marginLeft: '12%', marginTop: '10%', fontFamily: 'Cascadia Mono',
+                fontWeight: 'bolder', color: '#fff', fontSize: '350%'
+            }}>{t('mainlabel1')}<br/>{t('mainlabel2')}</h1>)}
 
             {isMainPage && !isLoggedIn && (
-                <div style={{marginTop: '28%'}}>
+                <div style={{marginTop: '8%'}}>
                 <Link to="/signin" className="signin-button">
                 {t('signin')}
                 </Link>

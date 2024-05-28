@@ -80,7 +80,10 @@ const SignUpPage = () => {
 
     return (
         <div className="registration-page">
-            <div style={{display: 'flex', flexDirection: 'row', paddingLeft: '70%', paddingTop: '3%', paddingBottom: '3%', gap: '50%'}}>
+            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', paddingLeft: '50%', paddingTop: '3%', paddingBottom: '3%', gap: '50%'}}>
+                <Link to="/chatroom" style={{color: '#fff', fontFamily: 'Cascadia Mono', fontWeight: 'lighter', textDecoration: 'none'}}>
+                    Chat
+                </Link>
                 <Link to="/" style={{backgroundColor: 'rgba(0,0,0,0)', color: '#fff', border: 'none', fontSize: '120%', textDecoration: 'none'}}>             
                     🏠︎
                 </Link>
@@ -89,7 +92,7 @@ const SignUpPage = () => {
             <div className="wolframXdiv">
                 <img className="wolframX" src={wolframX} alt="WolframX" />
             </div>
-            <form type="formReg" onSubmit={handleSubmit}>
+            <form type="formReg" onSubmit={handleSubmit} style={{diplay: 'flex', flexDirection: 'column'}}>
                 <label>
                     <input
                         type="signUpPageInput"

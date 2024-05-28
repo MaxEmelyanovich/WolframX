@@ -10,7 +10,7 @@
 
 .vectorPageHeader {
     color: #fff;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Cascadia Mono';
     font-weight: lighter;
     font-size: 200%;
 }
@@ -38,7 +38,8 @@
     padding-bottom: 0.5%;
     width: 10%;
     color: #fff;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
     font-size: 120%;
     border-radius: 10px;
     background-color: rgba(0,0,0,0);
@@ -47,7 +48,8 @@
 .vectorPageButton {
     padding: 1% 1%;
     margin-top: 2%;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
     font-size: 100%;
     height: auto;
     width: 8%;
@@ -72,7 +74,8 @@
 .vector-button {
     border: none;
     border-radius: 10px;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
     font-size: 100%;
     color: #fff;
     padding: 1%;
@@ -91,7 +94,8 @@
 }
 
 .vectorPageP {
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
     font-size: 100%;
     color: #fff;
 }

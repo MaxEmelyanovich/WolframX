@@ -116,7 +116,10 @@ function MatrixTranspose() {
 
     return (
         <div className="matrix-transpose-container">
-            <div style={{display: 'flex', flexDirection: 'row', paddingLeft: '80%', paddingTop: '2%', gap: '20%'}}>
+            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', paddingLeft: '70%', paddingTop: '2%', gap: '20%'}}>
+                <Link to="/chatroom" style={{color: '#fff', fontFamily: 'CAscadia Mono', fontWeight: 'lighter', textDecoration: 'none'}}>
+                    Chat
+                </Link>
                 <Link to="/" style={{backgroundColor: 'rgba(0,0,0,0)', color: '#fff', border: 'none', fontSize: '120%', textDecoration: 'none'}}>             
                     🏠︎
                 </Link>

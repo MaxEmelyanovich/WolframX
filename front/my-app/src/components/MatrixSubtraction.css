@@ -35,7 +35,7 @@
     margin-left: 12%;
     margin-top: 2%;
     color: #fff;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Cascadia Mono';
     font-weight: lighter;
     font-size: 200%;
 }
@@ -50,7 +50,8 @@
 .matrix-subtraction-text1 {
     margin-top: 5%;
     color: #fff;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
     font-size: 120%;
 }
 
@@ -58,7 +59,8 @@
     padding: 1% 1%;
     margin-left: 12%;
     margin-top: 1%;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
     height: auto;
     width: 8%;
     background-color: #ef7135;
@@ -111,13 +113,15 @@
     margin-left: 8%;
     margin-top: 5%;
     color: #fff;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
     font-size: 120%;
 }
 
 .matrix-subtraction-text2 {
     margin-left: 12%;
     color: #fff;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
     font-size: 120%;
 }

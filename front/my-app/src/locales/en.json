@@ -30,5 +30,21 @@
     "signout": "Sign Out",
     "alreadyhave": "Already have an account?",
     "firstname": "First Name",
-    "lastname": "Last Name"
+    "lastname": "Last Name",
+    "vectors": "Vectors",
+    "twovectors": "Two Vectors",
+    "onevector": "One Vector",
+    "vectormod": "Vector Module",
+    "arithmetics": "Arithmetics",
+    "calculator": "Calculator",
+    "converter": "Converter",
+    "equations": "Equations",
+    "gauss": "Gauss",
+    "newton": "Newton",
+    "integrals": "Integrals",
+    "trap": "Trapezoidal",
+    "simpson": "Simpson",
+    "romberg": "Romberg",
+    "mainlabel1": "Your personal",
+    "mainlabel2": "calculating assistant"
 }

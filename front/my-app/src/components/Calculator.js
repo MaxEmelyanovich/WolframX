@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import './Calculator.css';
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './LanguageSelector';
+import { Link } from 'react-router-dom';
 
 function Calculator() {
     const [expression, setExpression] = useState('');
@@ -50,6 +53,15 @@ function Calculator() {
 
     return (
         <div className="calculator-container">
+          <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', paddingLeft: '50%', paddingTop: '2%', gap: '50%'}}>
+                <Link to="/chatroom" style={{color: '#fff', fontFamily: 'Cascadia Mono', fontWeight: 'lighter', textDecoration: 'none'}}>
+                    Chat
+                </Link>
+                <Link to="/" style={{backgroundColor: 'rgba(0,0,0,0)', color: '#fff', border: 'none', fontSize: '120%', textDecoration: 'none'}}>             
+                    🏠︎
+                </Link>
+                <LanguageSelector />
+            </div>
           <div className="calculator-form">
             <input
               type="text"

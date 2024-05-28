@@ -1,7 +1,8 @@
 .gaussPageButton {
     padding: 1% 1%;
     margin-top: 2%;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
     font-size: 100%;
     height: auto;
     width: 8%;
@@ -27,13 +28,14 @@
     margin-top: 3%;
     margin-left: 5%;
     color: #fff;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Cascadia Mono';
     font-weight: lighter;
     font-size: 200%;
 }
 
 .gaussText {
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
     font-size: 100%;
     color: #fff;
 }

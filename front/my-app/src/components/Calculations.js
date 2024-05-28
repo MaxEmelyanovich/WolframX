@@ -11,7 +11,10 @@ function Calculations() {
         <div className="calculations-container">
 
             <div className="headerWithSelector">
-                <div style={{display: 'flex', flexDirection: 'row', paddingLeft: '70%', paddingTop: '3%', gap: '50%'}}>
+                <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', paddingLeft: '50%', paddingTop: '3%', gap: '50%'}}>
+                <Link to="/chatroom" style={{color: '#fff', fontFamily: 'Cascadia Mono', fontWeight: 'lighter', textDecoration: 'none'}}>
+                    Chat
+                </Link>
                 <Link to="/" style={{backgroundColor: 'rgba(0,0,0,0)', color: '#fff', border: 'none', fontSize: '120%', textDecoration: 'none'}}>             
                     🏠︎
                 </Link>
@@ -22,7 +25,43 @@ function Calculations() {
             </div>
             
 
-            <div className="form-container">
+            <div className="form-container">              
+
+                <div className="rect">
+                    <h2 class="h2Calc">{t('vectors')} :</h2>
+                    <Link className="link" to="/vectorpage">
+                        {t('twovectors')}
+                    </Link>
+                    <br></br>
+                    <Link className="link" to="/vectorsecondpage">
+                        {t('onevector')}
+                    </Link>
+                    <br></br>
+                    <Link className="link" to="/vectormodule">
+                        {t('vectormod')}
+                    </Link>
+                </div>
+
+                <div className="rect">
+                    <h2 class="h2Calc">{t('arithmetics')} :</h2>
+                    <Link className="link" to="/calculator">
+                        {t('calculator')}
+                    </Link>
+                    <br></br>
+                    <Link className="link" to="/converter">
+                        {t('converter')}
+                    </Link>
+                    <br></br>
+                    <h2 class="h2Calc">{t('equations')} :</h2>
+                    <Link className="link" to="/gauss">
+                        {t('gauss')}
+                    </Link>
+                    <br></br>
+                    <Link className="link" to="/newton">
+                        {t('newton')}
+                    </Link>
+                </div>
+
                 <div className="rect">
                     <h2 class="h2Calc">{t('matrices')} :</h2>
                     <Link className="link" to="/matrixtranspose">
@@ -47,68 +86,17 @@ function Calculations() {
                 </div>
 
                 <div className="rect">
-                    <h2 class="h2Calc">Arithmetics :</h2>
-                    <Link className="link" to="/calculator">
-                        Calculator
-                    </Link>
-                    <br></br>
-                    <Link className="link" to="/converter">
-                        Converter
-                    </Link>
-                    <br></br>
-                    <h2 class="h2Calc">Уравнения :</h2>
-                    <Link className="link" to="/gauss">
-                        Gauss
-                    </Link>
-                    <br></br>
-                    <Link className="link" to="/newton">
-                        Newton
-                    </Link>
-                </div>
-
-                <div className="rect">
-                    <h2 class="h2Calc">Integrals :</h2>
+                    <h2 class="h2Calc">{t('integrals')} :</h2>
                     <Link className="link" to="/trapezoidal">
-                        Trapezoidal
+                        {t('trap')}
                     </Link>
                     <br></br>
                     <Link className="link" to="/simpson">
-                        Simpson
+                        {t('simpson')}
                     </Link>
                     <br></br>
                     <Link className="link" to="/romberg">
-                        Romberg
-                    </Link>
-                    <br></br>
-                    <Link className="link" to="/">
-                        Link 4
-                    </Link>
-                    <br></br>
-                    <Link className="link" to="/">
-                        Link 5
-                    </Link>
-                </div>
-
-                <div className="rect">
-                    <h2 class="h2Calc">Vectors :</h2>
-                    <Link className="link" to="/vectorpage">
-                        Two Vectors
-                    </Link>
-                    <br></br>
-                    <Link className="link" to="/vectorsecondpage">
-                        One Vector
-                    </Link>
-                    <br></br>
-                    <Link className="link" to="/vectormodule">
-                        Vector Module
-                    </Link>
-                    <br></br>
-                    <Link className="link" to="/">
-                        Link 4
-                    </Link>
-                    <br></br>
-                    <Link className="link" to="/">
-                        Link 5
+                        {t('romberg')}
                     </Link>
                 </div>
             </div>

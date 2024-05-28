@@ -28,7 +28,8 @@ form[type='formReg'] {
 }
 
 ::placeholder {
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
     color: #c0c0c0;
     opacity: 0.6;
     padding: 5px;
@@ -36,7 +37,8 @@ form[type='formReg'] {
 
 .signUpPageSubmit {
     margin-top: 6%;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
     height: 11%;
     width: 25%;
     background-color: #ef7135;
@@ -65,7 +67,8 @@ input[type='signUpPageInput'] {
 p[type='signUpPageP'] {
     margin-top: 10%;
     color: #fff;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Cascadia Mono';
+    font-weight: lighter;
     font-size: 85%;
 }
 

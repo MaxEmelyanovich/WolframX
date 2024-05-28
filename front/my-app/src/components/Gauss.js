@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import './GaussAndNewton.css';
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './LanguageSelector';
+import { Link } from 'react-router-dom';
 
 function Gauss() {
   const [dimension, setDimension] = useState(0);
@@ -86,6 +89,15 @@ function Gauss() {
 
   return (
     <div style={{}}>
+      <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', paddingLeft: '70%', paddingTop: '2%', gap: '20%'}}>
+                <Link to="/chatroom" style={{color: '#fff', fontFamily: 'Cascadia Mono', fontWeight: 'lighter', textDecoration: 'none'}}>
+                    Chat
+                </Link>
+                <Link to="/" style={{backgroundColor: 'rgba(0,0,0,0)', color: '#fff', border: 'none', fontSize: '120%', textDecoration: 'none'}}>             
+                    🏠︎
+                </Link>
+                <LanguageSelector />
+            </div>
       <h1 className="gaussPageHeader">Gauss Method</h1>
       <div style={{marginLeft: '5%', marginTop: '2%'}}>
         <label htmlFor="dimension" className="gaussText">Dimension (n):</label>

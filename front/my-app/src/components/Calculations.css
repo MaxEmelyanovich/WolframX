@@ -61,7 +61,7 @@
     border-bottom: 2px solid #c0c0c0;
     /* margin-top: 5%; */
     color: #fff;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Cascadia Mono';
     font-weight: lighter;
     font-size: 200%;
 
@@ -82,15 +82,15 @@
 
 .h2Calc {
     color: #ef7135;
-    font-family: 'Mulish', sans-serif;
-    font-weight: lighter;
+    font-family: 'Corbel';
+    font-weight: bolder;
     font-size: 120%;
 }
 
 .link {
     color: #fff;
     text-decoration: none;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Corbel';
     font-weight: lighter;
     font-size: 100%;
     line-height: 2;

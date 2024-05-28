@@ -39,14 +39,17 @@ const HistoryPage = () => {
 
   return (
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-      <div style={{display: 'flex', flexDirection: 'row', paddingLeft: '80%', paddingTop: '2%', gap: '20%'}}>
-          <Link to="/" style={{backgroundColor: 'rgba(0,0,0,0)', color: '#fff', border: 'none', fontSize: '120%', textDecoration: 'none'}}>             
-              🏠︎
-          </Link>
-          <LanguageSelector />
+      <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', paddingLeft: '50%', paddingTop: '3%', paddingBottom: '3%', gap: '50%'}}>
+                <Link to="/chatroom" style={{color: '#fff', fontFamily: 'Cascadia Mono', fontWeight: 'lighter', textDecoration: 'none'}}>
+                    Chat
+                </Link>
+                <Link to="/" style={{backgroundColor: 'rgba(0,0,0,0)', color: '#fff', border: 'none', fontSize: '120%', textDecoration: 'none'}}>             
+                    🏠︎
+                </Link>
+                <LanguageSelector />
       </div>
-      <h1 style={{color: '#fff', fontFamily: 'Mulish, sans-serif'}}>{t('calchistory')}</h1>
-      <table style={{textAlign: 'center', marginTop: '2%', fontFamily: 'Mulish, sans-serif'}}>
+      <h1 style={{color: '#fff', fontFamily: 'Cascadia Mono', fontWeight: 'lighter'}}>{t('calchistory')}</h1>
+      <table style={{textAlign: 'center', marginTop: '2%', fontFamily: 'Cascadia Mono', fontWeight: 'lighter'}}>
         <thead style={{fontSize:'120%', color: '#fff'}}>
           <tr>
             <th>{t('operation')}</th>

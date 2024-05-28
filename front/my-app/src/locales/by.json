@@ -1,12 +1,12 @@
 {
-    "about": "Пра нас",
+    "history": "Гісторыя",
     "calculations": "Вылічэнні",
     "signin": "Уваход",
     "signup": "Рэгістрацыя",
-    "transpose": "Транспанаванне Матрыцы",
-    "multiplication": "Перамнажэнне Матрыц",
-    "addition": "Складанне Матрыц",
-    "subtraction": "Адніманне Матрыц",
+    "transpose": "Транспанаванне",
+    "multiplication": "Перамнажэнне",
+    "addition": "Складанне",
+    "subtraction": "Адніманне",
     "scalarmult": "Скалярнае множанне",
     "matrices": "Матрыцы",
     "matrix": "Матрыца",
@@ -18,5 +18,7 @@
     "secondmatrix": "Другая матрыца",
     "enterthesecondmatrix": "Увядзіце другую матрыцу",
     "scalar": "Скаляр",
-    "enterthescalar": "Увядзіце скаляр"
+    "enterthescalar": "Увядзіце скаляр",
+    "mainlabel1": "Ваш асабісты",
+    "mainlabel2": "памочнік ў вылічэннях"
 }
