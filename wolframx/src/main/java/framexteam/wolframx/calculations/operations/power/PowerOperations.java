@@ -1,8 +1,8 @@
 package framexteam.wolframx.calculations.operations.power;
 
-import framexteam.wolframx.calculations.operations.arithmetic.ArithmeticOperations;
-
 import java.util.Objects;
+
+import framexteam.wolframx.calculations.operations.arithmetic.ArithmeticOperations;
 
 public class PowerOperations {
     private static final double EPS = 1E-15;

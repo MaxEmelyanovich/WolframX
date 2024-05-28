@@ -27,23 +27,36 @@ public class CalculatorController {
 
         CalculatorResponse response = new CalculatorResponse();
         response.setResult(result);
-        calculationHistoryService.saveCalculationToHistory(request.toString(), response.toString(), request.getEmail());
+        calculationHistoryService.saveCalculationToHistory("Arithmetics: Calculator", request.toString(), 
+            response.toString(), request.getEmail());
 
         return ResponseEntity.ok(response);
     }
 
     @Getter
     @Setter
-    @ToString
     private static class CalculatorRequest {
         String expression;
         String email;
+
+        @Override
+        public String toString() {
+            return "{" +
+                    "expression='" + expression + '\'' +
+                    '}';
+        }
     }
 
     @Getter
     @Setter
-    @ToString
     private static class CalculatorResponse {
         double result;
+
+        @Override
+        public String toString() {
+            return "{" +
+                    "result=" + result +
+                    '}';
+        }
     }
 }

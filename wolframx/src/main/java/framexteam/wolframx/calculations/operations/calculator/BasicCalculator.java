@@ -1,9 +1,9 @@
 package framexteam.wolframx.calculations.operations.calculator;
 
+import java.util.*;
+
 import framexteam.wolframx.calculations.operations.arithmetic.ArithmeticOperations;
 import framexteam.wolframx.calculations.operations.power.PowerOperations;
-
-import java.util.*;
 public class BasicCalculator {
     public static double solve(String[] tokens)
     {

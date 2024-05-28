@@ -1,9 +1,10 @@
 package framexteam.wolframx.calculations.operations.integrals;
 
 
-import framexteam.wolframx.calculations.operations.equations.GaussSolver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import framexteam.wolframx.calculations.operations.equations.GaussSolver;
 
 import java.util.Objects;
 

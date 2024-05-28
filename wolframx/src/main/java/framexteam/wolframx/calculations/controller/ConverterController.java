@@ -2,6 +2,7 @@ package framexteam.wolframx.calculations.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import lombok.*;
-
 import framexteam.wolframx.calculations.operations.converter.NumberConverter;
+import framexteam.wolframx.history.service.CalculationHistoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -23,6 +24,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @RequestMapping("/calculations/converter")
 @Tag(name = "Вычисления", description = "API для выполнения математических операций")
 public class ConverterController {
+
+    @Autowired
+    private CalculationHistoryService calculationHistoryService;
 
     private static final Logger logger = LogManager.getLogger(ConverterController.class);
 
@@ -48,6 +52,9 @@ public class ConverterController {
             response.setConvertedNumber(convertedNumber);
             response.setElapsedTime(NumberConverter.getElapsedTime());
 
+            calculationHistoryService.saveCalculationToHistory("Arithmetics: Converter",request.toString(), 
+                response.toString(), request.getEmail());
+
             logger.info("Number conversion completed successfully.");
             return ResponseEntity.ok(response);
         } catch (IllegalArgumentException e) {
@@ -62,6 +69,16 @@ public class ConverterController {
         private String number;
         private int sourceBase;
         private int targetBase;
+        private String email;
+
+        @Override
+        public String toString() {
+            return "{" +
+                    "number='" + number + '\'' +
+                    ", sourceBase=" + sourceBase +
+                    ", targetBase=" + targetBase +                   
+                    '}';
+        }
     }
 
     @Getter
@@ -69,5 +86,13 @@ public class ConverterController {
     private static class NumberConverterResponse {
         private String convertedNumber;
         private long elapsedTime;
+
+        @Override
+        public String toString() {
+            return "{" +
+                    "convertedNumber='" + convertedNumber + '\'' +
+                    ", elapsedTime=" + elapsedTime +
+                    '}';
+        }
     }
 }

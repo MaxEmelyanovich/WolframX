@@ -89,7 +89,7 @@ public class AuthorizationController {
             logger.info("Пользователь {} выходит из системы", user.getEmail()); // Логирование выхода
             user.setStatus("offline");
             userService.saveUser(user);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok(authResponse);
         } else {
             logger.warn("Пользователь не авторизован.");
             //return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

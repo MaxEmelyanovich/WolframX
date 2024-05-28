@@ -27,4 +27,7 @@ public class Calculation {
 
     @Column(name = "result", nullable = false, columnDefinition = "TEXT")
     private String result;
+
+    @Column(name = "operation", nullable = false, columnDefinition = "TEXT")
+    private String operation;
 }

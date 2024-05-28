@@ -2,6 +2,7 @@ package framexteam.wolframx.calculations.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import lombok.*;
-
 import framexteam.wolframx.calculations.operations.integrals.*;
+import framexteam.wolframx.history.service.CalculationHistoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -25,6 +26,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class IntegralController {
 
     private static final Logger logger = LogManager.getLogger(IntegralController.class);
+
+    @Autowired
+    private CalculationHistoryService calculationHistoryService;
 
     @PostMapping("/trapezoidal")
     @Operation(summary = "Вычисление определенного интеграла методом трапеций",
@@ -50,6 +54,7 @@ public class IntegralController {
             IntegralResponse integralResponse = new IntegralResponse();
             integralResponse.setResult(result);
             integralResponse.setElapsedTime(IntegralLibrary.getElapsedTime());
+            calculationHistoryService.saveCalculationToHistory("Integrals: Trapezoidal", integralRequest.toString(), integralResponse.toString(), integralRequest.getEmail());
 
             logger.info("Integral calculation completed successfully.");
             return ResponseEntity.ok(integralResponse);
@@ -83,6 +88,8 @@ public class IntegralController {
             IntegralResponse integralResponse = new IntegralResponse();
             integralResponse.setResult(result);
             integralResponse.setElapsedTime(IntegralLibrary.getElapsedTime());
+            calculationHistoryService.saveCalculationToHistory("Integrals: Simpson",integralRequest.toString(), 
+                integralResponse.toString(), integralRequest.getEmail());
 
             logger.info("Integral calculation completed successfully.");
             return ResponseEntity.ok(integralResponse);
@@ -119,6 +126,8 @@ public class IntegralController {
             IntegralResponse integralResponse = new IntegralResponse();
             integralResponse.setResult(result);
             integralResponse.setElapsedTime(IntegralLibrary.getElapsedTime());
+            calculationHistoryService.saveCalculationToHistory("Integrals: Romberg", integralRequest.toString(), 
+                integralResponse.toString(), integralRequest.getEmail());
 
             logger.info("Integral calculation completed successfully.");
             return ResponseEntity.ok(integralResponse);
@@ -136,9 +145,21 @@ public class IntegralController {
         private double stop;
         private int toleranceDegree;
         private int n;
+        private String email;
 
         public double getTolerance(){
             return Math.pow(10, -toleranceDegree);
+        }
+
+        @Override
+        public String toString() {
+            return "{" +
+                    "function='" + function + '\'' +
+                    ", start=" + start +
+                    ", stop=" + stop +
+                    ", toleranceDegree=" + toleranceDegree +
+                    ", n=" + n +
+                    '}';
         }
     }
 
@@ -147,5 +168,13 @@ public class IntegralController {
     private static class IntegralResponse {
         private double result;
         private long elapsedTime;
+
+        @Override
+        public String toString() {
+            return "{" +
+                    "result=" + result +
+                    ", elapsedTime=" + elapsedTime +
+                    '}';
+        }
     }
 }

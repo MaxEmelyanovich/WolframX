@@ -2,6 +2,7 @@ package framexteam.wolframx.calculations.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import lombok.*;
-
 import framexteam.wolframx.calculations.operations.vectors.VectorLibrary;
 import framexteam.wolframx.calculations.operations.vectors.VectorLibraryJNIWrapper;
 import framexteam.wolframx.calculations.operations.vectors.VectorLibraryJava;
+import framexteam.wolframx.history.service.CalculationHistoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -27,6 +28,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class VectorController {
 
     private static final Logger logger = LogManager.getLogger(VectorController.class);
+
+    @Autowired
+    private CalculationHistoryService calculationHistoryService;
 
     @PostMapping("/twoVectors")
     @Operation(summary = "Операции с двумя векторами", description = "Выполняет операции над двумя векторами.")
@@ -74,30 +78,40 @@ public class VectorController {
 
             Object result = null;
 
+            String operation;
+
             switch (request.getOperation()) {
                 case "sum":
                     result = vectorLibrary.sum(v1, v2);
+                    operation = "Vectors: Sum";
                     break;
                 case "sub":
                     result = vectorLibrary.sub(v1, v2);
+                    operation = "Vectors: Subtraction";
                     break;
                 case "scalarMul":
                     result = vectorLibrary.scalarMul(v1, v2);
+                    operation = "Vectors: Scalar Multiplication";
                     break;
                 case "vectorMul":
                     result = vectorLibrary.vectorMul(v1, v2);
+                    operation = "Vectors: Vector Multiplication";
                     break;
                 case "numberMul":
                     result = vectorLibrary.numberMul(v1, number);
+                    operation = "Vectors: Multiplication by Number";
                     break;
                 case "numberDiv":
                     result = vectorLibrary.numberDiv(v1, number);
+                    operation = "Vectors: Division by Number";
                     break;
                 case "abs":
                     result = vectorLibrary.abs(v1);
+                    operation = "Vectors: Module";
                     break;
                 case "angle":
                     result = vectorLibrary.angle(v1, v2);
+                    operation = "Vectors: Angle";
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid vector operation: " + request.getOperation());
@@ -107,10 +121,12 @@ public class VectorController {
 
             if (result instanceof double[]) {
                 response.setVectorResult((double[]) result);
+                calculationHistoryService.saveCalculationToHistory(operation, request.toString(), response.toString(), request.getEmail());
                 logger.info("{} operation completed successfully.", request.getOperation());
                 return ResponseEntity.ok(response);
             } else if (result instanceof Double) {
                 response.setScalarResult((double) result);
+                calculationHistoryService.saveCalculationToHistory(operation, request.toString(), response.toString(), request.getEmail());
                 logger.info("{} operation completed successfully.", request.getOperation());
                 return ResponseEntity.ok(response);
             } else {
@@ -137,6 +153,7 @@ public class VectorController {
         private String vector2;
         private double number;
         private String language;
+        private String email;
 
         private double[] getVectorAsArray(String vector) {
             String[] parts = vector.substring(1, vector.length() - 1).split(",");
@@ -155,6 +172,17 @@ public class VectorController {
             if (vector2 == null) {
                 return null;
             } else return getVectorAsArray(vector2);
+        }
+
+        @Override
+        public String toString() {
+            return "{" +
+                    "operation='" + operation + '\'' +
+                    ", vector1='" + vector1 + '\'' +
+                    ", vector2='" + vector2 + '\'' +
+                    ", number=" + number +
+                    ", language='" + language + '\'' +
+                    '}';
         }
     }
 
@@ -186,6 +214,13 @@ public class VectorController {
             }
             sb.append("}");
             return sb.toString();
+        }
+
+        @Override
+        public String toString() {
+            return "{" +
+                    "result='" + result + '\'' +
+                    '}';
         }
     }
 }

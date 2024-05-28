@@ -1,8 +1,9 @@
 package framexteam.wolframx.calculations.operations.matrices;
 
-import framexteam.wolframx.calculations.operations.arithmetic.ArithmeticOperations;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import framexteam.wolframx.calculations.operations.arithmetic.ArithmeticOperations;
 
 public class MatrixAddition implements MatrixOperation {
 

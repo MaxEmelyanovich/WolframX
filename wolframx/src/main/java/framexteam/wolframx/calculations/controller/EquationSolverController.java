@@ -4,6 +4,7 @@ import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import lombok.*;
-
 import framexteam.wolframx.calculations.operations.equations.GaussSolver;
 import framexteam.wolframx.calculations.operations.equations.GaussSolverJNI;
 import framexteam.wolframx.calculations.operations.equations.NonlinearEquationSolver;
+import framexteam.wolframx.history.service.CalculationHistoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -30,6 +31,9 @@ public class EquationSolverController {
 
     private static final Logger logger = LogManager.getLogger(EquationSolverController.class);
 
+    @Autowired
+    private CalculationHistoryService calculationHistoryService;
+
     @PostMapping("/gauss")
     @Operation(summary = "Решение системы линейных уравнений",
                description = "Решает систему линейных уравнений методом Гаусса.")
@@ -39,6 +43,7 @@ public class EquationSolverController {
         @ApiResponse(responseCode = "400", description = "Ошибка в формате входных данных")
     })
     public ResponseEntity<?> solveEquations(@RequestBody EquationSolverRequest request) {
+        EquationSolverResponse response = new EquationSolverResponse();
         try {
             logger.info("Received request to solve equations: {}", request);
 
@@ -58,16 +63,19 @@ public class EquationSolverController {
                 elapsedTime = GaussSolver.getElapsedTime();
             }
 
-            EquationSolverResponse response = new EquationSolverResponse();
+            
             response.setArraySolution(solution);
             response.setElapsedTime(elapsedTime);
+            calculationHistoryService.saveCalculationToHistory("Equations: Gauss", request.toString(), 
+                response.toString(), request.getEmail());
 
             logger.info("Equations solved successfully.");
             return ResponseEntity.ok(response);
         } catch (InterruptedException | RuntimeException e) {
             logger.error("Error during equations solving: {}", e.getMessage());
-            return ResponseEntity.badRequest().body(e.getMessage());
+            response.setSolution(e.getMessage());
         }
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/newton")
@@ -95,6 +103,8 @@ public class EquationSolverController {
             response.setSolution(roots.toString());
 
             response.setElapsedTime(NonlinearEquationSolver.getElapsedTime());
+            calculationHistoryService.saveCalculationToHistory("Equations: Newton",request.toString(), 
+                response.toString(), request.getEmail());
 
             logger.info("Nonlinear equation solved successfully.");
         } catch (Exception e) {
@@ -111,6 +121,7 @@ public class EquationSolverController {
         private String constants;
         private int threads;
         private String language;
+        private String email;
 
         private double[][] getCoefficientsAsArray() {
             return getArrayFromString(coefficients);
@@ -146,6 +157,16 @@ public class EquationSolverController {
 
             return array;
         }
+
+        @Override
+        public String toString() {
+            return "{" +
+                    "coefficients='" + coefficients + '\'' +
+                    ", constants='" + constants + '\'' +
+                    ", threads=" + threads +
+                    ", language='" + language + '\'' +
+                    '}';
+        }
     }
 
     @Getter
@@ -166,6 +187,14 @@ public class EquationSolverController {
             sb.append("}");
             solution = sb.toString();
         }
+
+        @Override
+        public String toString() {
+            return "{" +
+                    "solution='" + solution + '\'' +
+                    ", elapsedTime=" + elapsedTime +
+                    '}';
+        }
     }
 
     @Getter
@@ -175,6 +204,7 @@ public class EquationSolverController {
         private int threads;
         private double epsilonDegree;
         private int maxIterations;
+        private String email;
 
         public double getEpsilon() {
             return Math.pow(10, -epsilonDegree);
@@ -187,6 +217,16 @@ public class EquationSolverController {
                 array[i] = Double.parseDouble(parts[i]);
             }
             return array;
+        }
+
+        @Override
+        public String toString() {
+            return "{" +
+                    "coefficients='" + coefficients + '\'' +
+                    ", threads=" + threads +
+                    ", epsilonDegree=" + epsilonDegree +
+                    ", maxIterations=" + maxIterations +
+                    '}';
         }
     }
 }
